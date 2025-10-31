@@ -11,9 +11,9 @@ type SectionProps = {
 export function Section({ title, subtitle, children, className = "", variant = "default" }: SectionProps) {
 	const variantClass =
 		variant === "muted"
-			? "bg-zinc-50 dark:bg-zinc-950"
+			? "bg-white dark:bg-[#0B0C10]"
 			: variant === "contrast"
-			? "bg-linear-to-b from-white via-zinc-50 to-white dark:from-black dark:via-zinc-950 dark:to-black"
+			? "bg-white dark:bg-[#0B0C10]"
 			: "";
 	return (
 		<section className={`py-16 sm:py-24 ${variantClass} ${className}`.trim()}>

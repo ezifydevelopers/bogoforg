@@ -246,7 +246,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             {/* Author Bio */}
-            <div className="mb-12 rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="mb-12 rounded-2xl border-2 border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-[#111]">
               <div className="flex items-start gap-4">
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-2xl text-white">
                   {post.author.charAt(0)}
@@ -271,7 +271,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Suggested Posts */}
         {suggestedPosts.length > 0 && (
-          <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+          <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="mb-8 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
                 Suggested Articles

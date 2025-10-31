@@ -163,7 +163,7 @@ export default function CareersPage() {
 			</section>
 
 			{/* Benefits */}
-			<section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -235,7 +235,7 @@ export default function CareersPage() {
 			</section>
 
 			{/* Open Positions */}
-			<section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}

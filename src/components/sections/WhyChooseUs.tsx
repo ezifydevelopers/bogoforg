@@ -28,7 +28,7 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-accent/5 py-20 dark:from-primary/10 dark:via-[#0B0C10] dark:to-accent/10 transition-colors duration-300">
+    <section className="relative overflow-hidden bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

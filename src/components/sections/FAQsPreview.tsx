@@ -25,7 +25,7 @@ const previewFAQs = [
 
 export function FAQsPreview() {
   return (
-    <section className="bg-gray-50 py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+    <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

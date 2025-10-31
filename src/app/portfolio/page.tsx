@@ -151,7 +151,7 @@ export default function PortfolioPage() {
 													{project.tags.map((tag) => (
 														<span
 															key={tag}
-															className="rounded-full border border-gray-300 bg-gray-50 px-2 py-1 text-xs text-gray-700 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-gray-400"
+															className="rounded-full border border-gray-300 bg-white px-2 py-1 text-xs text-gray-700 dark:border-gray-700 dark:bg-[#111] dark:text-gray-400"
 														>
 															{tag}
 														</span>

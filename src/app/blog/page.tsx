@@ -112,7 +112,7 @@ export default function BlogPage() {
 			)}
 
 			{/* Search & Filters */}
-			<section className="bg-neutral-50 py-8 dark:bg-neutral-900">
+			<section className="bg-white py-8 dark:bg-[#0B0C10] transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div className="relative flex-1 max-w-md">
