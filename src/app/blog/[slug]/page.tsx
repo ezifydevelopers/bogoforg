@@ -3,9 +3,10 @@ import { getBlogPostBySlug, blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import Script from "next/script";
 import { generateArticleSchema } from "@/lib/schema";
+import { Button } from "@/components/ui/Button";
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -53,6 +54,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: post.image,
     slug: post.slug,
   });
+
+  const readingTime = Math.ceil(post.content.split(' ').length / 200);
+  const suggestedPosts = blogPosts.filter(p => p.slug !== post.slug).slice(0, 3);
 
   // Simple markdown-like rendering
   const renderContent = (content: string) => {
@@ -141,6 +145,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     return elements;
   };
 
+  const shareUrl = `https://bogoforg.example.com/blog/${post.slug}`;
+  const shareText = encodeURIComponent(post.title);
+
   return (
     <>
       <Script
@@ -183,6 +190,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
               </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5" />
+                <span>{readingTime} min read</span>
+              </div>
             </div>
           </div>
         </section>
@@ -201,13 +212,102 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 />
               </div>
             )}
+            
+            {/* Share Buttons */}
+            <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
+              <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Share:</span>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                aria-label="Share on Twitter"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                aria-label="Share on Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                aria-label="Share on LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
+
+            {/* Author Bio */}
+            <div className="mb-12 rounded-2xl border-2 border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+              <div className="flex items-start gap-4">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-2xl text-white">
+                  {post.author.charAt(0)}
+                </div>
+                <div>
+                  <h3 className="mb-1 text-lg font-semibold text-neutral-900 dark:text-white">{post.author}</h3>
+                  <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    Expert in {post.category} with years of experience helping businesses succeed.
+                  </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    Connect with {post.author.split(' ')[0]} on LinkedIn to learn more about {post.category.toLowerCase()}.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="prose prose-lg max-w-none dark:prose-invert">
               {renderContent(post.content)}
             </div>
           </div>
         </article>
+
+        {/* Suggested Posts */}
+        {suggestedPosts.length > 0 && (
+          <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="mb-8 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+                Suggested Articles
+              </h2>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {suggestedPosts.map((suggested) => (
+                  <Link key={suggested.slug} href={`/blog/${suggested.slug}`}>
+                    <div className="group h-full rounded-2xl border-2 border-neutral-200 bg-white overflow-hidden transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950">
+                      <div className="relative h-40 overflow-hidden">
+                        <Image
+                          src={suggested.image || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"}
+                          alt={suggested.title}
+                          fill
+                          className="object-cover transition-transform group-hover:scale-110"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <div className="mb-2 text-xs font-medium text-primary">{suggested.category}</div>
+                        <h3 className="mb-2 text-lg font-semibold text-neutral-900 group-hover:text-primary transition-colors dark:text-white">
+                          {suggested.title}
+                        </h3>
+                        <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-300 line-clamp-2">
+                          {suggested.excerpt}
+                        </p>
+                        <span className="text-sm font-medium text-primary group-hover:text-accent transition-colors">
+                          Read More →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
     </>
   );
 }
-

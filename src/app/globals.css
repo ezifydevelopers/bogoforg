@@ -2,11 +2,21 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1a1a2e;
+  --foreground: #1a1a1a;
   --primary: #2F2FA2;
-  --primary-dark: #1f1f7a;
+  --primary-light: #EAE8FF;
+  --primary-dark: #1E1E7E;
   --accent: #00C4B4;
-  --accent-dark: #00a395;
+  --accent-light: #A7FFF8;
+  --accent-dark: #008C85;
+  
+  /* Base colors for light mode */
+  --base-light: #ffffff;
+  --base-dark: #0B0C10;
+  --text-light: #1a1a1a;
+  --text-dark: #eaeaea;
+  
+  /* Neutral colors for light mode */
   --neutral-50: #f9fafb;
   --neutral-100: #f3f4f6;
   --neutral-200: #e5e7eb;
@@ -19,27 +29,32 @@
   --neutral-900: #111827;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-accent: var(--accent);
-  --color-accent-dark: var(--accent-dark);
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0f;
-    --foreground: #f0f0f5;
-  }
+.dark {
+  --background: #0B0C10;
+  --foreground: #eaeaea;
+  --base-light: #ffffff;
+  --base-dark: #0B0C10;
+  --text-light: #1a1a1a;
+  --text-dark: #eaeaea;
+  
+  /* Neutral colors for dark mode */
+  --neutral-50: #1a1a2e;
+  --neutral-100: #1f2937;
+  --neutral-200: #374151;
+  --neutral-300: #4b5563;
+  --neutral-400: #6b7280;
+  --neutral-500: #9ca3af;
+  --neutral-600: #d1d5db;
+  --neutral-700: #e5e7eb;
+  --neutral-800: #f3f4f6;
+  --neutral-900: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth scroll */
@@ -76,11 +91,28 @@ html {
 /* Button gradient hover */
 .btn-gradient {
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .btn-gradient:hover {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-dark) 100%);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(47, 47, 162, 0.3);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Smooth transitions for theme switching - only on specific elements, not all */
+html,
+body,
+[class*="bg-"],
+[class*="text-"],
+[class*="border-"] {
+  transition-property: background-color, border-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

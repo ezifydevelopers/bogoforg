@@ -37,7 +37,7 @@ const journeyStages = [
 
 export function BusinessJourney() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-neutral-50 py-20 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+    <section className="relative overflow-hidden bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,10 +46,10 @@ export function BusinessJourney() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Your Business Journey
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             From idea to success — we're with you every step
           </p>
         </motion.div>
@@ -81,10 +81,10 @@ export function BusinessJourney() {
                         className="absolute inset-0 rounded-full border-4 border-white"
                       />
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                       {stage.title}
                     </h3>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       {stage.description}
                     </p>
                   </div>
@@ -97,4 +97,3 @@ export function BusinessJourney() {
     </section>
   );
 }
-

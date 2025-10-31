@@ -32,7 +32,7 @@ export default function ServicesPage() {
 			</section>
 
 			{/* Services Grid */}
-			<section className="py-20">
+			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{services.map((service, index) => (

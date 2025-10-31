@@ -40,7 +40,7 @@ const teamMembers = [
 
 export function TeamPreview() {
   return (
-    <section className="bg-white py-20 dark:bg-neutral-950">
+    <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,10 +49,10 @@ export function TeamPreview() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Meet Our Team
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Expert professionals dedicated to your success
           </p>
         </motion.div>
@@ -66,16 +66,16 @@ export function TeamPreview() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group relative rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
+              className="group relative rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
             >
               <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-4xl mx-auto">
                 {member.image}
               </div>
-              <h3 className="mb-1 text-lg font-semibold text-neutral-900 dark:text-white">
+              <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
                 {member.name}
               </h3>
               <p className="mb-3 text-sm text-primary">{member.role}</p>
-              <p className="mb-4 text-xs text-neutral-600 dark:text-neutral-300">
+              <p className="mb-4 text-xs text-gray-700 dark:text-gray-300">
                 {member.bio}
               </p>
               <div className="flex items-center justify-center gap-3 opacity-0 transition-opacity group-hover:opacity-100">
@@ -83,7 +83,7 @@ export function TeamPreview() {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-neutral-300 text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:text-neutral-400"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-400"
                 >
                   <Linkedin className="h-4 w-4" />
                 </a>
@@ -91,7 +91,7 @@ export function TeamPreview() {
                   href={member.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-neutral-300 text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:text-neutral-400"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-400"
                 >
                   <Twitter className="h-4 w-4" />
                 </a>
@@ -118,4 +118,3 @@ export function TeamPreview() {
     </section>
   );
 }
-

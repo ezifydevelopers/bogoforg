@@ -66,7 +66,7 @@ export function HomePageContent() {
 			<WhyChooseUs />
 
 			{/* 3. What We Do - Enhanced Services with Images */}
-			<section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -75,17 +75,17 @@ export function HomePageContent() {
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
 							What We Do
 						</h2>
-						<p className="text-lg text-neutral-600 dark:text-neutral-300">
+						<p className="text-lg text-gray-700 dark:text-gray-300">
 							Comprehensive solutions from strategy to execution
 						</p>
 					</motion.div>
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{services.map((service, index) => (
 							<TiltCard key={service.id} intensity={10}>
-								<div className="group h-full rounded-2xl border-2 border-neutral-200 bg-white overflow-hidden shadow-lg transition-all hover:shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
+								<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]">
 									<div className="relative h-48 overflow-hidden">
 										<ImageReveal
 											src={`https://images.unsplash.com/photo-${1550751827 + index}?w=800`}
@@ -102,10 +102,10 @@ export function HomePageContent() {
 										<div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
 											{service.icon && <service.icon className="h-6 w-6" />}
 										</div>
-										<h3 className="mb-2 text-xl font-semibold text-neutral-900 dark:text-white">
+										<h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
 											{service.title}
 										</h3>
-										<p className="mb-4 text-sm text-neutral-600 dark:text-neutral-300 line-clamp-2">
+										<p className="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
 											{service.description}
 										</p>
 										<Link

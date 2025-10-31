@@ -28,7 +28,7 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-accent/5 py-20 dark:from-primary/10 dark:via-neutral-950 dark:to-accent/10">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-accent/5 py-20 dark:from-primary/10 dark:via-[#0B0C10] dark:to-accent/10 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,10 +37,10 @@ export function WhyChooseUs() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Why Choose Us
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Results-driven expertise you can trust
           </p>
         </motion.div>
@@ -57,7 +57,7 @@ export function WhyChooseUs() {
             <div className="mb-2 text-4xl font-bold text-primary sm:text-5xl">
               <StatsCounter value={10} suffix="+" /> Years
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">Experience</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Experience</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export function WhyChooseUs() {
             <div className="mb-2 text-4xl font-bold text-primary sm:text-5xl">
               <StatsCounter value={500} suffix="+" /> Projects
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">Delivered</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Delivered</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ export function WhyChooseUs() {
             <div className="mb-2 text-4xl font-bold text-primary sm:text-5xl">
               <StatsCounter value={200} suffix="+" /> Clients
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">Satisfied</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Satisfied</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +93,7 @@ export function WhyChooseUs() {
             <div className="mb-2 text-4xl font-bold text-primary sm:text-5xl">
               <StatsCounter value={50} suffix="%" /> Faster
             </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">Delivery</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Delivery</p>
           </motion.div>
         </div>
 
@@ -108,15 +108,15 @@ export function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="rounded-2xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
+                className="rounded-2xl border-2 border-gray-200 bg-white p-6 transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                   {benefit.title}
                 </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   {benefit.description}
                 </p>
               </motion.div>
@@ -127,4 +127,3 @@ export function WhyChooseUs() {
     </section>
   );
 }
-

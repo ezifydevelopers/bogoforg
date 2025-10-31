@@ -22,7 +22,7 @@ export function Button({
   className = "",
   type = "button",
 }: ButtonProps) {
-  const baseClasses = "font-semibold rounded-2xl transition-all duration-300 inline-flex items-center justify-center";
+  const baseClasses = "font-semibold rounded-2xl transition-all duration-300 inline-flex items-center justify-center cursor-pointer pointer-events-auto";
   
   const variantClasses = {
     primary: "btn-gradient text-white shadow-lg",
@@ -38,7 +38,21 @@ export function Button({
 
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
-  const buttonContent = (
+  if (href) {
+    return (
+      <Link href={href} className={classes} onClick={onClick}>
+        <motion.span
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center justify-center"
+        >
+          {children}
+        </motion.span>
+      </Link>
+    );
+  }
+
+  return (
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -49,14 +63,4 @@ export function Button({
       {children}
     </motion.button>
   );
-
-  if (href) {
-    return (
-      <Link href={href} className="inline-block">
-        {buttonContent}
-      </Link>
-    );
-  }
-
-  return buttonContent;
 }

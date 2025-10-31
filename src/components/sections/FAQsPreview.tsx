@@ -25,7 +25,7 @@ const previewFAQs = [
 
 export function FAQsPreview() {
   return (
-    <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+    <section className="bg-gray-50 py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,10 +34,10 @@ export function FAQsPreview() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Quick answers to common questions
           </p>
         </motion.div>
@@ -71,4 +71,3 @@ export function FAQsPreview() {
     </section>
   );
 }
-

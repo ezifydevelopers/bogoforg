@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function CaseStudyHighlight() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 dark:bg-neutral-950">
+    <section className="relative overflow-hidden bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -19,10 +19,10 @@ export function CaseStudyHighlight() {
           <span className="mb-4 inline-block rounded-full border-2 border-primary px-4 py-1 text-sm font-medium text-primary">
             Featured Case Study
           </span>
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             AI-Powered Cloud Surveillance Platform
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Transforming security operations with intelligent automation
           </p>
         </motion.div>
@@ -42,7 +42,7 @@ export function CaseStudyHighlight() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-neutral-900/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
           </motion.div>
 
           {/* Content */}
@@ -55,19 +55,19 @@ export function CaseStudyHighlight() {
           >
             <div className="mb-8 space-y-6">
               <div>
-                <h3 className="mb-3 text-xl font-semibold text-neutral-900 dark:text-white">
+                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
                   The Challenge
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-300">
+                <p className="text-gray-700 dark:text-gray-300">
                   Manual review processes were time-consuming and error-prone. The client needed a scalable solution to monitor multiple locations simultaneously while reducing false positives and improving response times.
                 </p>
               </div>
 
               <div>
-                <h3 className="mb-3 text-xl font-semibold text-neutral-900 dark:text-white">
+                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
                   Our Solution
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-300">
+                <p className="text-gray-700 dark:text-gray-300">
                   We built an intelligent surveillance system leveraging AI and machine learning for real-time threat detection. The platform includes automated alerting, intelligent filtering, and seamless cloud integration.
                 </p>
               </div>
@@ -77,30 +77,30 @@ export function CaseStudyHighlight() {
                   The Impact
                 </h3>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <div className="rounded-lg border-2 border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="rounded-lg border-2 border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-[#111]">
                     <div className="mb-2 flex items-center gap-2 text-accent">
                       <CheckCircle2 className="h-5 w-5" />
                       <span className="text-2xl font-bold">50%</span>
                     </div>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-300">
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
                       Reduction in manual reviews
                     </p>
                   </div>
-                  <div className="rounded-lg border-2 border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="rounded-lg border-2 border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-[#111]">
                     <div className="mb-2 flex items-center gap-2 text-accent">
                       <TrendingUp className="h-5 w-5" />
                       <span className="text-2xl font-bold">3×</span>
                     </div>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-300">
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
                       Improvement in accuracy
                     </p>
                   </div>
-                  <div className="rounded-lg border-2 border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="rounded-lg border-2 border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-[#111]">
                     <div className="mb-2 flex items-center gap-2 text-accent">
                       <Zap className="h-5 w-5" />
                       <span className="text-2xl font-bold">40%</span>
                     </div>
-                    <p className="text-xs text-neutral-600 dark:text-neutral-300">
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
                       Faster response times
                     </p>
                   </div>

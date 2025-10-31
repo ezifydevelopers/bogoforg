@@ -24,9 +24,9 @@ export function CTASection({
 }: CTASectionProps) {
   const bgClass = variant === "gradient" 
     ? "bg-gradient-to-br from-primary via-primary/90 to-accent" 
-    : "bg-neutral-50 dark:bg-neutral-900";
+    : "bg-white dark:bg-[#0B0C10] transition-colors duration-300";
 
-  const textClass = variant === "gradient" ? "text-white" : "text-neutral-900 dark:text-white";
+  const textClass = variant === "gradient" ? "text-white" : "text-gray-900 dark:text-white";
 
   return (
     <section className={`${bgClass} py-20`}>
@@ -47,7 +47,7 @@ export function CTASection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`mb-8 text-lg ${variant === "gradient" ? "text-white/90" : "text-neutral-600 dark:text-neutral-300"}`}
+            className={`mb-8 text-lg ${variant === "gradient" ? "text-white/90" : "text-gray-700 dark:text-gray-300"}`}
           >
             {subtitle}
           </motion.p>
@@ -64,7 +64,7 @@ export function CTASection({
             href={primaryButtonHref} 
             variant={variant === "gradient" ? "secondary" : "primary"} 
             size="lg"
-            className={variant === "gradient" ? "bg-white text-primary hover:bg-neutral-100" : ""}
+            className={variant === "gradient" ? "bg-white text-primary hover:bg-gray-100" : ""}
           >
             {primaryButtonText}
           </Button>
@@ -83,4 +83,3 @@ export function CTASection({
     </section>
   );
 }
-

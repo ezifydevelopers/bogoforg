@@ -15,7 +15,7 @@ export function TestimonialsSection({
   subtitle = "Real feedback from real projects.",
 }: TestimonialsSectionProps) {
   return (
-    <section className="bg-neutral-50 py-20 dark:bg-neutral-900">
+    <section className="bg-gray-50 py-20 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,11 +24,11 @@ export function TestimonialsSection({
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-lg text-neutral-600 dark:text-neutral-300">
+            <p className="text-lg text-gray-700 dark:text-gray-300">
               {subtitle}
             </p>
           )}
@@ -42,16 +42,16 @@ export function TestimonialsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-2xl border-2 border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-950"
+              className="rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]"
             >
-              <p className="mb-4 text-sm italic leading-relaxed text-neutral-700 dark:text-neutral-300">
+              <p className="mb-4 text-sm italic leading-relaxed text-gray-700 dark:text-gray-300">
                 "{testimonial.quote}"
               </p>
-              <div className="border-t border-neutral-200 pt-4 dark:border-neutral-800">
-                <p className="text-sm font-semibold text-neutral-900 dark:text-white">
+              <div className="border-t border-gray-200 pt-4 dark:border-gray-800">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">
                   {testimonial.author}
                 </p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                <p className="text-xs text-gray-600 dark:text-gray-400">
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>
@@ -62,4 +62,3 @@ export function TestimonialsSection({
     </section>
   );
 }
-

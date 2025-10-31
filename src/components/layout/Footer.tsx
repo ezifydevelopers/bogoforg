@@ -14,7 +14,7 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="relative border-t-2 border-neutral-200 bg-gradient-to-b from-neutral-50 to-white py-16 dark:border-neutral-800 dark:from-neutral-950 dark:to-neutral-900">
+		<footer className="relative border-t-2 border-gray-200 bg-white py-16 dark:border-gray-800 dark:bg-[#0B0C10] transition-colors duration-300">
 			{/* Wave Top Border */}
 			<div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
 				<div className="h-full w-full bg-gradient-to-r from-primary via-accent to-primary" />
@@ -32,7 +32,7 @@ export default function Footer() {
 						<h3 className="mb-4 text-xl font-bold">
 							<span className="gradient-text">bogoforg</span>
 						</h3>
-						<p className="mb-6 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+						<p className="mb-6 text-sm leading-relaxed text-neutral-700 dark:text-neutral-400">
 							Turning ideas into reality. We help entrepreneurs and businesses plan, build, and grow their products with cutting-edge technology and strategic expertise.
 						</p>
 						<div className="flex gap-3">
@@ -45,7 +45,7 @@ export default function Footer() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label={social.label}
-										className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:scale-110 hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+										className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-700 transition-all hover:scale-110 hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
 									>
 										<Icon className="h-5 w-5" />
 									</a>
@@ -64,32 +64,32 @@ export default function Footer() {
 						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Services</h4>
 						<ul className="space-y-2 text-sm">
 							<li>
-								<Link href="/services/business-planning" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/business-planning" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Business Planning
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/product-development" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/product-development" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Product Development
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/web-mobile-development" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/web-mobile-development" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Web & Mobile
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/marketing" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/marketing" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Marketing & Growth
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/ai-automation" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/ai-automation" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									AI & Automation
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/security-testing" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/security-testing" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Security & Testing
 								</Link>
 							</li>
@@ -106,95 +106,96 @@ export default function Footer() {
 						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Resources</h4>
 						<ul className="space-y-2 text-sm">
 							<li>
-								<Link href="/blog" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/about" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									About Us
+								</Link>
+							</li>
+							<li>
+								<Link href="/portfolio" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									Portfolio
+								</Link>
+							</li>
+							<li>
+								<Link href="/process" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									How We Work
+								</Link>
+							</li>
+							<li>
+								<Link href="/blog" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									Blog & Insights
 								</Link>
 							</li>
 							<li>
-								<Link href="/portfolio" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
-									Case Studies
-								</Link>
-							</li>
-							<li>
-								<Link href="/testimonials" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
-									Testimonials
-								</Link>
-							</li>
-							<li>
-								<Link href="/faq" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/faq" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 									FAQ
 								</Link>
 							</li>
 							<li>
-								<Link href="/process" className="text-neutral-600 transition-colors hover:text-primary dark:text-neutral-400">
-									Our Process
+								<Link href="/careers" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									Careers
 								</Link>
 							</li>
 						</ul>
-					</motion.div>
 
-					{/* Contact & Newsletter */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.6, delay: 0.3 }}
-					>
-						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Get In Touch</h4>
-						<div className="mb-6 space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
-							<div className="flex items-center gap-2">
-								<Mail className="h-4 w-4 text-primary" />
-								<a href="mailto:hello@bogoforg.com" className="hover:text-primary">
-									hello@bogoforg.com
-								</a>
-							</div>
-							<div className="flex items-center gap-2">
-								<Phone className="h-4 w-4 text-primary" />
-								<a href="tel:+1234567890" className="hover:text-primary">
-									+1 (234) 567-890
-								</a>
-							</div>
-							<div className="flex items-center gap-2">
-								<MapPin className="h-4 w-4 text-primary" />
-								<span>Remote Worldwide</span>
-							</div>
-						</div>
-						
 						{/* Newsletter */}
-						<div className="rounded-xl border-2 border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
-							<h5 className="mb-2 text-xs font-semibold text-neutral-900 dark:text-white">Newsletter</h5>
-							<p className="mb-3 text-xs text-neutral-600 dark:text-neutral-400">
-								Get insights on AI, product development, and growth.
+						<div className="mt-6">
+							<h4 className="mb-3 text-sm font-semibold text-neutral-900 dark:text-white">Newsletter</h4>
+							<p className="mb-3 text-xs text-neutral-700 dark:text-neutral-400">
+								Get updates on product development, AI, and growth strategies.
 							</p>
 							<form className="flex gap-2">
 								<input
 									type="email"
 									placeholder="Your email"
-									className="flex-1 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-xs outline-none focus:border-primary dark:border-neutral-700 dark:bg-neutral-950"
+									className="flex-1 rounded-lg border-2 border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none transition-colors focus:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-white"
 								/>
 								<button
 									type="submit"
-									className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-r from-primary to-accent text-white transition-all hover:scale-110 hover:shadow-lg"
-									aria-label="Subscribe"
+									className="rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg"
 								>
 									<Send className="h-4 w-4" />
 								</button>
 							</form>
 						</div>
 					</motion.div>
+
+					{/* Contact */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.3 }}
+					>
+						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Contact</h4>
+						<ul className="space-y-3 text-sm">
+							<li className="flex items-start gap-2">
+								<Mail className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
+								<a href="mailto:hello@bogoforg.com" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									hello@bogoforg.com
+								</a>
+							</li>
+							<li className="flex items-start gap-2">
+								<Phone className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
+								<a href="tel:+1234567890" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+									+1 (234) 567-890
+								</a>
+							</li>
+							<li className="flex items-start gap-2">
+								<MapPin className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
+								<span className="text-neutral-700 dark:text-neutral-400">Remote Worldwide</span>
+							</li>
+						</ul>
+					</motion.div>
 				</div>
 
-				<div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-8 text-sm text-neutral-600 dark:border-neutral-800 dark:text-neutral-400 sm:flex-row">
-					<p>© {currentYear} bogoforg. All rights reserved.</p>
+				<div className="mt-10 flex flex-col items-center justify-between gap-4 border-t-2 border-neutral-200 pt-6 text-sm dark:border-neutral-800 sm:flex-row">
+					<p className="text-neutral-700 dark:text-neutral-400">© {currentYear} bogoforg. All rights reserved.</p>
 					<div className="flex gap-6">
-						<Link href="/terms" className="transition-colors hover:text-primary">
+						<Link href="/terms" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 							Terms
 						</Link>
-						<Link href="/privacy" className="transition-colors hover:text-primary">
+						<Link href="/privacy" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
 							Privacy
-						</Link>
-						<Link href="/sitemap" className="transition-colors hover:text-primary">
-							Sitemap
 						</Link>
 					</div>
 				</div>
