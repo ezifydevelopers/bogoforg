@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { type ReactElement } from "react";
 import { getBlogPostBySlug, blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -61,7 +62,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Simple markdown-like rendering
   const renderContent = (content: string) => {
     const lines = content.split('\n');
-    const elements: JSX.Element[] = [];
+    const elements: ReactElement[] = [];
     let currentParagraph: string[] = [];
     let listItems: string[] = [];
     let inList = false;
