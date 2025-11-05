@@ -25,19 +25,19 @@ const previewFAQs = [
 
 export function FAQsPreview() {
   return (
-    <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-      <div className="mx-auto max-w-4xl px-6">
+    <section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-gray-900 dark:text-gray-200">
+          <p className="text-base sm:text-lg text-gray-900 dark:text-gray-200">
             Quick answers to common questions
           </p>
         </motion.div>

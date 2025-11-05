@@ -66,23 +66,23 @@ export function HomePageContent() {
 			<WhyChooseUs />
 
 			{/* 3. What We Do - Enhanced Services with Images */}
-			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
-						className="mb-12 text-center"
+						className="mb-8 sm:mb-12 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
 							What We Do
 						</h2>
-						<p className="text-lg text-gray-800 dark:text-gray-200">
+						<p className="text-base sm:text-lg text-gray-800 dark:text-gray-200">
 							Comprehensive solutions from strategy to execution
 						</p>
 					</motion.div>
-					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{services.map((service, index) => {
 							// Unique images for each service
 							const serviceImages = [
@@ -96,7 +96,7 @@ export function HomePageContent() {
 							return (
 								<TiltCard key={service.id} intensity={10}>
 									<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]">
-										<div className="relative h-56 overflow-hidden">
+										<div className="relative h-48 sm:h-56 overflow-hidden">
 											<ImageReveal
 												src={serviceImages[index] || serviceImages[0]}
 												alt={service.title}
@@ -105,16 +105,16 @@ export function HomePageContent() {
 												className="object-cover transition-transform duration-500 group-hover:scale-110"
 											/>
 											<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
-											<div className="absolute bottom-4 left-4 right-4">
-												<div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm border border-white/30">
-													{service.icon && <service.icon className="h-6 w-6 text-white" />}
+											<div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4">
+												<div className="mb-2 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm border border-white/30">
+													{service.icon && <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />}
 												</div>
-												<h3 className="text-lg font-bold text-white drop-shadow-lg">
+												<h3 className="text-base sm:text-lg font-bold text-white drop-shadow-lg">
 													{service.title}
 												</h3>
 											</div>
 										</div>
-										<div className="p-6">
+										<div className="p-4 sm:p-6">
 											<p className="mb-4 text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
 												{service.description}
 											</p>

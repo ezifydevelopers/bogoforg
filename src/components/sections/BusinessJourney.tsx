@@ -37,19 +37,19 @@ const journeyStages = [
 
 function BusinessJourneyComponent() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Your Business Journey
           </h2>
-          <p className="text-lg text-gray-900 dark:text-gray-200">
+          <p className="text-base sm:text-lg text-gray-900 dark:text-gray-200">
             From idea to success — we're with you every step
           </p>
         </motion.div>
@@ -58,7 +58,7 @@ function BusinessJourneyComponent() {
           {/* Timeline Line */}
           <div className="absolute left-0 top-1/2 hidden h-1 w-full -translate-y-1/2 bg-gradient-to-r from-primary via-accent to-primary lg:block" />
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-5">
             {journeyStages.map((stage, index) => {
               const gradientClass = `bg-gradient-to-br ${stage.color}`;
               return (
@@ -72,7 +72,7 @@ function BusinessJourneyComponent() {
                 >
                   <div className="flex flex-col items-center text-center">
                     <div 
-                      className={`relative z-10 mb-4 h-24 w-24 overflow-hidden rounded-full ${gradientClass} shadow-lg ring-4 ring-white dark:ring-gray-800 transition-transform group-hover:scale-110`}
+                      className={`relative z-10 mb-3 sm:mb-4 h-20 w-20 sm:h-24 sm:w-24 overflow-hidden rounded-full ${gradientClass} shadow-lg ring-2 sm:ring-4 ring-white dark:ring-gray-800 transition-transform group-hover:scale-110`}
                     >
                       <ImageReveal
                         src={stage.image}
@@ -87,13 +87,13 @@ function BusinessJourneyComponent() {
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
-                        className="absolute inset-0 rounded-full border-4 border-white dark:border-gray-700"
+                        className="absolute inset-0 rounded-full border-2 sm:border-4 border-white dark:border-gray-700"
                       />
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                    <h3 className="mb-2 text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
                       {stage.title}
                     </h3>
-                    <p className="text-sm text-gray-900 dark:text-gray-200">
+                    <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-200">
                       {stage.description}
                     </p>
                   </div>

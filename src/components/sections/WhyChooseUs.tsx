@@ -29,25 +29,25 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Why Choose Us
           </h2>
-          <p className="text-lg text-gray-900 dark:text-gray-200">
+          <p className="text-base sm:text-lg text-gray-900 dark:text-gray-200">
             Results-driven expertise you can trust
           </p>
         </motion.div>
 
         {/* Stats Row */}
-        <div className="mb-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <div className="mb-12 sm:mb-16 grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,10 +55,10 @@ export function WhyChooseUs() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="mb-2 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
+            <div className="mb-2 text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               <StatsCounter value={10} suffix="+" /><span className="text-gray-900 dark:text-white"> Years</span>
             </div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">Experience</p>
+            <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">Experience</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -99,7 +99,7 @@ export function WhyChooseUs() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             const benefitImages = [

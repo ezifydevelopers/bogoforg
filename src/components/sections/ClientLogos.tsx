@@ -47,24 +47,24 @@ const clients = [
 
 export function ClientLogos() {
   return (
-    <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Trusted By Industry Leaders
           </h2>
-          <p className="text-lg text-gray-900 dark:text-gray-200">
+          <p className="text-base sm:text-lg text-gray-900 dark:text-gray-200">
             We're proud to partner with innovative companies across various industries
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-4">
           {clients.map((client, index) => (
             <motion.div
               key={index}
@@ -73,7 +73,7 @@ export function ClientLogos() {
               viewport={{ once: true, amount: 0.2, margin: "-50px" }}
               transition={{ duration: 0.4 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative h-32 overflow-hidden rounded-xl border-2 border-gray-200 bg-white transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
+              className="group relative h-24 sm:h-28 md:h-32 overflow-hidden rounded-xl border-2 border-gray-200 bg-white transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
             >
               <ImageReveal
                 src={client.image}

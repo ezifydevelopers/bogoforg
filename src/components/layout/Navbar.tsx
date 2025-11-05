@@ -50,11 +50,13 @@ function Navbar() {
 						: "border-transparent bg-white/80 backdrop-blur-sm dark:bg-[#0B0C10]/80"
 				}`}
 			>
-				<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-					<Link href="/" className="text-xl font-bold tracking-tight">
+				<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+					<Link href="/" className="text-lg sm:text-xl font-bold tracking-tight z-50 relative">
 						<span className="gradient-text">bogoforg</span>
 					</Link>
-					<nav className="hidden items-center gap-8 sm:flex">
+					
+					{/* Desktop Navigation - Only visible at 1280px+ */}
+					<nav className="hidden xl:flex items-center gap-4 xl:gap-6 2xl:gap-8">
 						{links.map((l) => {
 							const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
 							const isServicesOrAbout = l.label === "Services" || l.label === "About";
@@ -68,7 +70,7 @@ function Navbar() {
 								>
 									<Link
 										href={l.href}
-										className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
+										className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary whitespace-nowrap ${
 											active ? "text-primary" : "text-gray-900 dark:text-gray-100"
 										}`}
 									>
@@ -85,17 +87,22 @@ function Navbar() {
 							);
 						})}
 					</nav>
-					<div className="hidden items-center gap-4 sm:flex">
+					
+					{/* Desktop Actions (Dark Mode + Get Quote) - Only visible at 1280px+ */}
+					<div className="hidden xl:flex items-center gap-3 xl:gap-4">
 						<DarkModeToggle />
 						<Link
 							href="/contact"
-							className="relative overflow-hidden rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-6 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(47,47,162,0.5)]"
+							className="relative overflow-hidden rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-5 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(47,47,162,0.5)] whitespace-nowrap"
 						>
 							<span className="relative z-10">Get Quote</span>
 						</Link>
 					</div>
+					
+					{/* Mobile Menu Button - Only visible below 1280px */}
 					<button
-						className="sm:hidden text-gray-900 dark:text-gray-100"
+						type="button"
+						className="xl:hidden flex text-gray-900 dark:text-gray-100 p-2 -mr-2 z-50 relative"
 						aria-label="Toggle menu"
 						onClick={() => setOpen(!open)}
 					>
@@ -109,7 +116,7 @@ function Navbar() {
 						initial={{ height: 0, opacity: 0 }}
 						animate={{ height: "auto", opacity: 1 }}
 						exit={{ height: 0, opacity: 0 }}
-						className="border-t border-gray-200 bg-white px-6 py-4 dark:border-gray-800 dark:bg-[#0B0C10] sm:hidden"
+						className="border-t border-gray-200 bg-white px-4 py-4 dark:border-gray-800 dark:bg-[#0B0C10] xl:hidden"
 					>
 						<div className="flex flex-col gap-3">
 							{links.map((l) => {

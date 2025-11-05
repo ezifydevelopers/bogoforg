@@ -83,19 +83,19 @@ export function EnhancedHero({
         )}
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl items-center px-6 py-20">
+      <div className="relative z-10 mx-auto flex min-h-[85vh] sm:min-h-[90vh] max-w-7xl items-center px-4 sm:px-6 py-12 sm:py-16 md:py-20">
         <div className="w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-6"
+            className="mb-4 sm:mb-6"
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm dark:border-white/30 dark:bg-white/10 dark:text-white"
+              className="inline-block rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-primary backdrop-blur-sm dark:border-white/30 dark:bg-white/10 dark:text-white"
             >
               ✨ Turning Ideas Into Reality Since 2014
             </motion.span>
@@ -105,7 +105,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6 text-5xl font-bold text-gray-900 dark:text-white sm:text-6xl md:text-7xl lg:text-8xl"
+            className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 dark:text-white leading-tight"
           >
             {headline}
           </motion.h1>
@@ -114,7 +114,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-10 text-xl leading-relaxed text-gray-800 dark:text-white/90 sm:text-2xl"
+            className="mb-8 sm:mb-10 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-800 dark:text-white/90 px-2"
           >
             {subtext}
           </motion.p>
@@ -123,12 +123,12 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            className="mb-8 sm:mb-12 flex flex-col items-center justify-center gap-3 sm:gap-4"
           >
-            <Button href={primaryButtonHref} variant="primary" size="lg" className="shadow-[0_0_30px_rgba(47,47,162,0.5)]">
+            <Button href={primaryButtonHref} variant="primary" size="lg" className="w-full sm:w-auto shadow-[0_0_30px_rgba(47,47,162,0.5)]">
               {primaryButtonText}
             </Button>
-            <Button href={secondaryButtonHref} variant="outline" size="lg" className="bg-primary/10 text-primary backdrop-blur-sm hover:bg-primary/20 border-primary dark:bg-white/10 dark:text-white dark:border-white dark:hover:bg-white/20">
+            <Button href={secondaryButtonHref} variant="outline" size="lg" className="w-full sm:w-auto bg-primary/10 text-primary backdrop-blur-sm hover:bg-primary/20 border-primary dark:bg-white/10 dark:text-white dark:border-white dark:hover:bg-white/20">
               {secondaryButtonText}
             </Button>
           </motion.div>
@@ -138,7 +138,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-wrap items-center justify-center gap-6"
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6"
           >
             {trustBadges.map((badge, index) => {
               const Icon = badge.icon;
@@ -148,10 +148,10 @@ export function EnhancedHero({
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                  className="flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 backdrop-blur-sm dark:bg-white/10"
+                  className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 backdrop-blur-sm dark:bg-white/10"
                 >
-                  <Icon className={`h-5 w-5 ${badge.color}`} />
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">{badge.text}</span>
+                  <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${badge.color}`} />
+                  <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">{badge.text}</span>
                 </motion.div>
               );
             })}

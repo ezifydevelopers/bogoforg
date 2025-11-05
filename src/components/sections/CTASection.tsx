@@ -29,14 +29,14 @@ export function CTASection({
   const textClass = variant === "gradient" ? "text-white" : "text-gray-900 dark:text-white";
 
   return (
-    <section className={`${bgClass} py-20`}>
-      <div className="mx-auto max-w-4xl px-6 text-center">
+    <section className={`${bgClass} py-12 sm:py-16 md:py-20`}>
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className={`mb-4 text-3xl font-bold sm:text-4xl md:text-5xl ${textClass}`}
+          className={`mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${textClass}`}
         >
           {title}
         </motion.h2>
@@ -47,7 +47,7 @@ export function CTASection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`mb-8 text-lg ${variant === "gradient" ? "text-white/90" : "text-gray-900 dark:text-gray-200"}`}
+            className={`mb-6 sm:mb-8 text-base sm:text-lg ${variant === "gradient" ? "text-white/90" : "text-gray-900 dark:text-gray-200"}`}
           >
             {subtitle}
           </motion.p>
@@ -58,7 +58,7 @@ export function CTASection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row"
         >
           <Button 
             href={primaryButtonHref} 

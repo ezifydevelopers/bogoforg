@@ -65,7 +65,7 @@ export default function PortfolioPage() {
 	return (
 		<main>
 			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-12 sm:py-16 md:py-20">
 				<div className="absolute inset-0">
 					<ImageReveal
 						src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600"
@@ -75,12 +75,12 @@ export default function PortfolioPage() {
 					/>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+				<div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
-						className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
+						className="mb-4 sm:mb-6 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
 					>
 						Case Studies
 					</motion.h1>
@@ -88,7 +88,7 @@ export default function PortfolioPage() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-lg leading-relaxed text-white/90 sm:text-xl"
+						className="text-base leading-relaxed text-white/90 sm:text-lg md:text-xl"
 					>
 						A snapshot of projects we've delivered—outcomes, learnings, and craft.
 					</motion.p>
@@ -96,14 +96,14 @@ export default function PortfolioPage() {
 			</section>
 
 			{/* Filter Tabs */}
-			<section className="sticky top-16 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm py-4 dark:border-gray-800 dark:bg-[#0B0C10]/95 transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
-					<div className="flex flex-wrap items-center justify-center gap-3">
+			<section className="sticky top-16 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm py-3 sm:py-4 dark:border-gray-800 dark:bg-[#0B0C10]/95 transition-colors duration-300">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+					<div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
 						{categories.map((category) => (
 							<button
 								key={category}
 								onClick={() => setActiveFilter(category)}
-								className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
+								className={`rounded-full px-4 py-1.5 sm:px-6 sm:py-2 text-xs sm:text-sm font-medium transition-all ${
 									activeFilter === category
 										? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
 										: "border-2 border-gray-300 bg-white text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
@@ -117,8 +117,8 @@ export default function PortfolioPage() {
 			</section>
 
 			{/* Projects Grid */}
-			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6">
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={activeFilter}
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -20 }}
 							transition={{ duration: 0.3 }}
-							className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+							className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
 						>
 							{filteredProjects.map((project, index) => {
 							// Unique images for each project type
