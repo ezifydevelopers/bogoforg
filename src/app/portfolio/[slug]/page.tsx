@@ -118,11 +118,11 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <div className="relative aspect-video overflow-hidden rounded-2xl border-2 border-neutral-200 shadow-xl dark:border-neutral-800">
             <ImageReveal
               src={
-                project.slug === "ai-surveillance-platform" 
+                slug === "ai-surveillance-platform" 
                   ? "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600"
-                  : project.slug === "event-management-software"
+                  : slug === "event-management-software"
                   ? "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600"
-                  : project.slug === "ecommerce-growth-engine"
+                  : slug === "ecommerce-growth-engine"
                   ? "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600"
                   : "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600"
               }
