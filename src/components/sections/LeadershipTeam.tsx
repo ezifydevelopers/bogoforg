@@ -48,14 +48,14 @@ export function LeadershipTeam() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Leadership Team
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-gray-900 dark:text-gray-200">
             Meet the experts leading your success
           </p>
         </motion.div>
@@ -66,7 +66,7 @@ export function LeadershipTeam() {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               className="group rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-xl dark:border-gray-800 dark:bg-[#111]"
@@ -78,7 +78,7 @@ export function LeadershipTeam() {
                 {leader.name}
               </h3>
               <p className="mb-3 text-sm font-medium text-primary">{leader.role}</p>
-              <p className="mb-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+              <p className="mb-4 text-sm leading-relaxed text-gray-900 dark:text-gray-200">
                 {leader.bio}
               </p>
               <div className="flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
@@ -86,7 +86,7 @@ export function LeadershipTeam() {
                   href={leader.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-800 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-300"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-4 w-4" />
@@ -95,14 +95,14 @@ export function LeadershipTeam() {
                   href={leader.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-800 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-300"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-4 w-4" />
                 </a>
                 <a
                   href={`mailto:${leader.email}`}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-700 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-300 text-gray-800 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-gray-700 dark:text-gray-300"
                   aria-label="Email"
                 >
                   <Mail className="h-4 w-4" />

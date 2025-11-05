@@ -125,37 +125,49 @@ export default function CareersPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
 							Why Work With Us
 						</h2>
-						<p className="text-lg text-neutral-700 dark:text-neutral-300">
+						<p className="text-lg text-neutral-900 dark:text-neutral-200">
 							More than just a job — it's a career with purpose
 						</p>
 					</motion.div>
 
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{[
-							{ title: "Impactful Work", desc: "Work on projects that matter and see your contributions make a real difference." },
-							{ title: "Autonomy & Ownership", desc: "Take ownership of your work with the freedom to make decisions and innovate." },
-							{ title: "Learning Culture", desc: "Continuous learning opportunities and exposure to cutting-edge technologies." },
-							{ title: "Collaborative Team", desc: "Work with experienced, supportive colleagues who value quality and clarity." },
-							{ title: "Work-Life Balance", desc: "Flexible hours, remote work, and respect for your time and boundaries." },
-							{ title: "Growth Opportunities", desc: "Clear career paths and opportunities to grow both professionally and personally." },
+							{ title: "Impactful Work", desc: "Work on projects that matter and see your contributions make a real difference.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80" },
+							{ title: "Autonomy & Ownership", desc: "Take ownership of your work with the freedom to make decisions and innovate.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80" },
+							{ title: "Learning Culture", desc: "Continuous learning opportunities and exposure to cutting-edge technologies.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80" },
+							{ title: "Collaborative Team", desc: "Work with experienced, supportive colleagues who value quality and clarity.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80" },
+							{ title: "Work-Life Balance", desc: "Flexible hours, remote work, and respect for your time and boundaries.", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=80" },
+							{ title: "Growth Opportunities", desc: "Clear career paths and opportunities to grow both professionally and personally.", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&fit=crop&q=80" },
 						].map((perk, index) => (
 							<motion.div
 								key={index}
 								initial={{ opacity: 0, y: 20 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
-								className="rounded-2xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950"
+								className="group rounded-2xl border-2 border-neutral-200 bg-white overflow-hidden transition-all hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950"
 							>
-								<h3 className="mb-2 text-xl font-semibold text-neutral-900 dark:text-white">{perk.title}</h3>
-								<p className="text-sm text-neutral-700 dark:text-neutral-300">{perk.desc}</p>
+								<div className="relative h-48 overflow-hidden">
+									<ImageReveal
+										src={perk.image}
+										alt={perk.title}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="object-cover transition-transform duration-700 group-hover:scale-110"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
+								</div>
+								<div className="p-6">
+									<h3 className="mb-2 text-xl font-semibold text-neutral-900 dark:text-white">{perk.title}</h3>
+									<p className="text-sm text-neutral-900 dark:text-neutral-200">{perk.desc}</p>
+								</div>
 							</motion.div>
 						))}
 					</div>
@@ -168,7 +180,7 @@ export default function CareersPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
@@ -182,7 +194,7 @@ export default function CareersPage() {
 								key={index}
 								initial={{ opacity: 0, scale: 0.9 }}
 								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.3, delay: index * 0.05 }}
 								className="flex items-center gap-2 rounded-lg border-2 border-neutral-200 bg-white p-4 text-sm dark:border-neutral-800 dark:bg-neutral-950"
 							>
@@ -200,14 +212,14 @@ export default function CareersPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
 							Team Life
 						</h2>
-						<p className="text-lg text-neutral-700 dark:text-neutral-300">
+						<p className="text-lg text-neutral-900 dark:text-neutral-200">
 							A glimpse into our culture and team events
 						</p>
 					</motion.div>
@@ -217,7 +229,7 @@ export default function CareersPage() {
 								key={index}
 								initial={{ opacity: 0, scale: 0.8 }}
 								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
 								whileHover={{ scale: 1.05 }}
 								className="relative h-48 overflow-hidden rounded-xl"
@@ -226,6 +238,7 @@ export default function CareersPage() {
 									src={src}
 									alt={`Team event ${index + 1}`}
 									fill
+									sizes="(max-width: 768px) 50vw, 33vw"
 									className="object-cover"
 								/>
 							</motion.div>
@@ -240,7 +253,7 @@ export default function CareersPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-8 text-center"
 					>
@@ -252,8 +265,8 @@ export default function CareersPage() {
 					{/* Filters */}
 					<div className="mb-8 flex flex-wrap items-center justify-center gap-4">
 						<div className="flex items-center gap-2">
-							<Filter className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
-							<span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Department:</span>
+							<Filter className="h-5 w-5 text-neutral-900 dark:text-neutral-300" />
+							<span className="text-sm font-medium text-neutral-900 dark:text-neutral-200">Department:</span>
 							<div className="flex gap-2">
 								{departments.map((dept) => (
 									<button
@@ -262,7 +275,7 @@ export default function CareersPage() {
 										className={`rounded-full px-4 py-1 text-sm transition-all ${
 											selectedDepartment === dept
 												? "bg-gradient-to-r from-primary to-accent text-white"
-												: "border border-neutral-300 bg-white text-neutral-700 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+												: "border border-neutral-300 bg-white text-neutral-900 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 										}`}
 									>
 										{dept}
@@ -271,7 +284,7 @@ export default function CareersPage() {
 							</div>
 						</div>
 						<div className="flex items-center gap-2">
-							<span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Type:</span>
+							<span className="text-sm font-medium text-neutral-900 dark:text-neutral-200">Type:</span>
 							<div className="flex gap-2">
 								{types.map((type) => (
 									<button
@@ -280,7 +293,7 @@ export default function CareersPage() {
 										className={`rounded-full px-4 py-1 text-sm transition-all ${
 											selectedType === type
 												? "bg-gradient-to-r from-primary to-accent text-white"
-												: "border border-neutral-300 bg-white text-neutral-700 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+												: "border border-neutral-300 bg-white text-neutral-900 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 										}`}
 									>
 										{type}
@@ -305,8 +318,8 @@ export default function CareersPage() {
 										<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 											<div className="flex-1">
 												<h3 className="mb-2 text-xl font-semibold text-neutral-900 dark:text-white">{position.title}</h3>
-												<p className="mb-3 text-sm text-neutral-700 dark:text-neutral-300">{position.description}</p>
-												<div className="flex flex-wrap items-center gap-4 text-sm text-neutral-700 dark:text-neutral-300">
+												<p className="mb-3 text-sm text-neutral-900 dark:text-neutral-200">{position.description}</p>
+												<div className="flex flex-wrap items-center gap-4 text-sm text-neutral-800 dark:text-neutral-300">
 													<div className="flex items-center gap-1">
 														<Briefcase className="h-4 w-4" />
 														<span>{position.department}</span>
@@ -333,7 +346,7 @@ export default function CareersPage() {
 									animate={{ opacity: 1 }}
 									className="rounded-xl border-2 border-neutral-200 bg-white p-12 text-center dark:border-neutral-800 dark:bg-neutral-950"
 								>
-									<p className="text-neutral-600 dark:text-neutral-400">No positions found matching your filters.</p>
+									<p className="text-neutral-900 dark:text-neutral-200">No positions found matching your filters.</p>
 								</motion.div>
 							)}
 						</AnimatePresence>

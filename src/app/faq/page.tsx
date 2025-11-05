@@ -2,6 +2,7 @@
 import { Accordion } from "@/components/ui/Accordion";
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { motion } from "framer-motion";
 import Script from "next/script";
 import { useState } from "react";
@@ -61,12 +62,18 @@ export default function FAQPage() {
 					}),
 				}}
 			/>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600"
+					alt="Frequently asked questions"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -99,7 +106,7 @@ export default function FAQPage() {
 									className={`flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium transition-all ${
 										activeCategory === category
 											? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-											: "border-2 border-neutral-300 bg-white text-neutral-700 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+											: "border-2 border-neutral-300 bg-white text-neutral-900 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 									}`}
 								>
 									<Icon className="h-4 w-4" />
@@ -124,7 +131,7 @@ export default function FAQPage() {
 							<h2 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-white">
 								{activeCategory} Questions
 							</h2>
-							<p className="text-neutral-700 dark:text-neutral-300">
+							<p className="text-neutral-900 dark:text-neutral-200">
 								Common questions about {activeCategory.toLowerCase()} topics.
 							</p>
 						</div>

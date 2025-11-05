@@ -38,7 +38,7 @@ export function Accordion({ items, question, answer }: AccordionProps) {
               transition={{ duration: 0.3 }}
               className="shrink-0"
             >
-              <ChevronDown className="h-5 w-5 text-gray-700 dark:text-gray-400" />
+              <ChevronDown className="h-5 w-5 text-gray-800 dark:text-gray-300" />
             </motion.div>
           </button>
           <AnimatePresence>
@@ -50,7 +50,7 @@ export function Accordion({ items, question, answer }: AccordionProps) {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed border-t border-gray-200 dark:border-gray-800">
+                <p className="px-6 py-4 text-sm text-gray-800 dark:text-gray-200 leading-relaxed border-t border-gray-200 dark:border-gray-800">
                   {item.answer}
                 </p>
               </motion.div>

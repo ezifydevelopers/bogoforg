@@ -62,12 +62,12 @@ export function MegaMenu({
                           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
                             <Icon className="h-6 w-6" />
                           </div>
-                          <ChevronRight className="h-5 w-5 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                          <ChevronRight className="h-5 w-5 text-gray-600 transition-transform group-hover:translate-x-1 group-hover:text-primary dark:text-gray-400" />
                         </div>
                         <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                           {service.title}
                         </h3>
-                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                        <p className="text-sm text-gray-900 dark:text-gray-200">
                           {service.description}
                         </p>
                       </Link>
@@ -85,7 +85,7 @@ export function MegaMenu({
                       <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                         {link.label}
                       </h3>
-                      <p className="mb-3 text-sm text-gray-700 dark:text-gray-300">
+                      <p className="mb-3 text-sm text-gray-900 dark:text-gray-200">
                         {link.desc}
                       </p>
                       <ChevronRight className="mt-2 h-5 w-5 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-primary" />

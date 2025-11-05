@@ -23,12 +23,18 @@ export default function BlogPage() {
 
 	return (
 		<main>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600"
+					alt="Blog & insights"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -55,7 +61,7 @@ export default function BlogPage() {
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6 }}
 							className="mb-6"
 						>
@@ -67,29 +73,35 @@ export default function BlogPage() {
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.6, delay: 0.2 }}
 								className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950"
 							>
 								<div className="grid grid-cols-1 gap-0 lg:grid-cols-2">
-									<div className="relative h-64 overflow-hidden lg:h-auto">
+									<div className="relative h-64 overflow-hidden lg:h-auto group/image">
 										<ImageReveal
 											src={featuredPost.image || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"}
 											alt={featuredPost.title}
 											fill
-											className="object-cover"
+											sizes="(max-width: 1024px) 100vw, 50vw"
+											className="object-cover transition-transform duration-700 group-hover/image:scale-110"
 										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/20 to-transparent" />
+										<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-transparent" />
+										<div className="absolute bottom-6 left-6 right-6">
+											<span className="inline-block rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 text-sm font-semibold text-white mb-3">
+												{featuredPost.category}
+											</span>
+										</div>
 									</div>
 									<div className="flex flex-col justify-center p-8 lg:p-12">
 										<div className="mb-4 text-sm font-medium text-primary">{featuredPost.category}</div>
 										<h2 className="mb-4 text-3xl font-bold text-neutral-900 group-hover:text-primary transition-colors dark:text-white sm:text-4xl">
 											{featuredPost.title}
 										</h2>
-										<p className="mb-6 text-lg text-neutral-700 dark:text-neutral-300">
+										<p className="mb-6 text-lg text-neutral-900 dark:text-neutral-200">
 											{featuredPost.excerpt}
 										</p>
-										<div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+										<div className="flex flex-wrap items-center gap-4 text-sm text-neutral-800 dark:text-neutral-300">
 											<div className="flex items-center gap-2">
 												<User className="h-4 w-4" />
 												<span>{featuredPost.author}</span>
@@ -116,7 +128,7 @@ export default function BlogPage() {
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div className="relative flex-1 max-w-md">
-							<Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+							<Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-600 dark:text-neutral-400" />
 							<input
 								type="text"
 								placeholder="Search articles..."
@@ -133,7 +145,7 @@ export default function BlogPage() {
 									className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
 										selectedCategory === category
 											? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-											: "border-2 border-neutral-300 bg-white text-neutral-700 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+											: "border-2 border-neutral-300 bg-white text-neutral-900 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 									}`}
 								>
 									{category}
@@ -162,31 +174,38 @@ export default function BlogPage() {
 										<motion.article
 											initial={{ opacity: 0, y: 20 }}
 											whileInView={{ opacity: 1, y: 0 }}
-											viewport={{ once: true }}
+											viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 											transition={{ duration: 0.6, delay: index * 0.1 }}
 											className="group h-full rounded-2xl border-2 border-neutral-200 bg-white overflow-hidden transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950"
 										>
-											<div className="relative h-48 overflow-hidden">
+											<div className="relative h-56 overflow-hidden">
 												<ImageReveal
 													src={post.image || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"}
 													alt={post.title}
 													fill
-													className="object-cover"
+													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+													className="object-cover transition-transform duration-700 group-hover:scale-110"
 												/>
+												<div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 												<div className="absolute top-4 left-4">
-													<span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm">
+													<span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm border border-white/30">
 														{post.category}
 													</span>
+												</div>
+												<div className="absolute bottom-4 left-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+													<h3 className="text-lg font-bold text-white drop-shadow-lg line-clamp-2">
+														{post.title}
+													</h3>
 												</div>
 											</div>
 											<div className="p-6">
 												<h3 className="mb-2 text-xl font-semibold text-neutral-900 group-hover:text-primary transition-colors dark:text-white">
 													{post.title}
 												</h3>
-												<p className="mb-4 text-sm text-neutral-700 dark:text-neutral-300 line-clamp-2">
+												<p className="mb-4 text-sm text-neutral-900 dark:text-neutral-200 line-clamp-2">
 													{post.excerpt}
 												</p>
-												<div className="flex items-center gap-4 text-xs text-neutral-500">
+												<div className="flex items-center gap-4 text-xs text-neutral-700 dark:text-neutral-400">
 													<span>{post.author}</span>
 													<span>•</span>
 													<time>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</time>
@@ -202,7 +221,7 @@ export default function BlogPage() {
 								animate={{ opacity: 1 }}
 								className="rounded-xl border-2 border-neutral-200 bg-white p-12 text-center dark:border-neutral-800 dark:bg-neutral-950"
 							>
-								<p className="text-neutral-600 dark:text-neutral-400">No articles found matching your criteria.</p>
+								<p className="text-neutral-900 dark:text-neutral-200">No articles found matching your criteria.</p>
 							</motion.div>
 						)}
 					</AnimatePresence>

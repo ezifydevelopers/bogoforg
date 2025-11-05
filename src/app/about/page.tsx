@@ -85,14 +85,14 @@ export default function AboutPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
 							Our Vision & Values
 						</h2>
-						<p className="text-lg text-gray-700 dark:text-gray-300">
+						<p className="text-lg text-gray-800 dark:text-gray-200">
 							The principles that guide everything we do
 						</p>
 					</motion.div>
@@ -104,7 +104,7 @@ export default function AboutPage() {
 									key={index}
 									initial={{ opacity: 0, y: 20 }}
 									whileInView={{ opacity: 1, y: 0 }}
-									viewport={{ once: true }}
+									viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 									transition={{ duration: 0.6, delay: index * 0.1 }}
 									className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-md transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
 								>
@@ -116,7 +116,7 @@ export default function AboutPage() {
 									<h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
 										{value.title}
 									</h3>
-									<p className="text-sm text-gray-700 dark:text-gray-300">
+									<p className="text-sm text-gray-800 dark:text-gray-200">
 										{value.description}
 									</p>
 								</motion.div>

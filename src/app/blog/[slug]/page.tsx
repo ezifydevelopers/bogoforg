@@ -70,26 +70,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     lines.forEach((line, index) => {
       if (line.startsWith('# ')) {
         if (currentParagraph.length > 0) {
-          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">{currentParagraph.join(' ')}</p>);
+          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-800 dark:text-neutral-200 leading-relaxed">{currentParagraph.join(' ')}</p>);
           currentParagraph = [];
         }
         elements.push(<h1 key={`h1-${index}`} className="mb-6 text-3xl font-bold text-neutral-900 dark:text-white">{line.substring(2)}</h1>);
       } else if (line.startsWith('## ')) {
         if (currentParagraph.length > 0) {
-          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">{currentParagraph.join(' ')}</p>);
+          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-800 dark:text-neutral-200 leading-relaxed">{currentParagraph.join(' ')}</p>);
           currentParagraph = [];
         }
         elements.push(<h2 key={`h2-${index}`} className="mb-4 mt-8 text-2xl font-bold text-neutral-900 dark:text-white">{line.substring(3)}</h2>);
       } else if (line.startsWith('### ')) {
         if (currentParagraph.length > 0) {
-          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">{currentParagraph.join(' ')}</p>);
+          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-800 dark:text-neutral-200 leading-relaxed">{currentParagraph.join(' ')}</p>);
           currentParagraph = [];
         }
         elements.push(<h3 key={`h3-${index}`} className="mb-3 mt-6 text-xl font-semibold text-neutral-900 dark:text-white">{line.substring(4)}</h3>);
       } else if (line.startsWith('- ')) {
         if (!inList) {
           if (currentParagraph.length > 0) {
-            elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">{currentParagraph.join(' ')}</p>);
+            elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-800 dark:text-neutral-200 leading-relaxed">{currentParagraph.join(' ')}</p>);
             currentParagraph = [];
           }
           listItems = [];
@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       } else if (line.trim() === '') {
         if (inList && listItems.length > 0) {
           elements.push(
-            <ul key={`ul-${index}`} className="mb-4 ml-6 list-disc space-y-2 text-neutral-600 dark:text-neutral-300">
+            <ul key={`ul-${index}`} className="mb-4 ml-6 list-disc space-y-2 text-neutral-800 dark:text-neutral-200">
               {listItems.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -109,14 +109,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           inList = false;
         }
         if (currentParagraph.length > 0) {
-          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">{currentParagraph.join(' ')}</p>);
+          elements.push(<p key={`p-${index}`} className="mb-4 text-neutral-800 dark:text-neutral-200 leading-relaxed">{currentParagraph.join(' ')}</p>);
           currentParagraph = [];
         }
       } else if (line.trim().length > 0) {
         if (inList) {
           if (listItems.length > 0) {
             elements.push(
-              <ul key={`ul-${index}`} className="mb-4 ml-6 list-disc space-y-2 text-neutral-600 dark:text-neutral-300">
+              <ul key={`ul-${index}`} className="mb-4 ml-6 list-disc space-y-2 text-neutral-800 dark:text-neutral-200">
                 {listItems.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     if (inList && listItems.length > 0) {
       elements.push(
-        <ul key="ul-final" className="mb-4 ml-6 list-disc space-y-2 text-neutral-600 dark:text-neutral-300">
+        <ul key="ul-final" className="mb-4 ml-6 list-disc space-y-2 text-neutral-800 dark:text-neutral-200">
           {listItems.map((item, i) => (
             <li key={i}>{item}</li>
           ))}
@@ -205,7 +205,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.image && (
               <div className="relative mb-12 aspect-video overflow-hidden rounded-2xl">
                 <Image
-                  src={post.image}
+                  src={post.image.startsWith('http') ? post.image : `https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800`}
                   alt={post.title}
                   fill
                   className="object-cover"
@@ -216,12 +216,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             
             {/* Share Buttons */}
             <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
-              <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Share:</span>
+              <span className="text-sm font-medium text-neutral-900 dark:text-neutral-200">Share:</span>
               <a
                 href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-900 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
                 aria-label="Share on Twitter"
               >
                 <Twitter className="h-5 w-5" />
@@ -230,7 +230,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-900 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
                 aria-label="Share on Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -239,7 +239,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-600 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-900 transition-all hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
                 aria-label="Share on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -254,10 +254,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-semibold text-neutral-900 dark:text-white">{post.author}</h3>
-                  <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-400">
+                  <p className="mb-2 text-sm text-neutral-800 dark:text-neutral-300">
                     Expert in {post.category} with years of experience helping businesses succeed.
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <p className="text-sm text-neutral-800 dark:text-neutral-300">
                     Connect with {post.author.split(' ')[0]} on LinkedIn to learn more about {post.category.toLowerCase()}.
                   </p>
                 </div>
@@ -294,7 +294,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         <h3 className="mb-2 text-lg font-semibold text-neutral-900 group-hover:text-primary transition-colors dark:text-white">
                           {suggested.title}
                         </h3>
-                        <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-300 line-clamp-2">
+                        <p className="mb-4 text-sm text-neutral-800 dark:text-neutral-300 line-clamp-2">
                           {suggested.excerpt}
                         </p>
                         <span className="text-sm font-medium text-primary group-hover:text-accent transition-colors">

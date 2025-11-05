@@ -11,6 +11,7 @@ interface ImageRevealProps {
   fill?: boolean;
   width?: number;
   height?: number;
+  sizes?: string;
 }
 
 export function ImageReveal({ 
@@ -20,24 +21,26 @@ export function ImageReveal({
   priority = false,
   fill = false,
   width,
-  height 
+  height,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 }: ImageRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   if (fill) {
     return (
-      <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <div ref={ref} className={`relative overflow-hidden ${className}`} style={{ minHeight: '100%', width: '100%' }}>
         <motion.div
           initial={{ scale: 1.2, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 1.2, opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 h-full w-full"
         >
           <Image
             src={src}
             alt={alt}
             fill
+            sizes={sizes}
             className="object-cover"
             priority={priority}
           />

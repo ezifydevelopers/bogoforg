@@ -60,7 +60,7 @@ Start by looking at your business processes:
 ## Conclusion
 
 Getting started with AI doesn't have to be complicated. Start with one use case, prove the value, and gradually expand. The key is to begin now, not wait for the "perfect" moment.`,
-    image: "/blog/ai-business.jpg"
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&auto=format&fit=crop&q=80"
   },
   {
     slug: "web-performance-metrics",
@@ -105,7 +105,7 @@ Measures visual stability. Aim for under 0.1.
 - Minimize redirects
 
 Tracking these metrics helps you identify bottlenecks and improve user experience.`,
-    image: "/blog/web-performance.jpg"
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80"
   },
   {
     slug: "product-market-fit",
@@ -144,7 +144,7 @@ Product-market fit is the holy grail for startups. Here's how to know when you'r
 5. **Build** a team that can execute
 
 Product-market fit isn't a destination—it's a continuous journey of improvement.`,
-    image: "/blog/product-market-fit.jpg"
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
   },
 ];
 

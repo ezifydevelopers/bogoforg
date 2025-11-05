@@ -5,8 +5,16 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DarkModeToggle } from "@/components/ui/DarkModeToggle";
 import { MegaMenu } from "@/components/ui/MegaMenu";
+import { DarkModeToggle } from "@/components/ui/DarkModeToggle";
+import { services } from "@/data/services";
+
+const aboutLinks = [
+	{ href: "/about", label: "About Us", desc: "Our story and mission" },
+	{ href: "/process", label: "How We Work", desc: "Our proven process" },
+	{ href: "/testimonials", label: "Testimonials", desc: "Client success stories" },
+	{ href: "/careers", label: "Careers", desc: "Join our team" },
+];
 
 const links: Array<{ href: string; label: string; hasDropdown?: boolean }> = [
 	{ href: "/", label: "Home" },
@@ -23,6 +31,7 @@ function Navbar() {
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 	const [hoveredMenu, setHoveredMenu] = useState<"services" | "about" | null>(null);
+	const [mobileMenuOpen, setMobileMenuOpen] = useState<{ [key: string]: boolean }>({});
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -38,7 +47,7 @@ function Navbar() {
 				className={`border-b transition-all duration-300 ${
 					scrolled 
 						? "border-gray-200 bg-white/98 backdrop-blur-md shadow-lg dark:border-gray-800 dark:bg-[#0B0C10]/98" 
-						: "border-transparent bg-white/80 backdrop-blur-sm dark:border-transparent dark:bg-[#0B0C10]/80"
+						: "border-transparent bg-white/80 backdrop-blur-sm dark:bg-[#0B0C10]/80"
 				}`}
 			>
 				<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
@@ -105,26 +114,73 @@ function Navbar() {
 						<div className="flex flex-col gap-3">
 							{links.map((l) => {
 								const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
+								const isServicesOrAbout = l.label === "Services" || l.label === "About";
+								
 								return (
-									<Link
-										key={l.href}
-										href={l.href}
-										className={`text-sm font-medium transition-colors ${
-											active ? "text-primary" : "text-gray-900 dark:text-gray-100"
-										}`}
-										onClick={() => setOpen(false)}
-									>
-										{l.label}
-									</Link>
+									<div key={l.href} className="flex flex-col">
+										{l.hasDropdown && isServicesOrAbout ? (
+											<>
+												<button
+													onClick={() => setMobileMenuOpen(prev => ({ ...prev, [l.href]: !prev[l.href] }))}
+													className={`flex items-center justify-between text-sm font-medium transition-colors ${
+														active ? "text-primary" : "text-gray-900 dark:text-gray-100"
+													}`}
+												>
+													{l.label}
+													<ChevronDown className={`h-4 w-4 transition-transform ${mobileMenuOpen[l.href] ? 'rotate-180' : ''}`} />
+												</button>
+												{mobileMenuOpen[l.href] && (
+													<div className="ml-4 mt-2 flex flex-col gap-2 border-l-2 border-gray-200 pl-4 dark:border-gray-700">
+														{l.label === "Services" ? (
+															services.map((service) => (
+																<Link
+																	key={service.id}
+																	href={`/services/${service.slug}`}
+																	className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary"
+																	onClick={() => setOpen(false)}
+																>
+																	{service.title}
+																</Link>
+															))
+														) : (
+															aboutLinks.map((link) => (
+																<Link
+																	key={link.href}
+																	href={link.href}
+																	className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary"
+																	onClick={() => setOpen(false)}
+																>
+																	{link.label}
+																</Link>
+															))
+														)}
+													</div>
+												)}
+											</>
+										) : (
+											<Link
+												href={l.href}
+												className={`text-sm font-medium transition-colors ${
+													active ? "text-primary" : "text-gray-900 dark:text-gray-100"
+												}`}
+												onClick={() => setOpen(false)}
+											>
+												{l.label}
+											</Link>
+										)}
+									</div>
 								);
 							})}
-							<Link
-								href="/contact"
-								className="mt-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-2 text-center text-sm font-semibold text-white"
-								onClick={() => setOpen(false)}
-							>
-								Get Quote
-							</Link>
+							<div className="mt-2 flex items-center justify-between">
+								<DarkModeToggle />
+								<Link
+									href="/contact"
+									className="rounded-full bg-gradient-to-r from-primary to-accent px-6 py-2 text-center text-sm font-semibold text-white"
+									onClick={() => setOpen(false)}
+								>
+									Get Quote
+								</Link>
+							</div>
 						</div>
 					</motion.div>
 				)}

@@ -4,6 +4,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 interface ServicePageTemplateProps {
   service: Service;
@@ -20,9 +21,15 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
+        <div className="absolute inset-0">
+          <ImageReveal
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600"
+            alt={service.title}
+            fill
+            className="object-cover opacity-20"
+          />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -45,20 +52,38 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
 
       {/* Overview */}
       <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="mb-6 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
-              Overview
-            </h2>
-            <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
-              {service.fullDescription}
-            </p>
-          </motion.div>
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="mb-6 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+                Overview
+              </h2>
+              <p className="text-lg leading-relaxed text-neutral-900 dark:text-neutral-200">
+                {service.fullDescription}
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative h-80 lg:h-96 rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-800 shadow-lg"
+            >
+              <ImageReveal
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200"
+                alt={service.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -125,7 +150,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="rounded-full border-2 border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+                className="rounded-full border-2 border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
               >
                 {tool}
               </motion.span>

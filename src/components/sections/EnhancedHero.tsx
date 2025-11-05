@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { BadgeCheck, TrendingUp, Users } from "lucide-react";
@@ -20,6 +21,21 @@ export function EnhancedHero({
   secondaryButtonText,
   secondaryButtonHref,
 }: EnhancedHeroProps) {
+  const [particles, setParticles] = useState<Array<{ x: number; y: number; duration: number; delay: number }>>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Generate random values only on client side to avoid hydration mismatch
+    const particleData = Array.from({ length: 20 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(particleData);
+  }, []);
+
   const trustBadges = [
     { icon: BadgeCheck, text: "500+ Projects", color: "text-blue-500" },
     { icon: TrendingUp, text: "100+ Startups", color: "text-green-500" },
@@ -27,9 +43,9 @@ export function EnhancedHero({
   ];
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-accent">
+    <section className="relative min-h-[90vh] overflow-hidden bg-white dark:bg-transparent">
+      {/* Animated Gradient Background - only in dark mode */}
+      <div className="absolute inset-0 hidden bg-gradient-to-br from-primary via-primary/90 to-accent dark:block">
         <motion.div
           animate={{
             backgroundPosition: ["0% 0%", "100% 100%"],
@@ -42,27 +58,29 @@ export function EnhancedHero({
           className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%),linear-gradient(-45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:60px_60px] opacity-20"
         />
         {/* Particle Effect */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute h-1 w-1 rounded-full bg-white/30"
-              initial={{
-                x: `${Math.random() * 100}%`,
-                y: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [`${Math.random() * 100}%`, `${Math.random() * 100}%`],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
+        {mounted && (
+          <div className="absolute inset-0">
+            {particles.map((particle, i) => (
+              <motion.div
+                key={i}
+                className="absolute h-1 w-1 rounded-full bg-white/30"
+                initial={{
+                  x: `${particle.x}%`,
+                  y: `${particle.y}%`,
+                }}
+                animate={{
+                  y: [`${particle.y}%`, `${Math.random() * 100}%`],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: particle.duration,
+                  repeat: Infinity,
+                  delay: particle.delay,
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl items-center px-6 py-20">
@@ -77,7 +95,7 @@ export function EnhancedHero({
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
+              className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary backdrop-blur-sm dark:border-white/30 dark:bg-white/10 dark:text-white"
             >
               ✨ Turning Ideas Into Reality Since 2014
             </motion.span>
@@ -87,7 +105,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6 text-5xl font-bold text-white sm:text-6xl md:text-7xl lg:text-8xl"
+            className="mb-6 text-5xl font-bold text-gray-900 dark:text-white sm:text-6xl md:text-7xl lg:text-8xl"
           >
             {headline}
           </motion.h1>
@@ -96,7 +114,7 @@ export function EnhancedHero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-10 text-xl leading-relaxed text-white/90 sm:text-2xl"
+            className="mb-10 text-xl leading-relaxed text-gray-800 dark:text-white/90 sm:text-2xl"
           >
             {subtext}
           </motion.p>
@@ -110,7 +128,7 @@ export function EnhancedHero({
             <Button href={primaryButtonHref} variant="primary" size="lg" className="shadow-[0_0_30px_rgba(47,47,162,0.5)]">
               {primaryButtonText}
             </Button>
-            <Button href={secondaryButtonHref} variant="outline" size="lg" className="bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
+            <Button href={secondaryButtonHref} variant="outline" size="lg" className="bg-primary/10 text-primary backdrop-blur-sm hover:bg-primary/20 border-primary dark:bg-white/10 dark:text-white dark:border-white dark:hover:bg-white/20">
               {secondaryButtonText}
             </Button>
           </motion.div>
@@ -130,10 +148,10 @@ export function EnhancedHero({
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                  className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm"
+                  className="flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 backdrop-blur-sm dark:bg-white/10"
                 >
                   <Icon className={`h-5 w-5 ${badge.color}`} />
-                  <span className="text-sm font-medium text-white">{badge.text}</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">{badge.text}</span>
                 </motion.div>
               );
             })}

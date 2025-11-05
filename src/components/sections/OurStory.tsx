@@ -38,13 +38,13 @@ export function OurStory() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.8 }}
           >
             <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
               Our Story
             </h2>
-            <div className="space-y-4 text-lg leading-relaxed text-gray-800 dark:text-gray-300">
+            <div className="space-y-4 text-lg leading-relaxed text-gray-900 dark:text-gray-200">
               <p>
                 Founded in 2014, bogoforg began with a simple yet powerful mission: to help entrepreneurs and small businesses transform their boldest ideas into successful, scalable products. We saw too many great concepts fail not because they were bad ideas, but because they lacked the right expertise, strategy, or execution.
               </p>
@@ -60,7 +60,7 @@ export function OurStory() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="relative h-full min-h-[500px] overflow-hidden rounded-2xl"
           >
@@ -78,7 +78,7 @@ export function OurStory() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="mb-12 text-center"
           >
@@ -100,7 +100,7 @@ export function OurStory() {
                     key={index}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.3, margin: "-50px" }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className={`relative ${isLeft ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:col-start-2'}`}
                   >
@@ -120,7 +120,7 @@ export function OurStory() {
                         <h4 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                           {milestone.title}
                         </h4>
-                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                        <p className="text-sm text-gray-900 dark:text-gray-200">
                           {milestone.description}
                         </p>
                       </div>

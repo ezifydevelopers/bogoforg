@@ -46,12 +46,18 @@ const processSteps = [
 export default function ProcessPage() {
 	return (
 		<main>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600"
+					alt="How we work"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -84,7 +90,7 @@ export default function ProcessPage() {
 						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
 							Our Process
 						</h2>
-						<p className="text-lg text-neutral-700 dark:text-neutral-300">
+						<p className="text-lg text-neutral-900 dark:text-neutral-200">
 							A clear, collaborative journey from idea to success
 						</p>
 					</motion.div>
@@ -99,7 +105,7 @@ export default function ProcessPage() {
 									key={index}
 									initial={{ opacity: 0, y: 30 }}
 									whileInView={{ opacity: 1, y: 0 }}
-									viewport={{ once: true }}
+									viewport={{ once: true, amount: 0.25, margin: "-150px" }}
 									transition={{ duration: 0.6, delay: index * 0.15 }}
 									className={`grid grid-cols-1 gap-12 lg:grid-cols-2 ${!isEven ? 'lg:grid-flow-dense' : ''}`}
 								>
@@ -109,6 +115,7 @@ export default function ProcessPage() {
 												src={step.image}
 												alt={step.title}
 												fill
+												sizes="(max-width: 1024px) 100vw, 50vw"
 												className="object-cover"
 											/>
 										</div>
@@ -123,7 +130,7 @@ export default function ProcessPage() {
 										<h3 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-white sm:text-3xl">
 											{step.title}
 										</h3>
-										<p className="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+										<p className="text-lg leading-relaxed text-neutral-900 dark:text-neutral-200">
 											{step.description}
 										</p>
 									</div>
@@ -147,16 +154,16 @@ export default function ProcessPage() {
 						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
 							Communication & Transparency
 						</h2>
-						<p className="text-lg text-neutral-700 dark:text-neutral-300">
+						<p className="text-lg text-neutral-900 dark:text-neutral-200">
 							We believe in clear, open communication throughout the project
 						</p>
 					</motion.div>
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 						{[
-							{ title: "Weekly Updates", desc: "Status reports and sprint reviews keep you informed every step of the way." },
-							{ title: "Clear Documentation", desc: "Technical docs and knowledge transfer ensure smooth handoffs." },
-							{ title: "Real-time Collaboration", desc: "Access to project tools, code repositories, and design files." },
-							{ title: "Transparent Pricing", desc: "Clear cost breakdowns and no hidden fees throughout the project." },
+							{ title: "Weekly Updates", desc: "Status reports and sprint reviews keep you informed every step of the way.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80" },
+							{ title: "Clear Documentation", desc: "Technical docs and knowledge transfer ensure smooth handoffs.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" },
+							{ title: "Real-time Collaboration", desc: "Access to project tools, code repositories, and design files.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80" },
+							{ title: "Transparent Pricing", desc: "Clear cost breakdowns and no hidden fees throughout the project.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80" },
 						].map((item, index) => (
 							<motion.div
 								key={index}
@@ -164,14 +171,26 @@ export default function ProcessPage() {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
-								className="rounded-2xl border-2 border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-950"
+								className="group rounded-2xl border-2 border-neutral-200 bg-white overflow-hidden transition-all hover:border-primary hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-950"
 							>
-								<h3 className="mb-3 text-xl font-semibold text-neutral-900 dark:text-white">
-									{item.title}
-								</h3>
-								<p className="text-sm text-neutral-700 dark:text-neutral-300">
-									{item.desc}
-								</p>
+								<div className="relative h-40 overflow-hidden">
+									<ImageReveal
+										src={item.image}
+										alt={item.title}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+										className="object-cover transition-transform duration-700 group-hover:scale-110"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
+								</div>
+								<div className="p-6">
+									<h3 className="mb-3 text-xl font-semibold text-neutral-900 dark:text-white">
+										{item.title}
+									</h3>
+									<p className="text-sm text-neutral-900 dark:text-neutral-200">
+										{item.desc}
+									</p>
+								</div>
 							</motion.div>
 						))}
 					</div>

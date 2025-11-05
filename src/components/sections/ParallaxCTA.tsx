@@ -7,18 +7,23 @@ import { ImageReveal } from "@/components/ui/ImageReveal";
 export function ParallaxCTA() {
   return (
     <section className="relative min-h-[600px] overflow-hidden">
-      <ParallaxSection speed={0.3} className="absolute inset-0">
-        <ImageReveal
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
-          alt="Team collaboration"
-          fill
-          className="object-cover"
-        />
-      </ParallaxSection>
+      <div className="absolute inset-0">
+        <ParallaxSection speed={0.3} className="relative h-full w-full">
+          <div className="absolute inset-0 h-full w-full">
+            <ImageReveal
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+              alt="Team collaboration"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        </ParallaxSection>
+      </div>
       
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90 z-[1]" />
       
-      <div className="relative z-10 mx-auto flex min-h-[600px] max-w-7xl items-center px-6 py-20">
+      <div className="relative z-[2] mx-auto flex min-h-[600px] max-w-7xl items-center px-6 py-20">
         <div className="w-full text-center">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}

@@ -66,9 +66,15 @@ export default function PortfolioPage() {
 		<main>
 			{/* Hero */}
 			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
+				<div className="absolute inset-0">
+					<ImageReveal
+						src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600"
+						alt="Our portfolio"
+						fill
+						className="object-cover opacity-20"
+					/>
 				</div>
+				<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
 				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
@@ -100,7 +106,7 @@ export default function PortfolioPage() {
 								className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
 									activeFilter === category
 										? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-										: "border-2 border-gray-300 bg-white text-gray-700 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-300"
+										: "border-2 border-gray-300 bg-white text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
 								}`}
 							>
 								{category}
@@ -122,36 +128,52 @@ export default function PortfolioPage() {
 							transition={{ duration: 0.3 }}
 							className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
 						>
-							{filteredProjects.map((project, index) => (
+							{filteredProjects.map((project, index) => {
+							// Unique images for each project type
+							const projectImages = {
+								"AI-Powered Cloud Surveillance Platform": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1000&auto=format&fit=crop&q=80",
+								"Scalable Event Management Software": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&auto=format&fit=crop&q=80",
+								"E-commerce Growth Engine": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&auto=format&fit=crop&q=80",
+								"FinTech Analytics Dashboard": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
+								"Mobile Fitness App": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&auto=format&fit=crop&q=80",
+								"Healthcare AI Diagnostic Tool": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1000&auto=format&fit=crop&q=80",
+							};
+							return (
 								<TiltCard key={project.slug} intensity={8}>
 									<Link href={`/portfolio/${project.slug}`}>
 										<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]">
-											<div className="relative h-48 overflow-hidden">
+											<div className="relative h-56 overflow-hidden">
 												<ImageReveal
-													src={`https://images.unsplash.com/photo-${1550751827 + index}?w=800`}
+													src={projectImages[project.title as keyof typeof projectImages] || "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&auto=format&fit=crop&q=80"}
 													alt={project.title}
 													fill
-													className="object-cover"
+													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+													className="object-cover transition-transform duration-700 group-hover:scale-110"
 												/>
+												<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
 												<div className="absolute top-4 right-4">
-													<span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm">
+													<span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm border border-white/30">
 														{project.category}
 													</span>
 												</div>
-												<div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+												<div className="absolute bottom-4 left-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+													<h3 className="text-lg font-bold text-white drop-shadow-lg">
+														{project.title}
+													</h3>
+												</div>
 											</div>
 											<div className="p-6">
 												<h3 className="mb-2 text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors dark:text-white">
 													{project.title}
 												</h3>
-												<p className="mb-4 text-sm text-gray-700 dark:text-gray-300">
+												<p className="mb-4 text-sm text-gray-900 dark:text-gray-200">
 													{project.result}
 												</p>
 												<div className="flex flex-wrap gap-2 mb-4">
 													{project.tags.map((tag) => (
 														<span
 															key={tag}
-															className="rounded-full border border-gray-300 bg-white px-2 py-1 text-xs text-gray-700 dark:border-gray-700 dark:bg-[#111] dark:text-gray-400"
+															className="rounded-full border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
 														>
 															{tag}
 														</span>
@@ -164,7 +186,8 @@ export default function PortfolioPage() {
 										</div>
 									</Link>
 								</TiltCard>
-							))}
+							);
+						})}
 						</motion.div>
 					</AnimatePresence>
 				</div>

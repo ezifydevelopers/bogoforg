@@ -71,53 +71,65 @@ export function HomePageContent() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
 							What We Do
 						</h2>
-						<p className="text-lg text-gray-700 dark:text-gray-300">
+						<p className="text-lg text-gray-800 dark:text-gray-200">
 							Comprehensive solutions from strategy to execution
 						</p>
 					</motion.div>
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-						{services.map((service, index) => (
-							<TiltCard key={service.id} intensity={10}>
-								<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]">
-									<div className="relative h-48 overflow-hidden">
-										<ImageReveal
-											src={`https://images.unsplash.com/photo-${1550751827 + index}?w=800`}
-											alt={service.title}
-											fill
-											className="object-cover"
-										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-										<div className="absolute bottom-4 left-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
-											<p className="text-sm text-white">{service.description}</p>
+						{services.map((service, index) => {
+							// Unique images for each service
+							const serviceImages = [
+								"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80", // Business Planning
+								"https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=80", // Product Development
+								"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80", // Web & Mobile
+								"https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80", // Marketing
+								"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80", // AI & Automation
+								"https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format&fit=crop&q=80", // Security
+							];
+							return (
+								<TiltCard key={service.id} intensity={10}>
+									<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]">
+										<div className="relative h-56 overflow-hidden">
+											<ImageReveal
+												src={serviceImages[index] || serviceImages[0]}
+												alt={service.title}
+												fill
+												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+												className="object-cover transition-transform duration-500 group-hover:scale-110"
+											/>
+											<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
+											<div className="absolute bottom-4 left-4 right-4">
+												<div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm border border-white/30">
+													{service.icon && <service.icon className="h-6 w-6 text-white" />}
+												</div>
+												<h3 className="text-lg font-bold text-white drop-shadow-lg">
+													{service.title}
+												</h3>
+											</div>
+										</div>
+										<div className="p-6">
+											<p className="mb-4 text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+												{service.description}
+											</p>
+											<Link
+												href={`/services/${service.slug}`}
+												className="inline-flex items-center text-sm font-semibold text-primary hover:text-accent transition-colors dark:text-primary-400 dark:hover:text-primary-300 group/link"
+											>
+												Learn More 
+												<span className="ml-1 transition-transform group-hover/link:translate-x-1">→</span>
+											</Link>
 										</div>
 									</div>
-									<div className="p-6">
-										<div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
-											{service.icon && <service.icon className="h-6 w-6" />}
-										</div>
-										<h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-											{service.title}
-										</h3>
-										<p className="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
-											{service.description}
-										</p>
-										<Link
-											href={`/services/${service.slug}`}
-											className="text-sm font-medium text-primary hover:text-accent transition-colors"
-										>
-											Learn More →
-										</Link>
-									</div>
-								</div>
-							</TiltCard>
-						))}
+								</TiltCard>
+							);
+						})}
 					</div>
 				</div>
 			</section>

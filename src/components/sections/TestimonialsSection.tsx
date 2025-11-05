@@ -20,7 +20,7 @@ export function TestimonialsSection({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
@@ -28,7 +28,7 @@ export function TestimonialsSection({
             {title}
           </h2>
           {subtitle && (
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-gray-900 dark:text-gray-200">
               {subtitle}
             </p>
           )}
@@ -40,18 +40,18 @@ export function TestimonialsSection({
               key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="rounded-2xl border-2 border-gray-200 bg-white p-6 shadow-md hover:shadow-lg transition-all dark:border-gray-800 dark:bg-[#111]"
             >
-              <p className="mb-4 text-sm italic leading-relaxed text-gray-700 dark:text-gray-300">
+              <p className="mb-4 text-sm italic leading-relaxed text-gray-900 dark:text-gray-200">
                 "{testimonial.quote}"
               </p>
               <div className="border-t border-gray-200 pt-4 dark:border-gray-800">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white">
                   {testimonial.author}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-gray-900 dark:text-gray-300">
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>

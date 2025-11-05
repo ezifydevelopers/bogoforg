@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 const projects = {
   "ai-surveillance-platform": {
@@ -75,9 +76,15 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
+        <div className="absolute inset-0">
+          <ImageReveal
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600"
+            alt={project.title}
+            fill
+            className="object-cover opacity-20"
+          />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
         <div className="relative z-10 mx-auto max-w-4xl px-6">
           <Link
             href="/portfolio"
@@ -109,10 +116,22 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
       <section className="relative -mt-10">
         <div className="mx-auto max-w-7xl px-6">
           <div className="relative aspect-video overflow-hidden rounded-2xl border-2 border-neutral-200 shadow-xl dark:border-neutral-800">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-6xl">📊</div>
-            </div>
+            <ImageReveal
+              src={
+                project.slug === "ai-surveillance-platform" 
+                  ? "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600"
+                  : project.slug === "event-management-software"
+                  ? "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600"
+                  : project.slug === "ecommerce-growth-engine"
+                  ? "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600"
+                  : "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600"
+              }
+              alt={project.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
           </div>
         </div>
       </section>
@@ -123,11 +142,11 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
             <div>
               <h2 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-white">Challenge</h2>
-              <p className="text-neutral-600 dark:text-neutral-300">{project.challenge}</p>
+              <p className="text-neutral-900 dark:text-neutral-200">{project.challenge}</p>
             </div>
             <div>
               <h2 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-white">Solution</h2>
-              <p className="text-neutral-600 dark:text-neutral-300">{project.solution}</p>
+              <p className="text-neutral-900 dark:text-neutral-200">{project.solution}</p>
             </div>
             <div>
               <h2 className="mb-4 text-2xl font-bold text-accent">Results</h2>
@@ -142,7 +161,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border-2 border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+                  className="rounded-full border-2 border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
                 >
                   {tech}
                 </span>

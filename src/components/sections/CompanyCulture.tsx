@@ -50,14 +50,14 @@ export function CompanyCulture() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Our Culture
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-gray-900 dark:text-gray-200">
             Values that drive us every day
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ export function CompanyCulture() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="rounded-2xl border-2 border-gray-200 bg-white p-6 transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
               >
@@ -81,7 +81,7 @@ export function CompanyCulture() {
                 <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                   {value.title}
                 </h3>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-900 dark:text-gray-200">
                   {value.description}
                 </p>
               </motion.div>
@@ -93,7 +93,7 @@ export function CompanyCulture() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 gap-4 sm:grid-cols-4"
         >
@@ -102,7 +102,7 @@ export function CompanyCulture() {
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
               className="relative h-48 overflow-hidden rounded-xl"

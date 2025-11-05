@@ -2,6 +2,7 @@
 import { testimonials } from "@/data/testimonials";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CTASection } from "@/components/sections/CTASection";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Quote, Star, Filter } from "lucide-react";
@@ -18,12 +19,18 @@ export default function TestimonialsPage() {
 
 	return (
 		<main>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600"
+					alt="Client testimonials"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.div
 						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
@@ -55,7 +62,7 @@ export default function TestimonialsPage() {
 			<section className="sticky top-16 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm py-4 dark:border-gray-800 dark:bg-[#0B0C10]/95 transition-colors duration-300">
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="flex flex-wrap items-center justify-center gap-3">
-						<Filter className="h-5 w-5 text-gray-700 dark:text-gray-400" />
+						<Filter className="h-5 w-5 text-gray-900 dark:text-gray-300" />
 						{categories.map((category) => (
 							<button
 								key={category}
@@ -63,7 +70,7 @@ export default function TestimonialsPage() {
 								className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
 									activeFilter === category
 										? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-										: "border-2 border-gray-300 bg-white text-gray-700 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-300"
+										: "border-2 border-gray-300 bg-white text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
 								}`}
 							>
 								{category}
@@ -96,14 +103,14 @@ export default function TestimonialsPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
 							Trusted By Leading Companies
 						</h2>
-						<p className="text-gray-700 dark:text-gray-300">
+						<p className="text-gray-900 dark:text-gray-200">
 							We're proud to partner with innovative businesses
 						</p>
 					</motion.div>
@@ -113,10 +120,10 @@ export default function TestimonialsPage() {
 								key={index}
 								initial={{ opacity: 0, scale: 0.8 }}
 								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.4, delay: index * 0.1 }}
 								whileHover={{ scale: 1.1 }}
-								className="flex h-20 items-center justify-center rounded-xl border-2 border-gray-200 bg-white text-center text-sm font-medium text-gray-700 opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:border-gray-800 dark:bg-[#111] dark:text-gray-300"
+								className="flex h-20 items-center justify-center rounded-xl border-2 border-gray-200 bg-white text-center text-sm font-medium text-gray-900 opacity-60 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:border-gray-800 dark:bg-[#111] dark:text-gray-200"
 							>
 								{company}
 							</motion.div>
@@ -131,7 +138,7 @@ export default function TestimonialsPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
@@ -143,19 +150,19 @@ export default function TestimonialsPage() {
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6 }}
 							className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center dark:border-gray-800 dark:bg-[#111]"
 						>
 							<div className="mb-2 text-4xl font-bold text-primary">50%+</div>
-							<p className="text-sm text-gray-700 dark:text-gray-300">
+							<p className="text-sm font-medium text-gray-900 dark:text-gray-200">
 								Time reduction on average project
 							</p>
 						</motion.div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6, delay: 0.1 }}
 							className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center dark:border-gray-800 dark:bg-[#111]"
 						>
@@ -163,19 +170,19 @@ export default function TestimonialsPage() {
 								<Star className="h-8 w-8 fill-yellow-400 text-yellow-400" />
 								4.9
 							</div>
-							<p className="text-sm text-gray-700 dark:text-gray-300">
+							<p className="text-sm font-medium text-gray-900 dark:text-gray-200">
 								Average client rating
 							</p>
 						</motion.div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6, delay: 0.2 }}
 							className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center dark:border-gray-800 dark:bg-[#111]"
 						>
 							<div className="mb-2 text-4xl font-bold text-primary">99%+</div>
-							<p className="text-sm text-gray-700 dark:text-gray-300">
+							<p className="text-sm font-medium text-gray-900 dark:text-gray-200">
 								Client satisfaction rate
 							</p>
 						</motion.div>

@@ -2,16 +2,23 @@
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { services } from "@/data/services";
 import { motion } from "framer-motion";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 export default function ServicesPage() {
 	return (
 		<main>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+					alt="Our services"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}

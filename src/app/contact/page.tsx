@@ -25,12 +25,18 @@ const contactFAQ = [
 export default function ContactPage() {
 	return (
 		<main>
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
-				</div>
-				<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+		{/* Hero */}
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+			<div className="absolute inset-0">
+				<ImageReveal
+					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+					alt="Contact us"
+					fill
+					className="object-cover opacity-20"
+				/>
+			</div>
+			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
+			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -66,17 +72,17 @@ export default function ContactPage() {
 										href={contact.href}
 										initial={{ opacity: 0, y: 20 }}
 										whileInView={{ opacity: 1, y: 0 }}
-										viewport={{ once: true }}
+										viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 										transition={{ duration: 0.6, delay: index * 0.1 }}
 										className="group flex flex-col items-center rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-xl dark:border-gray-800 dark:bg-[#111]"
 									>
 										<div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white">
 											<Icon className="h-8 w-8" />
 										</div>
-										<h3 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-400">
+										<h3 className="mb-2 text-sm font-semibold text-gray-900 dark:text-white">
 											{contact.label}
 										</h3>
-										<p className="text-lg font-medium text-gray-900 dark:text-white">
+										<p className="text-lg font-bold text-gray-900 dark:text-white">
 											{contact.value}
 										</p>
 									</motion.a>
@@ -95,7 +101,7 @@ export default function ContactPage() {
 						<motion.div
 							initial={{ opacity: 0, x: -20 }}
 							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6 }}
 							className="rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-lg dark:border-gray-800 dark:bg-[#111]"
 						>
@@ -104,7 +110,7 @@ export default function ContactPage() {
 							</h2>
 							<form className="space-y-4">
 								<div>
-									<label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+									<label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Name *
 									</label>
 									<input
@@ -116,7 +122,7 @@ export default function ContactPage() {
 									/>
 								</div>
 								<div>
-									<label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+									<label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Email *
 									</label>
 									<input
@@ -128,7 +134,7 @@ export default function ContactPage() {
 									/>
 								</div>
 								<div>
-									<label htmlFor="company" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+									<label htmlFor="company" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Company
 									</label>
 									<input
@@ -139,7 +145,7 @@ export default function ContactPage() {
 									/>
 								</div>
 								<div>
-									<label htmlFor="service" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+									<label htmlFor="service" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Service Interested In
 									</label>
 									<select
@@ -156,7 +162,7 @@ export default function ContactPage() {
 									</select>
 								</div>
 								<div>
-									<label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+									<label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Message *
 									</label>
 									<textarea
@@ -178,7 +184,7 @@ export default function ContactPage() {
 						<motion.div
 							initial={{ opacity: 0, x: 20 }}
 							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6 }}
 							className="space-y-6"
 						>
@@ -193,7 +199,7 @@ export default function ContactPage() {
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Email</h3>
-											<a href="mailto:hello@bogoforg.com" className="text-gray-700 hover:text-primary dark:text-gray-400">
+											<a href="mailto:hello@bogoforg.com" className="text-gray-900 hover:text-primary dark:text-white">
 												hello@bogoforg.com
 											</a>
 										</div>
@@ -204,7 +210,7 @@ export default function ContactPage() {
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Phone</h3>
-											<a href="tel:+1234567890" className="text-gray-700 hover:text-primary dark:text-gray-400">
+											<a href="tel:+1234567890" className="text-gray-900 hover:text-primary dark:text-white dark:hover:text-primary-400">
 												+1 (234) 567-890
 											</a>
 										</div>
@@ -215,7 +221,7 @@ export default function ContactPage() {
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Address</h3>
-											<p className="text-gray-700 dark:text-gray-400">
+											<p className="text-gray-900 dark:text-gray-200">
 												Remote Worldwide<br />
 												Serving clients globally
 											</p>
@@ -241,6 +247,7 @@ export default function ContactPage() {
 									src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800"
 									alt="Office location"
 									fill
+									sizes="100vw"
 									className="object-cover"
 								/>
 								<div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
@@ -261,14 +268,14 @@ export default function ContactPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
 						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
 							Frequently Asked Questions
 						</h2>
-						<p className="text-lg text-gray-700 dark:text-gray-300">
+						<p className="text-lg text-gray-900 dark:text-gray-200">
 							Quick answers to common questions about contacting us
 						</p>
 					</motion.div>
@@ -278,7 +285,7 @@ export default function ContactPage() {
 								key={index}
 								initial={{ opacity: 0, y: 20 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
+								viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
 							>
 								<Accordion question={faq.question} answer={faq.answer} />
@@ -294,7 +301,7 @@ export default function ContactPage() {
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
+						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
 					>
 						<h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">

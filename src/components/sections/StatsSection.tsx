@@ -23,7 +23,7 @@ export function StatsSection({ stats, title = "Our Impact", subtitle = "Results 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="mb-12 text-center"
           >
@@ -43,7 +43,7 @@ export function StatsSection({ stats, title = "Our Impact", subtitle = "Results 
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="text-center"
             >

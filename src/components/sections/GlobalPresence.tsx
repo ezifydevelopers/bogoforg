@@ -32,14 +32,14 @@ export function GlobalPresence() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
             Global Presence
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-gray-900 dark:text-gray-200">
             Serving clients worldwide with remote-first excellence
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ export function GlobalPresence() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
               >
@@ -64,7 +64,7 @@ export function GlobalPresence() {
                 <h3 className="mb-1 text-xl font-semibold text-gray-900 dark:text-white">
                   {office.city}
                 </h3>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-900 dark:text-gray-200">
                   {office.country}
                 </p>
               </motion.div>
@@ -76,25 +76,25 @@ export function GlobalPresence() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4"
         >
           <div className="text-center">
             <div className="mb-2 text-3xl font-bold text-primary">24/7</div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">Support</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-200">Support</p>
           </div>
           <div className="text-center">
             <div className="mb-2 text-3xl font-bold text-primary">50+</div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">Countries</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-200">Countries</p>
           </div>
           <div className="text-center">
             <div className="mb-2 text-3xl font-bold text-primary">15+</div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">Timezones</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-200">Timezones</p>
           </div>
           <div className="text-center">
             <div className="mb-2 text-3xl font-bold text-primary">200+</div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">Team Members</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-200">Team Members</p>
           </div>
         </motion.div>
       </div>

@@ -1,47 +1,60 @@
 "use client";
-import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useEffect, useState } from "react";
 
 export function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
-    // Sync with current state
-    const isDark = document.documentElement.classList.contains("dark");
-    setDarkMode(isDark);
   }, []);
+
+  // Get current theme - check DOM directly for most accurate state
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Listen for theme changes (from other instances)
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      setDarkMode(isDark);
-    });
+    if (mounted && typeof window !== "undefined") {
+      // Check DOM directly for current theme
+      const checkTheme = () => {
+        const dark = document.documentElement.classList.contains("dark");
+        setIsDark(dark);
+      };
+      
+      checkTheme();
+      
+      // Listen for theme changes
+      const handleThemeChange = () => {
+        checkTheme();
+      };
+      
+      window.addEventListener("themechange", handleThemeChange);
+      
+      // Also observe DOM changes
+      const observer = new MutationObserver(() => {
+        checkTheme();
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      return () => {
+        window.removeEventListener("themechange", handleThemeChange);
+        observer.disconnect();
+      };
     }
+  }, [mounted]);
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleTheme();
   };
 
-  // Prevent hydration mismatch
   if (!mounted) {
     return (
       <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white dark:border-gray-700 dark:bg-[#0B0C10]">
@@ -52,15 +65,15 @@ export function DarkModeToggle() {
 
   return (
     <button
-      onClick={toggleDarkMode}
-      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white transition-colors hover:border-primary hover:bg-gray-50 dark:border-gray-700 dark:bg-[#0B0C10] dark:hover:bg-gray-800 cursor-pointer pointer-events-auto"
-      aria-label="Toggle dark mode"
+      onClick={handleToggle}
+      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white transition-all duration-200 hover:border-primary hover:bg-gray-50 hover:scale-105 dark:border-gray-700 dark:bg-[#0B0C10] dark:hover:bg-gray-800 cursor-pointer"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       type="button"
     >
-      {darkMode ? (
-        <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+      {isDark ? (
+        <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300 transition-transform duration-200" />
       ) : (
-        <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+        <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300 transition-transform duration-200" />
       )}
     </button>
   );

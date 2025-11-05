@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind v4 dark mode variant - REQUIRED for dark: classes to work */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #1a1a1a;
@@ -29,7 +32,8 @@
   --neutral-900: #111827;
 }
 
-.dark {
+.dark,
+html.dark {
   --background: #0B0C10;
   --foreground: #eaeaea;
   --base-light: #ffffff;
@@ -60,6 +64,15 @@ body {
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Ensure dark mode is properly scoped */
+html.dark {
+  color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
 }
 
 /* Custom scrollbar */
@@ -106,13 +119,11 @@ html {
   transform: translateY(0);
 }
 
-/* Smooth transitions for theme switching - only on specific elements, not all */
-html,
-body,
-[class*="bg-"],
-[class*="text-"],
-[class*="border-"] {
+/* Smooth transitions for theme switching */
+*,
+*::before,
+*::after {
   transition-property: background-color, border-color, color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }

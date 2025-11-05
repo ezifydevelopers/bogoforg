@@ -5,8 +5,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ThemeScript } from "@/components/ThemeScript";
+import { ErrorHandler } from "@/components/ui/ErrorHandler";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,8 +42,9 @@ export default function RootLayout({
 			<head>
 				<ThemeScript />
 			</head>
-			<body className={`${inter.variable} ${poppins.variable} antialiased bg-white text-gray-900 dark:bg-[#0B0C10] dark:text-gray-100 transition-colors duration-300`}>
+			<body className={`${inter.variable} ${poppins.variable} antialiased bg-white text-gray-900 dark:bg-[#0B0C10] dark:text-gray-100 transition-colors duration-300`} suppressHydrationWarning>
 				<ThemeProvider>
+					<ErrorHandler />
 					<OrganizationSchema />
 					<main className="min-h-screen bg-white dark:bg-[#0B0C10] transition-colors duration-300">
 						<Navbar />

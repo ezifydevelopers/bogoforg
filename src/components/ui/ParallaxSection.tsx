@@ -17,8 +17,12 @@ export function ParallaxSection({ children, speed = 0.5, className = "" }: Paral
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", `${speed * 100}%`]);
 
+  // Ensure container always has non-static position for scroll calculation
+  const hasPosition = className.includes('absolute') || className.includes('fixed') || className.includes('relative');
+  const finalClassName = hasPosition ? className : `relative ${className}`.trim();
+
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={finalClassName}>
       <motion.div style={{ y }}>{children}</motion.div>
     </div>
   );

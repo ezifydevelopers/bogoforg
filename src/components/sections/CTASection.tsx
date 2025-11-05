@@ -34,7 +34,7 @@ export function CTASection({
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className={`mb-4 text-3xl font-bold sm:text-4xl md:text-5xl ${textClass}`}
         >
@@ -45,9 +45,9 @@ export function CTASection({
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`mb-8 text-lg ${variant === "gradient" ? "text-white/90" : "text-gray-700 dark:text-gray-300"}`}
+            className={`mb-8 text-lg ${variant === "gradient" ? "text-white/90" : "text-gray-900 dark:text-gray-200"}`}
           >
             {subtitle}
           </motion.p>
@@ -56,7 +56,7 @@ export function CTASection({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >

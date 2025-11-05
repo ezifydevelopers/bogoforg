@@ -32,7 +32,7 @@ export default function Footer() {
 						<h3 className="mb-4 text-xl font-bold">
 							<span className="gradient-text">bogoforg</span>
 						</h3>
-						<p className="mb-6 text-sm leading-relaxed text-neutral-700 dark:text-neutral-400">
+						<p className="mb-6 text-sm leading-relaxed text-neutral-900 dark:text-neutral-200">
 							Turning ideas into reality. We help entrepreneurs and businesses plan, build, and grow their products with cutting-edge technology and strategic expertise.
 						</p>
 						<div className="flex gap-3">
@@ -45,7 +45,7 @@ export default function Footer() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label={social.label}
-										className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-700 transition-all hover:scale-110 hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+										className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-900 transition-all hover:scale-110 hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 									>
 										<Icon className="h-5 w-5" />
 									</a>
@@ -64,32 +64,32 @@ export default function Footer() {
 						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Services</h4>
 						<ul className="space-y-2 text-sm">
 							<li>
-								<Link href="/services/business-planning" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/business-planning" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Business Planning
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/product-development" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/product-development" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Product Development
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/web-mobile-development" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/web-mobile-development" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Web & Mobile
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/marketing" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/marketing" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Marketing & Growth
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/ai-automation" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/ai-automation" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									AI & Automation
 								</Link>
 							</li>
 							<li>
-								<Link href="/services/security-testing" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/services/security-testing" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Security & Testing
 								</Link>
 							</li>
@@ -106,32 +106,32 @@ export default function Footer() {
 						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Resources</h4>
 						<ul className="space-y-2 text-sm">
 							<li>
-								<Link href="/about" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/about" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									About Us
 								</Link>
 							</li>
 							<li>
-								<Link href="/portfolio" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/portfolio" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Portfolio
 								</Link>
 							</li>
 							<li>
-								<Link href="/process" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/process" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									How We Work
 								</Link>
 							</li>
 							<li>
-								<Link href="/blog" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/blog" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Blog & Insights
 								</Link>
 							</li>
 							<li>
-								<Link href="/faq" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/faq" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									FAQ
 								</Link>
 							</li>
 							<li>
-								<Link href="/careers" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Link href="/careers" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 									Careers
 								</Link>
 							</li>
@@ -140,7 +140,7 @@ export default function Footer() {
 						{/* Newsletter */}
 						<div className="mt-6">
 							<h4 className="mb-3 text-sm font-semibold text-neutral-900 dark:text-white">Newsletter</h4>
-							<p className="mb-3 text-xs text-neutral-700 dark:text-neutral-400">
+							<p className="mb-3 text-xs text-neutral-900 dark:text-neutral-200">
 								Get updates on product development, AI, and growth strategies.
 							</p>
 							<form className="flex gap-2">
@@ -169,32 +169,32 @@ export default function Footer() {
 						<h4 className="mb-4 text-sm font-semibold text-neutral-900 dark:text-white">Contact</h4>
 						<ul className="space-y-3 text-sm">
 							<li className="flex items-start gap-2">
-								<Mail className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
-								<a href="mailto:hello@bogoforg.com" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Mail className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
+								<a href="mailto:hello@bogoforg.com" className="text-neutral-900 transition-colors hover:text-primary dark:text-white">
 									hello@bogoforg.com
 								</a>
 							</li>
 							<li className="flex items-start gap-2">
-								<Phone className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
-								<a href="tel:+1234567890" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+								<Phone className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
+								<a href="tel:+1234567890" className="text-neutral-900 transition-colors hover:text-primary dark:text-white dark:hover:text-primary-400">
 									+1 (234) 567-890
 								</a>
 							</li>
 							<li className="flex items-start gap-2">
-								<MapPin className="h-4 w-4 shrink-0 mt-0.5 text-neutral-700 dark:text-neutral-400" />
-								<span className="text-neutral-700 dark:text-neutral-400">Remote Worldwide</span>
+								<MapPin className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
+								<span className="text-neutral-900 dark:text-neutral-200">Remote Worldwide</span>
 							</li>
 						</ul>
 					</motion.div>
 				</div>
 
 				<div className="mt-10 flex flex-col items-center justify-between gap-4 border-t-2 border-neutral-200 pt-6 text-sm dark:border-neutral-800 sm:flex-row">
-					<p className="text-neutral-700 dark:text-neutral-400">© {currentYear} bogoforg. All rights reserved.</p>
+					<p className="text-neutral-900 dark:text-neutral-200">© {currentYear} bogoforg. All rights reserved.</p>
 					<div className="flex gap-6">
-						<Link href="/terms" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+						<Link href="/terms" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 							Terms
 						</Link>
-						<Link href="/privacy" className="text-neutral-700 transition-colors hover:text-primary dark:text-neutral-400">
+						<Link href="/privacy" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 							Privacy
 						</Link>
 					</div>
