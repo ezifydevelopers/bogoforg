@@ -6,6 +6,7 @@ import { services } from "@/data/services";
 import { ImageReveal } from "@/components/ui/ImageReveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { CTASection } from "@/components/sections/CTASection";
 
 const contactFAQ = [
 	{
@@ -26,7 +27,7 @@ export default function ContactPage() {
 	return (
 		<main>
 		{/* Hero */}
-		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-12 sm:py-16 md:py-20">
 			<div className="absolute inset-0">
 				<ImageReveal
 					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
@@ -36,30 +37,30 @@ export default function ContactPage() {
 				/>
 			</div>
 			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-						className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
-					>
-						Let's Talk About Your Idea
-					</motion.h1>
-					<motion.p
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-lg leading-relaxed text-white/90 sm:text-xl"
-					>
-						Get in touch and let's discuss how we can turn your vision into reality.
-					</motion.p>
-				</div>
-			</section>
+			<div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
+				<motion.h1
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					className="mb-4 sm:mb-6 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
+				>
+					Let's Talk About Your Idea
+				</motion.h1>
+				<motion.p
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+					className="text-base leading-relaxed text-white/90 sm:text-lg md:text-xl"
+				>
+					Get in touch and let's discuss how we can turn your vision into reality.
+				</motion.p>
+			</div>
+		</section>
 
 			{/* Contact Cards */}
 			<section className="relative -mt-10">
-				<div className="mx-auto max-w-7xl px-6">
-					<div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+					<div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
 						{[
 							{ icon: Phone, label: "Phone", value: "+1 (234) 567-890", href: "tel:+1234567890" },
 							{ icon: Mail, label: "Email", value: "hello@bogoforg.com", href: "mailto:hello@bogoforg.com" },
@@ -67,14 +68,14 @@ export default function ContactPage() {
 						].map((contact, index) => {
 							const Icon = contact.icon;
 							return (
-								<TiltCard key={index} intensity={5}>
+								<TiltCard key={index} intensity={8}>
 									<motion.a
 										href={contact.href}
 										initial={{ opacity: 0, y: 20 }}
 										whileInView={{ opacity: 1, y: 0 }}
 										viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 										transition={{ duration: 0.6, delay: index * 0.1 }}
-										className="group flex flex-col items-center rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-xl dark:border-gray-800 dark:bg-[#111]"
+										className="group flex flex-col items-center rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
 									>
 										<div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white">
 											<Icon className="h-8 w-8" />
@@ -94,8 +95,8 @@ export default function ContactPage() {
 			</section>
 
 			{/* Contact Form & Info */}
-			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6">
 					<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
 						{/* Contact Form */}
 						<motion.div
@@ -103,7 +104,7 @@ export default function ContactPage() {
 							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 							transition={{ duration: 0.6 }}
-							className="rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-lg dark:border-gray-800 dark:bg-[#111]"
+							className="rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-md dark:border-gray-800 dark:bg-[#111]"
 						>
 							<h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
 								Send Us a Message
@@ -188,7 +189,7 @@ export default function ContactPage() {
 							transition={{ duration: 0.6 }}
 							className="space-y-6"
 						>
-							<div className="rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-lg dark:border-gray-800 dark:bg-[#111]">
+							<div className="rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-md dark:border-gray-800 dark:bg-[#111]">
 								<h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
 									Get in Touch
 								</h2>
@@ -263,8 +264,8 @@ export default function ContactPage() {
 			</section>
 
 			{/* FAQ Section */}
-			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-4xl px-6">
+			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+				<div className="mx-auto max-w-4xl px-4 sm:px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -295,27 +296,15 @@ export default function ContactPage() {
 				</div>
 			</section>
 
-			{/* We're Hiring Banner */}
-			<section className="relative overflow-hidden bg-gradient-to-r from-primary to-accent py-16">
-				<div className="mx-auto max-w-4xl px-6 text-center">
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
-						transition={{ duration: 0.6 }}
-					>
-						<h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-							We're Hiring! 🚀
-						</h2>
-						<p className="mb-6 text-lg text-white/90">
-							Join our team and help shape the future of digital products
-						</p>
-						<Button href="/careers" variant="secondary" size="lg" className="bg-white text-primary hover:bg-neutral-100">
-							View Open Positions
-						</Button>
-					</motion.div>
-				</div>
-			</section>
+			{/* CTA */}
+			<CTASection
+				title="Let's Work Together"
+				subtitle="Ready to start your next project? Get in touch and let's discuss how we can help."
+				primaryButtonText="Start Your Project"
+				primaryButtonHref="/contact"
+				secondaryButtonText="View All Services"
+				secondaryButtonHref="/services"
+			/>
 		</main>
 	);
 }

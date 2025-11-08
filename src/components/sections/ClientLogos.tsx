@@ -72,28 +72,28 @@ export function ClientLogos() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2, margin: "-50px" }}
               transition={{ duration: 0.4 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative h-24 sm:h-28 md:h-32 overflow-hidden rounded-xl border-2 border-gray-200 bg-white transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="group relative h-24 sm:h-28 md:h-32 overflow-hidden rounded-xl border-2 border-gray-200 bg-white transition-all duration-300 ease-in-out hover:border-primary hover:shadow-md dark:border-gray-800 dark:bg-[#111]"
             >
               <ImageReveal
                 src={client.image}
                 alt={client.name}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 right-0 p-3">
-                <p className="text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100 drop-shadow-lg">
+                <p className="text-xs font-semibold text-white opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 drop-shadow-lg">
                   {client.industry}
                 </p>
-                <p className="text-sm font-bold text-white opacity-0 transition-opacity group-hover:opacity-100 drop-shadow-lg">
+                <p className="text-sm font-bold text-white opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 drop-shadow-lg">
                   {client.name}
                 </p>
               </div>
               {/* Default state - show name */}
-              <div className="absolute inset-0 flex items-center justify-center bg-white/95 dark:bg-[#0B0C10]/95 backdrop-blur-sm transition-opacity group-hover:opacity-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white text-center px-2">
+              <div className="absolute inset-0 flex items-center justify-center bg-white/95 dark:bg-[#0B0C10]/95 backdrop-blur-sm transition-opacity duration-700 ease-in-out group-hover:opacity-0">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white text-center px-2 transition-opacity duration-700 ease-in-out group-hover:opacity-0">
                   {client.name}
                 </p>
               </div>

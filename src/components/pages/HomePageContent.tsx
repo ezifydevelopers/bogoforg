@@ -25,28 +25,43 @@ export function HomePageContent() {
 	const processSteps = [
 		{
 			number: "1",
-			title: "Understand",
-			description: "Deep dive into your goals, market, and audience to understand what you need to succeed.",
+			title: "Discovery & Research",
+			description: "Deep dive into your business goals, target market, competitive landscape, and user needs. We conduct comprehensive research to understand what you need to succeed in your industry.",
 		},
 		{
 			number: "2",
-			title: "Plan",
-			description: "Create a strategic roadmap with clear milestones, priorities, and success metrics.",
+			title: "Strategy & Planning",
+			description: "Create a strategic roadmap with clear milestones, priorities, and success metrics. We develop detailed project plans, timelines, and resource allocation strategies tailored to your objectives.",
 		},
 		{
 			number: "3",
-			title: "Build",
-			description: "Design and develop your product with agile sprints, weekly demos, and continuous feedback.",
+			title: "Design & Prototyping",
+			description: "Design intuitive user interfaces and create interactive prototypes. We focus on user experience, visual design, and ensuring your product is both beautiful and functional before development begins.",
 		},
 		{
 			number: "4",
-			title: "Test",
-			description: "Rigorous quality assurance, security audits, and performance testing before launch.",
+			title: "Development & Build",
+			description: "Design and develop your product with agile sprints, weekly demos, and continuous feedback. Our team uses modern technologies and best practices to build scalable, maintainable solutions.",
 		},
 		{
 			number: "5",
-			title: "Grow",
-			description: "Launch, measure, optimize, and iterate with marketing, analytics, and ongoing support.",
+			title: "Quality Assurance",
+			description: "Rigorous quality assurance, security audits, and performance testing before launch. We ensure your product is bug-free, secure, and performs optimally across all devices and browsers.",
+		},
+		{
+			number: "6",
+			title: "Launch & Deployment",
+			description: "Execute a smooth launch with proper deployment strategies, monitoring, and support. We handle all technical aspects of going live and ensure everything runs smoothly from day one.",
+		},
+		{
+			number: "7",
+			title: "Optimization & Growth",
+			description: "Launch, measure, optimize, and iterate with marketing, analytics, and ongoing support. We track performance metrics and continuously improve your product based on real user data.",
+		},
+		{
+			number: "8",
+			title: "Maintenance & Support",
+			description: "Ongoing maintenance, updates, and support to keep your product running smoothly. We provide 24/7 monitoring, regular updates, and quick response times for any issues that arise.",
 		},
 	];
 
@@ -156,10 +171,14 @@ export function HomePageContent() {
 			{/* 9. Stats */}
 			<StatsSection
 				stats={[
+					{ value: 10, suffix: "+", label: "Years Experience" },
+					{ value: 500, suffix: "+", label: "Projects Delivered" },
+					{ value: 200, suffix: "+", label: "Satisfied Clients" },
 					{ value: 50, suffix: "%", label: "Time Reduction" },
-					{ value: 100, suffix: "+", label: "Projects Delivered" },
 					{ value: 99, suffix: "%", label: "Client Satisfaction" },
 					{ value: 4.9, suffix: "★", label: "Average Rating" },
+					{ value: 24, suffix: "/7", label: "Support Available" },
+					{ value: 100, suffix: "+", label: "Team Members" },
 				]}
 			/>
 
