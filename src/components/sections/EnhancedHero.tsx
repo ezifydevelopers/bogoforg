@@ -1,16 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { BadgeCheck, TrendingUp, Users } from "lucide-react";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Container } from "@/components/layout/Container";
 
 interface EnhancedHeroProps {
   headline: string;
   subtext: string;
   primaryButtonText: string;
   primaryButtonHref: string;
-  secondaryButtonText: string;
-  secondaryButtonHref: string;
+  secondaryButtonText?: string;
+  secondaryButtonHref?: string;
 }
 
 export function EnhancedHero({
@@ -21,100 +21,78 @@ export function EnhancedHero({
   secondaryButtonText,
   secondaryButtonHref,
 }: EnhancedHeroProps) {
-  const [particles, setParticles] = useState<Array<{ x: number; y: number; duration: number; delay: number }>>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    // Generate random values only on client side to avoid hydration mismatch
-    const particleData = Array.from({ length: 20 }, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      duration: Math.random() * 3 + 2,
-      delay: Math.random() * 2,
-    }));
-    setParticles(particleData);
-  }, []);
-
-  const trustBadges = [
-    { icon: BadgeCheck, text: "500+ Projects", color: "text-blue-500" },
-    { icon: TrendingUp, text: "100+ Startups", color: "text-green-500" },
-    { icon: Users, text: "200+ Clients", color: "text-purple-500" },
-  ];
-
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-white dark:bg-transparent">
-      {/* Animated Gradient Background - only in dark mode */}
-      <div className="absolute inset-0 hidden bg-gradient-to-br from-primary via-primary/90 to-accent dark:block">
-        <motion.div
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%),linear-gradient(-45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:60px_60px] opacity-20"
+    <section className="relative min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+      {/* Background Image - Blurred and Desaturated */}
+      <div className="absolute inset-0">
+        <ImageReveal
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
+          alt="Team collaboration"
+          fill
+          sizes="100vw"
+          className="object-cover grayscale-[0.3] brightness-105 filter "
+          priority
+          overlay={false}
         />
-        {/* Particle Effect */}
-        {mounted && (
-          <div className="absolute inset-0">
-            {particles.map((particle, i) => (
-              <motion.div
-                key={i}
-                className="absolute h-1 w-1 rounded-full bg-white/30"
-                initial={{
-                  x: `${particle.x}%`,
-                  y: `${particle.y}%`,
-                }}
-                animate={{
-                  y: [`${particle.y}%`, `${Math.random() * 100}%`],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: particle.duration,
-                  repeat: Infinity,
-                  delay: particle.delay,
-                }}
-              />
-            ))}
-          </div>
-        )}
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[85vh] sm:min-h-[90vh] max-w-7xl items-center px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+      {/* Semi-transparent Overlay - Similar to image */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+
+      <Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
         <div className="w-full text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-4 sm:mb-6"
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-primary backdrop-blur-sm dark:border-white/30 dark:bg-white/10 dark:text-white"
-            >
-              ✨ Turning Ideas Into Reality Since 2014
-            </motion.span>
-          </motion.div>
+
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-gray-900 dark:text-white leading-tight"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.3,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+            }}
+            className="mb-4 sm:mb-6 text-fluid-6xl font-bold text-white leading-tight"
           >
-            {headline}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+          >
+              {headline.split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.6 + i * 0.1,
+                  }}
+                  className="inline-block mr-2"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-8 sm:mb-10 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-800 dark:text-white/90 px-2"
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.8,
+              ease: "easeOut",
+            }}
+                   className="mb-8 sm:mb-10 text-fluid-xl leading-relaxed text-white px-2"
           >
             {subtext}
           </motion.p>
@@ -125,40 +103,24 @@ export function EnhancedHero({
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mb-8 sm:mb-12 flex flex-col items-center justify-center gap-3 sm:gap-4"
           >
-            <Button href={primaryButtonHref} variant="primary" size="lg" className="w-full sm:w-auto shadow-[0_0_30px_rgba(47,47,162,0.5)]">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: 1,
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+              }}
+            >
+              <Button href={primaryButtonHref} variant="primary" size="lg" className="w-full sm:w-auto">
               {primaryButtonText}
             </Button>
-            <Button href={secondaryButtonHref} variant="outline" size="lg" className="w-full sm:w-auto bg-primary/10 text-primary backdrop-blur-sm hover:bg-primary/20 border-primary dark:bg-white/10 dark:text-white dark:border-white dark:hover:bg-white/20">
-              {secondaryButtonText}
-            </Button>
-          </motion.div>
-
-          {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6"
-          >
-            {trustBadges.map((badge, index) => {
-              const Icon = badge.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                  className="flex items-center gap-1.5 sm:gap-2 rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 backdrop-blur-sm dark:bg-white/10"
-                >
-                  <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${badge.color}`} />
-                  <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white">{badge.text}</span>
-                </motion.div>
-              );
-            })}
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
-

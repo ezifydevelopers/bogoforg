@@ -2,9 +2,11 @@
 import type { Service } from "@/data/services";
 import { CTASection } from "@/components/sections/CTASection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { Container } from "@/components/layout/Container";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { ImageOverlay } from "@/components/ui/ImageOverlay";
 
 interface ServicePageTemplateProps {
   service: Service;
@@ -20,39 +22,46 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+        {/* Background Image */}
         <div className="absolute inset-0">
           <ImageReveal
-            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
             alt={service.title}
             fill
-            className="object-cover opacity-20"
+            sizes="100vw"
+            className="object-cover grayscale-[0.3] brightness-105"
+            priority
+            overlay={false}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
-          >
-            {service.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg leading-relaxed text-white/90 sm:text-xl"
-          >
-            {service.fullDescription}
-          </motion.p>
-        </div>
+        {/* Semi-transparent Overlay - Similar to hero section */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+        <Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+          <div className="w-full text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6 text-fluid-5xl font-bold text-white drop-shadow-2xl"
+            >
+              {service.title}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
+            >
+              {service.fullDescription}
+            </motion.p>
+          </div>
+        </Container>
       </section>
 
       {/* Overview */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-16 sm:py-20 md:py-24">
+        <Container>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -80,11 +89,13 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
+                priority
+                overlay={true}
+                overlayVariant="gradient"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
             </motion.div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Process */}
@@ -95,8 +106,8 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
       />
 
       {/* Benefits */}
-      <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-white py-16 sm:py-20 md:py-24 dark:bg-[#0B0C10] transition-colors duration-300">
+        <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -125,12 +136,12 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
               </motion.div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Tools */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-16 sm:py-20 md:py-24">
+        <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +167,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
               </motion.span>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* CTA */}
@@ -170,4 +181,3 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
     </>
   );
 }
-

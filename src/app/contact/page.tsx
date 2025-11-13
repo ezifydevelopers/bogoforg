@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, Send, MessageCircle, Calendar } from "lucide-react";
 import { services } from "@/data/services";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { ImageOverlay } from "@/components/ui/ImageOverlay";
 import { Accordion } from "@/components/ui/Accordion";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { CTASection } from "@/components/sections/CTASection";
+import { Container } from "@/components/layout/Container";
 
 const contactFAQ = [
 	{
@@ -27,39 +29,62 @@ export default function ContactPage() {
 	return (
 		<main>
 		{/* Hero */}
-		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-12 sm:py-16 md:py-20">
+		<section className="relative min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+			{/* Background Image */}
 			<div className="absolute inset-0">
 				<ImageReveal
-					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 					alt="Contact us"
 					fill
-					className="object-cover opacity-20"
+					sizes="100vw"
+					className="object-cover grayscale-[0.3] brightness-105 filter"
+					priority
+					overlay={false}
 				/>
 			</div>
-			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-			<div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
-				<motion.h1
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-					className="mb-4 sm:mb-6 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
-				>
-					Let's Talk About Your Idea
-				</motion.h1>
-				<motion.p
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6, delay: 0.2 }}
-					className="text-base leading-relaxed text-white/90 sm:text-lg md:text-xl"
-				>
-					Get in touch and let's discuss how we can turn your vision into reality.
-				</motion.p>
-			</div>
+			{/* Semi-transparent Overlay - Similar to hero section */}
+			<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+			<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+				<div className="w-full text-center">
+					<motion.h1
+						initial={{ opacity: 0, y: 50, scale: 0.95 }}
+						animate={{
+							opacity: 1,
+							y: 0,
+							scale: 1,
+						}}
+						transition={{
+							duration: 1,
+							delay: 0.3,
+							type: "spring",
+							stiffness: 100,
+							damping: 15,
+						}}
+						className="mb-4 sm:mb-6 text-fluid-6xl font-bold text-white leading-tight drop-shadow-2xl"
+					>
+						Let's Talk About Your Idea
+					</motion.h1>
+					<motion.p
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{
+							duration: 0.8,
+							delay: 0.6,
+							type: "spring",
+							stiffness: 100,
+							damping: 15,
+						}}
+						className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
+					>
+						Get in touch and let's discuss how we can turn your vision into reality.
+					</motion.p>
+				</div>
+			</Container>
 		</section>
 
 			{/* Contact Cards */}
-			<section className="relative -mt-10">
-				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+			<section className="relative -mt-10 z-20">
+				<Container>
 					<div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
 						{[
 							{ icon: Phone, label: "Phone", value: "+1 (234) 567-890", href: "tel:+1234567890" },
@@ -77,9 +102,9 @@ export default function ContactPage() {
 										transition={{ duration: 0.6, delay: index * 0.1 }}
 										className="group flex flex-col items-center rounded-2xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
 									>
-										<div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white">
-											<Icon className="h-8 w-8" />
-										</div>
+									<div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent">
+										<Icon className="h-8 w-8 text-black dark:text-white" />
+									</div>
 										<h3 className="mb-2 text-sm font-semibold text-gray-900 dark:text-white">
 											{contact.label}
 										</h3>
@@ -91,12 +116,12 @@ export default function ContactPage() {
 							);
 						})}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Contact Form & Info */}
 			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+				<Container>
 					<div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
 						{/* Contact Form */}
 						<motion.div
@@ -195,30 +220,30 @@ export default function ContactPage() {
 								</h2>
 								<div className="space-y-4">
 									<div className="flex items-start gap-4">
-										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
-											<Mail className="h-6 w-6" />
+										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+											<Mail className="h-6 w-6 text-white" />
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Email</h3>
 											<a href="mailto:hello@bogoforg.com" className="text-gray-900 hover:text-primary dark:text-white">
-												hello@bogoforg.com
+												genroarit@gmail.com
 											</a>
 										</div>
 									</div>
 									<div className="flex items-start gap-4">
-										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
-											<Phone className="h-6 w-6" />
+										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+											<Phone className="h-6 w-6 text-white" />
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Phone</h3>
 											<a href="tel:+1234567890" className="text-gray-900 hover:text-primary dark:text-white dark:hover:text-primary-400">
-												+1 (234) 567-890
+												+92 (310) 7100-663
 											</a>
 										</div>
 									</div>
 									<div className="flex items-start gap-4">
-										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
-											<MapPin className="h-6 w-6" />
+										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+											<MapPin className="h-6 w-6 text-white" />
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Address</h3>
@@ -229,14 +254,8 @@ export default function ContactPage() {
 										</div>
 									</div>
 									<div className="flex items-start gap-4">
-										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
-											<Calendar className="h-6 w-6" />
-										</div>
-										<div>
-											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Schedule a Call</h3>
-											<Button href="/contact" variant="outline" size="sm" className="mt-2">
-												Book Consultation
-											</Button>
+										<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+											<Calendar className="h-6 w-6 text-white" />
 										</div>
 									</div>
 								</div>
@@ -260,12 +279,12 @@ export default function ContactPage() {
 							</div>
 						</motion.div>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* FAQ Section */}
 			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-4xl px-4 sm:px-6">
+				<Container className="max-w-4xl">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -293,7 +312,7 @@ export default function ContactPage() {
 							</motion.div>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* CTA */}

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { ImageOverlay } from "@/components/ui/ImageOverlay";
+import { Container } from "@/components/layout/Container";
 import Link from "next/link";
 import { useState } from "react";
 import { CTASection } from "@/components/sections/CTASection";
@@ -65,39 +67,62 @@ export default function PortfolioPage() {
 	return (
 		<main>
 			{/* Hero */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-12 sm:py-16 md:py-20">
+			<section className="relative min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+				{/* Background Image */}
 				<div className="absolute inset-0">
 					<ImageReveal
-						src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600"
+						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 						alt="Our portfolio"
 						fill
-						className="object-cover opacity-20"
+						sizes="100vw"
+						className="object-cover grayscale-[0.3] brightness-105 filter"
+						priority
+						overlay={false}
 					/>
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-				<div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
-					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-						className="mb-4 sm:mb-6 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
-					>
-						Case Studies
-					</motion.h1>
-					<motion.p
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-base leading-relaxed text-white/90 sm:text-lg md:text-xl"
-					>
-						A snapshot of projects we've delivered—outcomes, learnings, and craft.
-					</motion.p>
-				</div>
+				{/* Semi-transparent Overlay - Similar to hero section */}
+				<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+				<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+					<div className="w-full text-center">
+						<motion.h1
+							initial={{ opacity: 0, y: 50, scale: 0.95 }}
+							animate={{
+								opacity: 1,
+								y: 0,
+								scale: 1,
+							}}
+							transition={{
+								duration: 1,
+								delay: 0.3,
+								type: "spring",
+								stiffness: 100,
+								damping: 15,
+							}}
+							className="mb-4 sm:mb-6 text-fluid-6xl font-bold text-white leading-tight drop-shadow-2xl"
+						>
+							Case Studies
+						</motion.h1>
+						<motion.p
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{
+								duration: 0.8,
+								delay: 0.6,
+								type: "spring",
+								stiffness: 100,
+								damping: 15,
+							}}
+							className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
+						>
+							A snapshot of projects we've delivered—outcomes, learnings, and craft.
+						</motion.p>
+					</div>
+				</Container>
 			</section>
 
 			{/* Filter Tabs */}
 			<section className="sticky top-16 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm py-3 sm:py-4 dark:border-gray-800 dark:bg-[#0B0C10]/95 transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+				<Container>
 					<div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
 						{categories.map((category) => (
 							<button
@@ -105,7 +130,7 @@ export default function PortfolioPage() {
 								onClick={() => setActiveFilter(category)}
 								className={`rounded-full px-4 py-1.5 sm:px-6 sm:py-2 text-xs sm:text-sm font-medium transition-all ${
 									activeFilter === category
-										? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+										? "bg-gradient-to-r from-primary to-accent text-black dark:text-white shadow-lg"
 										: "border-2 border-gray-300 bg-white text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
 								}`}
 							>
@@ -113,12 +138,12 @@ export default function PortfolioPage() {
 							</button>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Projects Grid */}
-			<section className="bg-white py-12 sm:py-16 md:py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-4 sm:px-6">
+			<section className="bg-white py-16 sm:py-20 md:py-24 dark:bg-[#0B0C10] transition-colors duration-300">
+				<Container>
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={activeFilter}
@@ -190,7 +215,7 @@ export default function PortfolioPage() {
 						})}
 						</motion.div>
 					</AnimatePresence>
-				</div>
+				</Container>
 			</section>
 
 			{/* CTA */}

@@ -27,7 +27,7 @@ const offices = [
 
 export function GlobalPresence() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-white to-accent/10 py-20 dark:from-primary/20 dark:via-[#0B0C10] dark:to-accent/20 transition-colors duration-300">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-white to-accent/10 py-16 sm:py-20 md:py-24 dark:from-primary/20 dark:via-[#0B0C10] dark:to-accent/20 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

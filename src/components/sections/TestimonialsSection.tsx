@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import type { Testimonial } from "@/data/testimonials";
 import { motion, AnimatePresence } from "framer-motion";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Container } from "@/components/layout/Container";
 
 interface TestimonialsSectionProps {
   testimonials: Testimonial[];
@@ -56,21 +58,33 @@ export function TestimonialsSection({
   }, [totalTestimonials]);
 
   return (
-    <section className="relative bg-gradient-to-b from-white to-gray-50 dark:from-[#0B0C10] dark:to-[#0A0B0F] py-24 overflow-hidden">
+    <section
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
+      style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Dark Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60 z-[1]" />
+
       {/* Gradient Blurs */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
+      <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none z-[2]">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <Container className="relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-2xl">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-lg sm:text-xl text-white/90 drop-shadow-lg">
               {subtitle}
             </p>
           )}
@@ -109,7 +123,7 @@ export function TestimonialsSection({
                 const testimonial = testimonials[index];
                 return (
                   <motion.div
-                    key={testimonial.id}
+                    key={`${testimonial.id}-${currentIndex}-${i}`}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                     className="rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111] p-8 shadow-md hover:shadow-xl transition-all"
@@ -119,10 +133,24 @@ export function TestimonialsSection({
                       “{testimonial.quote}”
                     </p>
                     <div className="flex items-center gap-4 border-t border-gray-200 dark:border-gray-700 pt-6">
-                      <div className="h-12 w-12 flex items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-white font-semibold text-lg shadow-md">
-                        {testimonial.author.charAt(0)}
+                      <div className="relative h-14 w-14 flex-shrink-0 rounded-full overflow-hidden border-2 border-primary/20 shadow-md">
+                        <ImageReveal
+                          src={[
+                            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
+                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
+                            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
+                            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80",
+                            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80",
+                            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+                          ][index % 6] || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80"}
+                          alt={testimonial.author}
+                          fill
+                          sizes="56px"
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <p className="text-gray-900 dark:text-white font-semibold">
                           {testimonial.author}
                         </p>
@@ -164,7 +192,7 @@ export function TestimonialsSection({
             />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

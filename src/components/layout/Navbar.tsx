@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MegaMenu } from "@/components/ui/MegaMenu";
 import { DarkModeToggle } from "@/components/ui/DarkModeToggle";
+import { QuoteModal } from "@/components/ui/QuoteModal";
 import { services } from "@/data/services";
 
 const aboutLinks = [
@@ -21,7 +22,6 @@ const links: Array<{ href: string; label: string; hasDropdown?: boolean }> = [
 	{ href: "/about", label: "About", hasDropdown: true },
 	{ href: "/services", label: "Services", hasDropdown: true },
 	{ href: "/portfolio", label: "Portfolio" },
-	{ href: "/process", label: "Process" },
 	{ href: "/blog", label: "Blog" },
 	{ href: "/contact", label: "Contact" },
 ];
@@ -32,6 +32,7 @@ function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
 	const [hoveredMenu, setHoveredMenu] = useState<"services" | "about" | null>(null);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState<{ [key: string]: boolean }>({});
+	const [quoteModalOpen, setQuoteModalOpen] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -43,10 +44,10 @@ function Navbar() {
 
 	return (
 		<header className="sticky top-0 z-50 w-full">
-			<div 
+			<div
 				className={`border-b transition-all duration-300 ${
-					scrolled 
-						? "border-gray-200 bg-white/98 backdrop-blur-md shadow-lg dark:border-gray-800 dark:bg-[#0B0C10]/98" 
+					scrolled
+						? "border-gray-200 bg-white/98 backdrop-blur-md shadow-lg dark:border-gray-800 dark:bg-[#0B0C10]/98"
 						: "border-transparent bg-white/80 backdrop-blur-sm dark:bg-[#0B0C10]/80"
 				}`}
 			>
@@ -54,13 +55,13 @@ function Navbar() {
 					<Link href="/" className="text-lg sm:text-xl font-bold tracking-tight z-50 relative">
 						<span className="gradient-text">bogoforg</span>
 					</Link>
-					
+
 					{/* Desktop Navigation - Only visible at 1280px+ */}
 					<nav className="hidden xl:flex items-center gap-4 xl:gap-6 2xl:gap-8">
 						{links.map((l) => {
 							const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
 							const isServicesOrAbout = l.label === "Services" || l.label === "About";
-							
+
 							return (
 								<div
 									key={l.href}
@@ -78,27 +79,27 @@ function Navbar() {
 										{l.hasDropdown && <ChevronDown className="h-4 w-4" />}
 									</Link>
 									{l.hasDropdown && isServicesOrAbout && (
-										<MegaMenu 
-											isOpen={hoveredMenu === (l.label === "Services" ? "services" : "about")} 
-											type={l.label === "Services" ? "services" : "about"} 
+										<MegaMenu
+											isOpen={hoveredMenu === (l.label === "Services" ? "services" : "about")}
+											type={l.label === "Services" ? "services" : "about"}
 										/>
 									)}
 								</div>
 							);
 						})}
 					</nav>
-					
+
 					{/* Desktop Actions (Dark Mode + Get Quote) - Only visible at 1280px+ */}
 					<div className="hidden xl:flex items-center gap-3 xl:gap-4">
 						<DarkModeToggle />
-						<Link
-							href="/contact"
+						<button
+							onClick={() => setQuoteModalOpen(true)}
 							className="relative overflow-hidden rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-5 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(47,47,162,0.5)] whitespace-nowrap"
 						>
-							<span className="relative z-10">Get Quote</span>
-						</Link>
+							<span className="relative z-10">Get a Free Quote</span>
+						</button>
 					</div>
-					
+
 					{/* Mobile Menu Button - Only visible below 1280px */}
 					<button
 						type="button"
@@ -122,7 +123,7 @@ function Navbar() {
 							{links.map((l) => {
 								const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
 								const isServicesOrAbout = l.label === "Services" || l.label === "About";
-								
+
 								return (
 									<div key={l.href} className="flex flex-col">
 										{l.hasDropdown && isServicesOrAbout ? (
@@ -179,19 +180,23 @@ function Navbar() {
 								);
 							})}
 							<div className="mt-2 flex items-center justify-between">
-								<DarkModeToggle />
-								<Link
-									href="/contact"
-									className="rounded-full bg-gradient-to-r from-primary to-accent px-6 py-2 text-center text-sm font-semibold text-white"
-									onClick={() => setOpen(false)}
+								<button
+									onClick={() => {
+										setQuoteModalOpen(true);
+										setOpen(false);
+									}}
+									className="rounded-full border-2 border-black bg-transparent px-6 py-2 text-center text-sm font-semibold text-black transition-all hover:bg-black hover:text-white hover:scale-105"
 								>
-									Get Quote
-								</Link>
+									Get a Free Quote
+								</button>
 							</div>
 						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>
+
+			{/* Quote Modal */}
+			<QuoteModal isOpen={quoteModalOpen} onClose={() => setQuoteModalOpen(false)} />
 		</header>
 	);
 }

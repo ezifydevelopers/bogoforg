@@ -2,6 +2,8 @@
 import { CTASection } from "@/components/sections/CTASection";
 import { Button } from "@/components/ui/Button";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Container } from "@/components/layout/Container";
+import { JobApplicationModal } from "@/components/ui/JobApplicationModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Briefcase, MapPin, Clock, Filter, CheckCircle2 } from "lucide-react";
@@ -9,47 +11,49 @@ import { Briefcase, MapPin, Clock, Filter, CheckCircle2 } from "lucide-react";
 export default function CareersPage() {
 	const [selectedDepartment, setSelectedDepartment] = useState("All");
 	const [selectedType, setSelectedType] = useState("All");
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedJob, setSelectedJob] = useState<string | null>(null);
 
 	const openPositions = [
-		{ 
-			title: "Senior Full-Stack Engineer", 
-			location: "Remote", 
-			type: "Full-time", 
+		{
+			title: "Senior Full-Stack Engineer",
+			location: "Remote",
+			type: "Full-time",
 			department: "Engineering",
 			description: "Build scalable web applications using modern technologies like Next.js, React, Node.js."
 		},
-		{ 
-			title: "Product Designer", 
-			location: "Remote", 
-			type: "Full-time", 
+		{
+			title: "Product Designer",
+			location: "Remote",
+			type: "Full-time",
 			department: "Design",
 			description: "Create beautiful, intuitive user experiences for web and mobile applications."
 		},
-		{ 
-			title: "Growth Marketing Manager", 
-			location: "Remote", 
-			type: "Full-time", 
+		{
+			title: "Growth Marketing Manager",
+			location: "Remote",
+			type: "Full-time",
 			department: "Marketing",
 			description: "Drive growth through strategic marketing campaigns and data-driven insights."
 		},
-		{ 
-			title: "AI/ML Engineer", 
-			location: "Remote", 
-			type: "Full-time", 
+		{
+			title: "AI/ML Engineer",
+			location: "Remote",
+			type: "Full-time",
 			department: "Engineering",
 			description: "Develop AI-powered solutions and machine learning models for client products."
 		},
-		{ 
-			title: "DevOps Engineer", 
-			location: "Remote", 
-			type: "Full-time", 
+		{
+			title: "DevOps Engineer",
+			location: "Remote",
+			type: "Full-time",
 			department: "Engineering",
 			description: "Manage infrastructure, CI/CD pipelines, and cloud deployments."
 		},
-		{ 
-			title: "UX Researcher", 
-			location: "Remote", 
-			type: "Part-time", 
+		{
+			title: "UX Researcher",
+			location: "Remote",
+			type: "Part-time",
 			department: "Design",
 			description: "Conduct user research and gather insights to inform product decisions."
 		},
@@ -87,23 +91,28 @@ export default function CareersPage() {
 	return (
 		<main>
 			{/* Hero */}
-			<section className="relative min-h-[600px] overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent">
+			<section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+				{/* Background Image */}
 				<div className="absolute inset-0">
 					<ImageReveal
-						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 						alt="Team collaboration"
 						fill
-						className="object-cover opacity-20"
+						sizes="100vw"
+						className="object-cover grayscale-[0.3] brightness-105"
+						priority
+						overlay={false}
 					/>
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-				<div className="relative z-10 mx-auto flex min-h-[600px] max-w-4xl items-center px-6 py-20">
-					<div className="text-center">
+				{/* Semi-transparent Overlay - Similar to hero section */}
+				<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+				<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+					<div className="w-full text-center">
 						<motion.h1
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
-							className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
+							className="mb-6 text-fluid-5xl font-bold text-white drop-shadow-2xl"
 						>
 							Join Our Mission
 						</motion.h1>
@@ -111,17 +120,17 @@ export default function CareersPage() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2 }}
-							className="text-lg leading-relaxed text-white/90 sm:text-xl"
+							className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
 						>
 							Build meaningful products with a team that values quality, clarity, and impact.
 						</motion.p>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Why Work With Us */}
 			<section className="py-20">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -129,10 +138,10 @@ export default function CareersPage() {
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-4 text-fluid-4xl font-bold text-neutral-900 dark:text-white">
 							Why Work With Us
 						</h2>
-						<p className="text-lg text-neutral-900 dark:text-neutral-200">
+						<p className="text-fluid-xl text-neutral-900 dark:text-neutral-200">
 							More than just a job — it's a career with purpose
 						</p>
 					</motion.div>
@@ -171,12 +180,12 @@ export default function CareersPage() {
 							</motion.div>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Benefits */}
 			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -203,12 +212,12 @@ export default function CareersPage() {
 							</motion.div>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Team Life Gallery */}
 			<section className="py-20">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -216,10 +225,10 @@ export default function CareersPage() {
 						transition={{ duration: 0.6 }}
 						className="mb-12 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-4 text-fluid-4xl font-bold text-neutral-900 dark:text-white">
 							Team Life
 						</h2>
-						<p className="text-lg text-neutral-900 dark:text-neutral-200">
+						<p className="text-fluid-xl text-neutral-900 dark:text-neutral-200">
 							A glimpse into our culture and team events
 						</p>
 					</motion.div>
@@ -244,12 +253,12 @@ export default function CareersPage() {
 							</motion.div>
 						))}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Open Positions */}
 			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -257,7 +266,7 @@ export default function CareersPage() {
 						transition={{ duration: 0.6 }}
 						className="mb-8 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-4 text-fluid-4xl font-bold text-neutral-900 dark:text-white">
 							Open Positions
 						</h2>
 					</motion.div>
@@ -274,7 +283,7 @@ export default function CareersPage() {
 										onClick={() => setSelectedDepartment(dept)}
 										className={`rounded-full px-4 py-1 text-sm transition-all ${
 											selectedDepartment === dept
-												? "bg-gradient-to-r from-primary to-accent text-white"
+												? "bg-gradient-to-r from-primary to-accent text-black dark:text-white"
 												: "border border-neutral-300 bg-white text-neutral-900 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 										}`}
 									>
@@ -292,7 +301,7 @@ export default function CareersPage() {
 										onClick={() => setSelectedType(type)}
 										className={`rounded-full px-4 py-1 text-sm transition-all ${
 											selectedType === type
-												? "bg-gradient-to-r from-primary to-accent text-white"
+												? "bg-gradient-to-r from-primary to-accent text-black dark:text-white"
 												: "border border-neutral-300 bg-white text-neutral-900 hover:border-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 										}`}
 									>
@@ -334,7 +343,14 @@ export default function CareersPage() {
 													</div>
 												</div>
 											</div>
-											<Button href="/contact" variant="primary" size="lg">
+											<Button
+												variant="primary"
+												size="lg"
+												onClick={() => {
+													setSelectedJob(position.title);
+													setIsModalOpen(true);
+												}}
+											>
 												Apply Now
 											</Button>
 										</div>
@@ -351,7 +367,7 @@ export default function CareersPage() {
 							)}
 						</AnimatePresence>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* CTA */}
@@ -362,6 +378,16 @@ export default function CareersPage() {
 				primaryButtonHref="/contact"
 				secondaryButtonText="View All Services"
 				secondaryButtonHref="/services"
+			/>
+
+			{/* Job Application Modal */}
+			<JobApplicationModal
+				isOpen={isModalOpen}
+				onClose={() => {
+					setIsModalOpen(false);
+					setSelectedJob(null);
+				}}
+				jobTitle={selectedJob || undefined}
 			/>
 		</main>
 	);

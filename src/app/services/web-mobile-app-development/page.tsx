@@ -1,25 +1,53 @@
-import type { Metadata } from "next";
+"use client";
 import Heading from "@/components/ui/Heading";
 import Paragraph from "@/components/ui/Paragraph";
 import Section from "@/components/ui/Section";
+import { Container } from "@/components/layout/Container";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { motion } from "framer-motion";
 
-export const metadata: Metadata = {
-	title: "Web & Mobile App Development",
-	description: "Full-stack web and mobile application development for iOS, Android, and cross-platform solutions.",
-};
+// Note: Metadata export is not available in client components
+// You may need to handle SEO differently for this page
 
 export default function WebMobileAppDevelopmentPage() {
 	return (
 		<main>
-			<section className="relative overflow-hidden py-16 sm:py-24">
-				<div className="absolute inset-0 -z-10">
-					<div className="absolute inset-0 bg-[url('/hero-grid.svg')] bg-cover bg-center opacity-10" />
-					<div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/60 to-black/70" />
+			{/* Hero */}
+			<section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+				{/* Background Image */}
+				<div className="absolute inset-0">
+					<ImageReveal
+						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
+						alt="Web & Mobile App Development"
+						fill
+						sizes="100vw"
+						className="object-cover grayscale-[0.3] brightness-105"
+						priority
+						overlay={false}
+					/>
 				</div>
-				<div className="mx-auto max-w-7xl px-6 text-center sm:text-left">
-					<h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Web & Mobile App Development</h1>
-					<p className="mt-3 max-w-2xl text-zinc-300">Full-stack web and mobile application development for iOS, Android, and cross-platform solutions.</p>
-				</div>
+				{/* Semi-transparent Overlay - Similar to hero section */}
+				<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+				<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+					<div className="w-full text-center">
+						<motion.h1
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6 }}
+							className="mb-6 text-fluid-5xl font-bold text-white drop-shadow-2xl"
+						>
+							Web & Mobile App Development
+						</motion.h1>
+						<motion.p
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6, delay: 0.2 }}
+							className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
+						>
+							Full-stack web and mobile application development for iOS, Android, and cross-platform solutions.
+						</motion.p>
+					</div>
+				</Container>
 			</section>
 			<Section>
 				<Heading level={1}>Web & Mobile App Development</Heading>
@@ -73,4 +101,3 @@ export default function WebMobileAppDevelopmentPage() {
 		</main>
 	);
 }
-

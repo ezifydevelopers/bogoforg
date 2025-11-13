@@ -1,34 +1,37 @@
 "use client";
-import { CTASection } from "@/components/sections/CTASection";
-import { StatsSection } from "@/components/sections/StatsSection";
 import { OurStory } from "@/components/sections/OurStory";
 import { LeadershipTeam } from "@/components/sections/LeadershipTeam";
 import { CompanyCulture } from "@/components/sections/CompanyCulture";
-import { GlobalPresence } from "@/components/sections/GlobalPresence";
+import { Container } from "@/components/layout/Container";
 import { motion } from "framer-motion";
 import { Lightbulb, Heart, Users, Award } from "lucide-react";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { ImageOverlay } from "@/components/ui/ImageOverlay";
 
 const values = [
 	{
 		icon: Lightbulb,
 		title: "Innovation",
 		description: "We embrace cutting-edge technologies and creative solutions to solve complex problems.",
+		image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
 	},
 	{
 		icon: Heart,
 		title: "Integrity",
 		description: "Honest communication, transparent processes, and ethical business practices in everything we do.",
+		image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
 	},
 	{
 		icon: Users,
 		title: "Collaboration",
 		description: "We work as partners with our clients, fostering strong relationships built on trust and respect.",
+		image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
 	},
 	{
 		icon: Award,
 		title: "Excellence",
 		description: "We strive for excellence in every project, delivering quality results that exceed expectations.",
+		image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80",
 	},
 ];
 
@@ -36,23 +39,27 @@ export default function AboutPage() {
 	return (
 		<main>
 			{/* 1. Hero Banner with Background Image */}
-			<section className="relative min-h-[500px] overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent">
+			<section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-black dark:bg-black">
 				<div className="absolute inset-0">
 					<ImageReveal
-						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600"
+						src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 						alt="Our team"
 						fill
-						className="object-cover opacity-20"
+						sizes="100vw"
+						className="object-cover grayscale-[0.3] brightness-105"
+						priority
+						overlay={false}
 					/>
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-				<div className="relative z-10 mx-auto flex min-h-[500px] max-w-4xl items-center px-6 py-20">
-					<div className="text-center">
+				{/* Semi-transparent Overlay - Similar to hero section */}
+				<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+				<div className="relative z-10 mx-auto flex min-h-[85vh] sm:min-h-[90vh] w-full max-w-[1920px] items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 3xl:px-24 py-20">
+					<div className="w-full text-center">
 						<motion.h1
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
-							className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
+							className="mb-6 text-fluid-5xl font-bold text-white"
 						>
 							Who We Are
 						</motion.h1>
@@ -60,7 +67,7 @@ export default function AboutPage() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2 }}
-							className="text-lg leading-relaxed text-white/90 sm:text-xl"
+							className="text-fluid-xl leading-relaxed text-white"
 						>
 							We're a team of planners, developers, designers, and marketers passionate about turning ideas into reality.
 						</motion.p>
@@ -68,7 +75,7 @@ export default function AboutPage() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.4 }}
-							className="mt-8 text-xl italic text-white/80"
+							className="mt-8 text-fluid-xl italic text-white"
 						>
 							"Building the future, one idea at a time."
 						</motion.blockquote>
@@ -80,50 +87,72 @@ export default function AboutPage() {
 			<OurStory />
 
 			{/* 3. Mission, Vision & Values */}
-			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+			<section className="bg-gradient-to-b from-white via-gray-50/50 to-white py-16 sm:py-20 md:py-24 dark:from-[#0B0C10] dark:via-[#0D0E12] dark:to-[#0B0C10] transition-colors duration-300">
+				<Container>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true, amount: 0.3, margin: "-50px" }}
 						transition={{ duration: 0.6 }}
-						className="mb-12 text-center"
+						className="mb-12 sm:mb-16 text-center"
 					>
-						<h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+						<h2 className="mb-4 text-fluid-4xl font-extrabold text-gray-900 dark:text-white">
 							Our Vision & Values
 						</h2>
-						<p className="text-lg text-gray-800 dark:text-gray-200">
+						<p className="mx-auto max-w-2xl text-fluid-xl text-gray-600 dark:text-gray-300">
 							The principles that guide everything we do
 						</p>
 					</motion.div>
-					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
 						{values.map((value, index) => {
 							const Icon = value.icon;
 							return (
 								<motion.div
 									key={index}
-									initial={{ opacity: 0, y: 20 }}
+									initial={{ opacity: 0, y: 30 }}
 									whileInView={{ opacity: 1, y: 0 }}
-									viewport={{ once: true, amount: 0.3, margin: "-50px" }}
+									viewport={{ once: true, amount: 0.3 }}
 									transition={{ duration: 0.6, delay: index * 0.1 }}
-									className="rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-md transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]"
+									className="group relative overflow-hidden rounded-3xl bg-white dark:bg-neutral-900 border-2 border-gray-200 dark:border-neutral-800 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-500 hover:shadow-2xl"
 								>
-									<div className="mb-4 flex justify-center">
-										<div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white">
-											<Icon className="h-8 w-8" />
+									{/* Image Background */}
+									<div className="relative h-64 overflow-hidden">
+										<ImageReveal
+											src={value.image}
+											alt={value.title}
+											fill
+											sizes="(max-width: 768px) 100vw, 50vw"
+											className="object-cover transition-transform duration-700 group-hover:scale-110"
+											priority={index < 2}
+											overlay={true}
+											overlayVariant="gradient"
+										/>
+
+										{/* Icon Badge */}
+										<div className="absolute top-6 left-6 z-10">
+											<motion.div
+												whileHover={{ scale: 1.1, rotate: 5 }}
+												className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-2xl border-2 border-white/30"
+											>
+												<Icon className="h-8 w-8 text-white" />
+											</motion.div>
 										</div>
 									</div>
-									<h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-										{value.title}
-									</h3>
-									<p className="text-sm text-gray-800 dark:text-gray-200">
-										{value.description}
-									</p>
+
+									{/* Content */}
+									<div className="p-6 sm:p-8">
+										<h3 className="mb-3 text-fluid-3xl font-bold text-gray-900 dark:text-white">
+											{value.title}
+										</h3>
+										<p className="text-fluid-lg leading-relaxed text-gray-700 dark:text-gray-300">
+											{value.description}
+										</p>
+									</div>
 								</motion.div>
 							);
 						})}
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* 4. Leadership Team */}
@@ -131,31 +160,6 @@ export default function AboutPage() {
 
 			{/* 5. Our Culture */}
 			<CompanyCulture />
-
-			{/* 6. Company Stats */}
-			<StatsSection
-				stats={[
-					{ value: 10, suffix: "+", label: "Years Experience" },
-					{ value: 500, suffix: "+", label: "Projects Completed" },
-					{ value: 200, suffix: "+", label: "Happy Clients" },
-					{ value: 50, suffix: "+", label: "Team Members" },
-				]}
-				title="Our Impact by Numbers"
-				subtitle="Results that speak for themselves"
-			/>
-
-			{/* 7. Global Presence */}
-			<GlobalPresence />
-
-			{/* 8. CTA */}
-			<CTASection
-				title="Join Us or Start Your Project"
-				primaryButtonText="Get Started"
-				primaryButtonHref="/contact"
-				secondaryButtonText="View Careers"
-				secondaryButtonHref="/careers"
-				variant="gradient"
-			/>
 		</main>
 	);
 }

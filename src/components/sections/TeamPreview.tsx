@@ -40,7 +40,7 @@ const teamMembers = [
 
 export function TeamPreview() {
   return (
-    <section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">
+    <section className="bg-white py-16 sm:py-20 md:py-24 dark:bg-[#0B0C10] transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

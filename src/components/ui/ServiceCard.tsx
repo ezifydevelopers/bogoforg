@@ -39,15 +39,16 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-110"
+              overlay={true}
+              overlayVariant="gradient"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4">
               <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm border border-white/30">
                 <Icon className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                {service.shortTitle}
-              </h3>
+                <h3 className="text-lg font-bold text-white drop-shadow-2xl">
+                  {service.shortTitle}
+                </h3>
             </div>
           </div>
           <div className="p-6">
@@ -64,4 +65,3 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
     </motion.div>
   );
 }
-

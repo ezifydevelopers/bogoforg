@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "@/components/layout/Container";
 
 type SectionProps = {
 	title?: string;
@@ -17,7 +18,7 @@ export function Section({ title, subtitle, children, className = "", variant = "
 			: "";
 	return (
 		<section className={`py-16 sm:py-24 ${variantClass} ${className}`.trim()}>
-			<div className="mx-auto max-w-7xl px-6">
+			<Container>
 				{title ? (
 					<div className="mb-10">
 						<h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
@@ -27,11 +28,9 @@ export function Section({ title, subtitle, children, className = "", variant = "
 					</div>
 				) : null}
 				{children}
-			</div>
+			</Container>
 		</section>
 	);
 }
 
 export default Section;
-
-

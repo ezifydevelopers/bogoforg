@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { type ReactElement } from "react";
 import { getBlogPostBySlug, blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Calendar, User, Clock, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import Script from "next/script";
 import { generateArticleSchema } from "@/lib/schema";
 import { Button } from "@/components/ui/Button";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
-  
+
   if (!post) {
     return {
       title: "Post Not Found",
@@ -160,27 +161,38 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
+        <section className="relative min-h-[70vh] overflow-hidden bg-black dark:bg-black">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <ImageReveal
+              src={post.image || "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"}
+              alt={post.title}
+              fill
+              sizes="100vw"
+              className="object-cover grayscale-[0.3] brightness-105 filter"
+              priority
+              overlay={false}
+            />
           </div>
-          <div className="relative z-10 mx-auto max-w-4xl px-6">
+          {/* Semi-transparent Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+          <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 min-h-[70vh] flex flex-col justify-center">
             <Link
               href="/blog"
-              className="mb-6 inline-flex items-center gap-2 text-white/90 hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-white/90 hover:text-white drop-shadow-lg"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Back to Blog</span>
             </Link>
             <div className="mb-4">
-              <span className="rounded-full bg-white/20 px-4 py-1 text-sm font-medium text-white backdrop-blur-sm">
+              <span className="rounded-full bg-white/20 px-4 py-1 text-sm font-medium text-white backdrop-blur-sm border border-white/30">
                 {post.category}
               </span>
             </div>
-            <h1 className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold text-white drop-shadow-2xl sm:text-5xl md:text-6xl">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-6 text-white/90">
+            <div className="flex flex-wrap items-center gap-6 text-white/90 drop-shadow-lg">
               <div className="flex items-center gap-2">
                 <User className="h-5 w-5" />
                 <span>{post.author}</span>
@@ -204,16 +216,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mx-auto max-w-4xl px-6">
             {post.image && (
               <div className="relative mb-12 aspect-video overflow-hidden rounded-2xl">
-                <Image
+                <ImageReveal
                   src={post.image.startsWith('http') ? post.image : `https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800`}
                   alt={post.title}
                   fill
+                  sizes="100vw"
                   className="object-cover"
                   priority
+                  overlay={true}
+                  overlayVariant="gradient"
                 />
               </div>
             )}
-            
+
             {/* Share Buttons */}
             <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-neutral-200 pb-8 dark:border-neutral-800">
               <span className="text-sm font-medium text-neutral-900 dark:text-neutral-200">Share:</span>

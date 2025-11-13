@@ -1,7 +1,8 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { ImageOverlay } from "./ImageOverlay";
 
 interface ImageRevealProps {
   src: string;
@@ -12,27 +13,43 @@ interface ImageRevealProps {
   width?: number;
   height?: number;
   sizes?: string;
+  overlay?: boolean;
+  overlayVariant?: "default" | "dark" | "gradient" | "subtle" | "banner";
 }
 
-export function ImageReveal({ 
-  src, 
-  alt, 
-  className = "", 
+export function ImageReveal({
+  src,
+  alt,
+  className = "",
   priority = false,
   fill = false,
   width,
   height,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  overlay = true,
+  overlayVariant = "gradient"
 }: ImageRevealProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Ensure image is visible even if animation hasn't triggered
+  useEffect(() => {
+    if (priority) {
+      setIsLoaded(true);
+    }
+  }, [priority]);
 
   if (fill) {
     return (
-      <div ref={ref} className={`relative overflow-hidden ${className}`} style={{ minHeight: '100%', width: '100%' }}>
+      <div
+        ref={ref}
+        className={`relative overflow-hidden ${className}`}
+        style={{ minHeight: '100%', width: '100%', position: 'absolute', inset: 0 }}
+      >
         <motion.div
-          initial={{ scale: 1.2, opacity: 0 }}
-          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 1.2, opacity: 0 }}
+          initial={{ scale: 1.1, opacity: priority ? 1 : 0 }}
+          animate={isInView || isLoaded || priority ? { scale: 1, opacity: 1 } : { scale: 1.1, opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="absolute inset-0 h-full w-full"
         >
@@ -43,8 +60,14 @@ export function ImageReveal({
             sizes={sizes}
             className="object-cover"
             priority={priority}
+            onLoad={() => setIsLoaded(true)}
           />
         </motion.div>
+        {overlay && (
+          <ImageOverlay variant={overlayVariant}>
+            <div />
+          </ImageOverlay>
+        )}
       </div>
     );
   }
@@ -52,9 +75,10 @@ export function ImageReveal({
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
       <motion.div
-        initial={{ scale: 1.2, opacity: 0 }}
-        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 1.2, opacity: 0 }}
+        initial={{ scale: 1.1, opacity: priority ? 1 : 0 }}
+        animate={isInView || isLoaded || priority ? { scale: 1, opacity: 1 } : { scale: 1.1, opacity: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative"
       >
         <Image
           src={src}
@@ -63,9 +87,14 @@ export function ImageReveal({
           height={height}
           className="object-cover"
           priority={priority}
+          onLoad={() => setIsLoaded(true)}
         />
+        {overlay && (
+          <ImageOverlay variant={overlayVariant}>
+            <div />
+          </ImageOverlay>
+        )}
       </motion.div>
     </div>
   );
 }
-

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/layout/Container";
 
 interface CTASectionProps {
   title: string;
@@ -22,15 +23,15 @@ export function CTASection({
   secondaryButtonHref,
   variant = "default",
 }: CTASectionProps) {
-  const bgClass = variant === "gradient" 
-    ? "bg-gradient-to-br from-primary via-primary/90 to-accent" 
+  const bgClass = variant === "gradient"
+    ? "bg-gradient-to-br from-primary via-primary/90 to-accent"
     : "bg-white dark:bg-[#0B0C10] transition-colors duration-300";
 
   const textClass = variant === "gradient" ? "text-white" : "text-gray-900 dark:text-white";
 
   return (
-    <section className={`${bgClass} py-12 sm:py-16 md:py-20`}>
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+    <section className={`${bgClass} py-16 sm:py-20 md:py-24`}>
+      <Container className="text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +41,7 @@ export function CTASection({
         >
           {title}
         </motion.h2>
-        
+
         {subtitle && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -52,7 +53,7 @@ export function CTASection({
             {subtitle}
           </motion.p>
         )}
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,26 +61,25 @@ export function CTASection({
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row"
         >
-          <Button 
-            href={primaryButtonHref} 
-            variant={variant === "gradient" ? "secondary" : "primary"} 
+          <Button
+            href={primaryButtonHref}
+            variant="primary"
             size="lg"
-            className={variant === "gradient" ? "bg-white text-primary hover:bg-gray-100" : ""}
           >
             {primaryButtonText}
           </Button>
           {secondaryButtonText && secondaryButtonHref && (
-            <Button 
-              href={secondaryButtonHref} 
-              variant={variant === "gradient" ? "outline" : "outline"} 
+            <Button
+              href={secondaryButtonHref}
+              variant={variant === "gradient" ? "glass" : "outline"}
               size="lg"
-              className={variant === "gradient" ? "border-white text-white hover:bg-white hover:text-primary" : ""}
+              showArrow={variant === "gradient"}
             >
               {secondaryButtonText}
             </Button>
           )}
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

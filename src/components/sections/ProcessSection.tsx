@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Container } from "@/components/layout/Container";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProcessStep {
   number: string;
@@ -61,12 +63,47 @@ const defaultSteps: ProcessStep[] = [
 
 export function ProcessSection({
   title = "Our Process",
-  subtitle = "A clear, collaborative process from idea to launch.",
+  subtitle = "A clear, collaborative journey from idea to success",
   steps = defaultSteps,
 }: ProcessSectionProps) {
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentStepIndex((prev) => (prev + 1) % steps.length);
+    }, 5000); // Change slide every 5 seconds
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, steps.length]);
+
+  const nextStep = () => {
+    setCurrentStepIndex((prev) => (prev + 1) % steps.length);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 8000);
+  };
+
+  const prevStep = () => {
+    setCurrentStepIndex((prev) => (prev - 1 + steps.length) % steps.length);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 8000);
+  };
+
+  const processImages = [
+    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&auto=format&fit=crop&q=80",
+  ];
+
   return (
-    <section className="relative bg-white py-16 sm:py-20 md:py-24 dark:bg-[#0B0C10] transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-20 md:py-24 dark:bg-[#0B0C10] transition-colors duration-300">
+      <Container className="relative">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,99 +112,152 @@ export function ProcessSection({
           transition={{ duration: 0.6 }}
           className="mb-12 sm:mb-16 text-center"
         >
-          <h2 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight"
+          >
             {title}
-          </h2>
+          </motion.h2>
           {subtitle && (
-            <p className="mx-auto max-w-3xl text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="mx-auto max-w-3xl text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium"
+            >
               {subtitle}
-            </p>
+            </motion.p>
           )}
         </motion.div>
 
-        {/* Large Image + Content Layout */}
-        <div className="space-y-20 sm:space-y-24">
-          {steps.map((step, index) => {
-            const processImages = [
-              "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80",
-              "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1000&auto=format&fit=crop&q=80",
-            ];
+        {/* Process Slider */}
+        <div className="relative">
+          <div
+            className="relative h-[500px] sm:h-[550px] md:h-[600px] lg:h-[650px] rounded-3xl overflow-hidden shadow-2xl"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            <AnimatePresence mode="wait">
+              {steps.map((step, index) => {
+                if (index !== currentStepIndex) return null;
 
-            const isEven = index % 2 === 0;
+                return (
+                  <motion.div
+                    key={step.number}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.7, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    {/* Background Image */}
+                    <ImageReveal
+                      src={processImages[index] || processImages[0]}
+                      alt={`${step.number}. ${step.title}`}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      priority={index === 0}
+                      overlay={true}
+                      overlayVariant="gradient"
+                    />
 
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: index * 0.1 }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                  !isEven ? "lg:grid-flow-dense" : ""
-                }`}
-              >
-                {/* Large Image */}
-                <motion.div
-                  className={`relative h-80 sm:h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl group ${
-                    !isEven ? "lg:col-start-2" : ""
-                  }`}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ImageReveal
-                    src={processImages[index] || processImages[0]}
-                    alt={`${step.number}. ${step.title}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                    priority={index < 2}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/20 to-transparent" />
-                  
-                  {/* Step Number - Large */}
-                  <div className="absolute top-8 left-8">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-2xl border-2 border-white/30">
-                      <span className="text-3xl font-bold text-white">{step.number}</span>
+                    {/* Content Container */}
+                    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 lg:px-12 h-full">
+                      {/* Step Number Badge */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="mb-6 sm:mb-8"
+                      >
+                        <div className="relative">
+                          <motion.div
+                            animate={{
+                              scale: [1, 1.1, 1],
+                              opacity: [0.5, 0.8, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/30 blur-xl"
+                          />
+                          <div className="relative flex h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-accent shadow-2xl border-2 border-white/30">
+                            <span className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-2xl">
+                              {step.number}
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Step Title */}
+                      <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white drop-shadow-2xl leading-tight"
+                      >
+                        {step.title}
+                      </motion.h3>
+
+                      {/* Step Description */}
+                      <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-2xl font-medium leading-relaxed"
+                      >
+                        {step.description}
+                      </motion.p>
+
+                      {/* Progress Dots */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="mt-8 sm:mt-10 flex gap-2 sm:gap-3"
+                      >
+                        {steps.map((_, i) => (
+                          <div
+                            key={i}
+                            className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
+                              i === currentStepIndex
+                                ? "w-8 sm:w-10 bg-white"
+                                : "w-2 sm:w-3 bg-white/40"
+                            }`}
+                          />
+                        ))}
+                      </motion.div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
 
-                {/* Content Section */}
-                <motion.div
-                  className={`flex flex-col justify-center space-y-6 ${
-                    !isEven ? "lg:col-start-1 lg:row-start-1" : ""
-                  }`}
-                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.2 + index * 0.1 }}
-                >
-                  <div className="flex items-center gap-4 mb-2">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg">
-                      <span className="text-2xl font-bold text-white">{step.number}</span>
-                    </div>
-                    <div className="h-1 flex-1 bg-gradient-to-r from-primary to-accent rounded-full" />
-                  </div>
-
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              </motion.div>
-            );
-          })}
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevStep}
+              className="absolute left-3 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 hover:scale-110 border border-white/30"
+              aria-label="Previous step"
+            >
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white" />
+            </button>
+            <button
+              onClick={nextStep}
+              className="absolute right-3 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full p-2 sm:p-3 md:p-4 transition-all duration-300 hover:scale-110 border border-white/30"
+              aria-label="Next step"
+            >
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white" />
+            </button>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

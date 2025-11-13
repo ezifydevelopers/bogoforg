@@ -22,5 +22,3 @@ export function Card({ title, description, children, className = "" }: CardProps
 }
 
 export default Card;
-
-

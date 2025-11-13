@@ -2,7 +2,8 @@
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { ImageReveal } from "@/components/ui/ImageReveal";
-import { motion } from "framer-motion";
+import { Container } from "@/components/layout/Container";
+import { motion, AnimatePresence } from "framer-motion";
 import { Target, Lightbulb, Rocket, Zap, TrendingUp } from "lucide-react";
 
 const processSteps = [
@@ -43,26 +44,114 @@ const processSteps = [
 	},
 ];
 
+function ProcessSlider({ steps }: { steps: typeof processSteps }) {
+	return (
+		<section className="py-20 bg-gradient-to-b from-white via-gray-50/50 to-white dark:from-[#0B0C10] dark:via-[#0D0E12] dark:to-[#0B0C10]">
+			<Container>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className="mb-16 text-center"
+				>
+					<h2 className="mb-4 text-fluid-4xl font-bold text-neutral-900 dark:text-white">
+						Our Process
+					</h2>
+					<p className="text-fluid-xl text-neutral-900 dark:text-neutral-200">
+						A clear, collaborative journey from idea to success
+					</p>
+				</motion.div>
+
+				{/* Process Steps Grid - 2 columns */}
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+					{steps.map((step, index) => {
+						const Icon = step.icon;
+
+						return (
+							<motion.div
+								key={step.number}
+								initial={{ opacity: 0, y: 30 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.6, delay: index * 0.1 }}
+								className="group relative overflow-hidden rounded-3xl bg-white dark:bg-neutral-900 border-2 border-gray-200 dark:border-neutral-800 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-500 hover:shadow-2xl"
+							>
+								{/* Image */}
+								<div className="relative h-64 overflow-hidden">
+									<ImageReveal
+										src={step.image}
+										alt={step.title}
+										fill
+										sizes="(max-width: 768px) 100vw, 50vw"
+										className="object-cover transition-transform duration-700 group-hover:scale-110"
+										priority={index < 2}
+										overlay={true}
+										overlayVariant="gradient"
+									/>
+
+									{/* Icon Badge */}
+									<div className="absolute top-6 left-6 z-10">
+										<motion.div
+											whileHover={{ scale: 1.1, rotate: 5 }}
+											className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-2xl border-2 border-white/30"
+										>
+											<Icon className="h-8 w-8 text-white" />
+										</motion.div>
+									</div>
+
+									{/* Step Number */}
+									<div className="absolute top-6 right-6 z-10">
+										<div className="text-fluid-5xl font-black text-white drop-shadow-2xl">
+											0{step.number}
+										</div>
+									</div>
+								</div>
+
+								{/* Text Content */}
+								<div className="p-6 sm:p-8">
+									<h3 className="mb-3 text-fluid-2xl font-bold text-neutral-900 dark:text-white">
+										{step.title}
+									</h3>
+									<p className="text-fluid-lg leading-relaxed text-neutral-700 dark:text-gray-200">
+										{step.description}
+									</p>
+								</div>
+							</motion.div>
+						);
+					})}
+				</div>
+			</Container>
+		</section>
+	);
+}
+
 export default function ProcessPage() {
 	return (
 		<main>
 		{/* Hero */}
-		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+		<section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+			{/* Background Image */}
 			<div className="absolute inset-0">
 				<ImageReveal
-					src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600"
+					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 					alt="How we work"
 					fill
-					className="object-cover opacity-20"
+					sizes="100vw"
+					className="object-cover grayscale-[0.3] brightness-105"
+					priority
+					overlay={false}
 				/>
 			</div>
-			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+			{/* Semi-transparent Overlay - Similar to hero section */}
+			<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+			<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+				<div className="w-full text-center">
 					<motion.h1
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
-						className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
+						className="mb-6 text-fluid-5xl font-bold text-white drop-shadow-2xl"
 					>
 						How We Work
 					</motion.h1>
@@ -70,76 +159,16 @@ export default function ProcessPage() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-lg leading-relaxed text-white/90 sm:text-xl"
+						className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
 					>
 						Our proven process from discovery to delivery, designed for clarity, speed, and measurable results.
 					</motion.p>
 				</div>
-			</section>
+			</Container>
+		</section>
 
-			{/* Enhanced Process Timeline */}
-			<section className="py-20">
-				<div className="mx-auto max-w-7xl px-6">
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.6 }}
-						className="mb-16 text-center"
-					>
-						<h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
-							Our Process
-						</h2>
-						<p className="text-lg text-neutral-900 dark:text-neutral-200">
-							A clear, collaborative journey from idea to success
-						</p>
-					</motion.div>
-
-					<div className="space-y-20">
-						{processSteps.map((step, index) => {
-							const Icon = step.icon;
-							const isEven = index % 2 === 0;
-							
-							return (
-								<motion.div
-									key={index}
-									initial={{ opacity: 0, y: 30 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									viewport={{ once: true, amount: 0.25, margin: "-150px" }}
-									transition={{ duration: 0.6, delay: index * 0.15 }}
-									className={`grid grid-cols-1 gap-12 lg:grid-cols-2 ${!isEven ? 'lg:grid-flow-dense' : ''}`}
-								>
-									<div className={`${!isEven ? 'lg:col-start-2' : ''}`}>
-										<div className="relative h-64 overflow-hidden rounded-2xl lg:h-full">
-											<ImageReveal
-												src={step.image}
-												alt={step.title}
-												fill
-												sizes="(max-width: 1024px) 100vw, 50vw"
-												className="object-cover"
-											/>
-										</div>
-									</div>
-									<div className={`flex flex-col justify-center ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-										<div className="mb-4 flex items-center gap-4">
-											<div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white">
-												<Icon className="h-8 w-8" />
-											</div>
-											<div className="text-4xl font-bold text-primary">0{step.number}</div>
-										</div>
-										<h3 className="mb-4 text-2xl font-bold text-neutral-900 dark:text-white sm:text-3xl">
-											{step.title}
-										</h3>
-										<p className="text-lg leading-relaxed text-neutral-900 dark:text-neutral-200">
-											{step.description}
-										</p>
-									</div>
-								</motion.div>
-							);
-						})}
-					</div>
-				</div>
-			</section>
+			{/* Process Slider */}
+			<ProcessSlider steps={processSteps} />
 
 			{/* Communication & Transparency */}
 			<section className="bg-white py-20 dark:bg-[#0B0C10] transition-colors duration-300">

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { blogPosts } from "@/data/blog";
 import { ImageReveal } from "@/components/ui/ImageReveal";
+import { ImageOverlay } from "@/components/ui/ImageOverlay";
+import { Container } from "@/components/layout/Container";
 import { Search, Clock, User, Calendar } from "lucide-react";
 import { useState } from "react";
 
@@ -24,40 +26,63 @@ export default function BlogPage() {
 	return (
 		<main>
 		{/* Hero */}
-		<section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-accent py-20">
+		<section className="relative min-h-[90vh] overflow-hidden bg-black dark:bg-black">
+			{/* Background Image */}
 			<div className="absolute inset-0">
 				<ImageReveal
-					src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600"
+					src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=80"
 					alt="Blog & insights"
 					fill
-					className="object-cover opacity-20"
+					sizes="100vw"
+					className="object-cover grayscale-[0.3] brightness-105 filter"
+					priority
+					overlay={false}
 				/>
 			</div>
-			<div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/90" />
-			<div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+			{/* Semi-transparent Overlay - Similar to hero section */}
+			<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50 z-[1]" />
+			<Container className="relative z-10 flex min-h-[85vh] sm:min-h-[90vh] items-center py-12 sm:py-16 md:py-20">
+				<div className="w-full text-center">
 					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-						className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl"
+						initial={{ opacity: 0, y: 50, scale: 0.95 }}
+						animate={{
+							opacity: 1,
+							y: 0,
+							scale: 1,
+						}}
+						transition={{
+							duration: 1,
+							delay: 0.3,
+							type: "spring",
+							stiffness: 100,
+							damping: 15,
+						}}
+						className="mb-4 sm:mb-6 text-fluid-6xl font-bold text-white leading-tight drop-shadow-2xl"
 					>
 						Blog & Insights
 					</motion.h1>
 					<motion.p
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="text-lg leading-relaxed text-white/90 sm:text-xl"
+						transition={{
+							duration: 0.8,
+							delay: 0.6,
+							type: "spring",
+							stiffness: 100,
+							damping: 15,
+						}}
+						className="text-fluid-xl leading-relaxed text-white drop-shadow-2xl"
 					>
 						Insights on product development, technology, AI, growth, and best practices from our team.
 					</motion.p>
 				</div>
-			</section>
+			</Container>
+		</section>
 
 			{/* Featured Article */}
 			{featuredPost && (
-				<section className="py-20">
-					<div className="mx-auto max-w-7xl px-6">
+				<section className="py-16 sm:py-20 md:py-24">
+					<Container>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
@@ -85,8 +110,10 @@ export default function BlogPage() {
 											fill
 											sizes="(max-width: 1024px) 100vw, 50vw"
 											className="object-cover transition-transform duration-700 group-hover/image:scale-110"
+											priority
+											overlay={true}
+											overlayVariant="gradient"
 										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-transparent" />
 										<div className="absolute bottom-6 left-6 right-6">
 											<span className="inline-block rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 text-sm font-semibold text-white mb-3">
 												{featuredPost.category}
@@ -119,13 +146,13 @@ export default function BlogPage() {
 								</div>
 							</motion.div>
 						</Link>
-					</div>
+					</Container>
 				</section>
 			)}
 
 			{/* Search & Filters */}
 			<section className="bg-white py-8 dark:bg-[#0B0C10] transition-colors duration-300">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div className="relative flex-1 max-w-md">
 							<Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-600 dark:text-neutral-400" />
@@ -144,7 +171,7 @@ export default function BlogPage() {
 									onClick={() => setSelectedCategory(category)}
 									className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
 										selectedCategory === category
-											? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+											? "bg-gradient-to-r from-primary to-accent text-black dark:text-white shadow-lg border-2 border-primary/20"
 											: "border-2 border-neutral-300 bg-white text-neutral-900 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 									}`}
 								>
@@ -153,12 +180,12 @@ export default function BlogPage() {
 							))}
 						</div>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Blog Posts Grid */}
 			<section className="py-20">
-				<div className="mx-auto max-w-7xl px-6">
+				<Container>
 					<AnimatePresence mode="wait">
 						{filteredPosts.length > 0 ? (
 							<motion.div
@@ -225,7 +252,7 @@ export default function BlogPage() {
 							</motion.div>
 						)}
 					</AnimatePresence>
-				</div>
+				</Container>
 			</section>
 		</main>
 	);

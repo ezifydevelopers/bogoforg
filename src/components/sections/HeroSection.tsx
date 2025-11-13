@@ -25,7 +25,7 @@ export function HeroSection({
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-cover bg-center" />
       </div>
-      
+
       <div className="relative z-10 mx-auto max-w-7xl px-6 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -35,7 +35,7 @@ export function HeroSection({
         >
           {headline}
         </motion.h1>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,24 +44,24 @@ export function HeroSection({
         >
           {subtext}
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <Button href={primaryButtonHref} variant="secondary" size="lg">
+          <Button href={primaryButtonHref} variant="primary" size="lg">
             {primaryButtonText}
           </Button>
           {secondaryButtonText && secondaryButtonHref && (
-            <Button href={secondaryButtonHref} variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+            <Button href={secondaryButtonHref} variant="glass" size="lg" showArrow>
               {secondaryButtonText}
             </Button>
           )}
         </motion.div>
       </div>
-      
+
       <motion.div
         animate={{
           y: [0, -20, 0],
@@ -88,4 +88,3 @@ export function HeroSection({
     </section>
   );
 }
-

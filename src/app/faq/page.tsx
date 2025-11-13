@@ -105,7 +105,7 @@ export default function FAQPage() {
 									onClick={() => setActiveCategory(category)}
 									className={`flex items-center gap-2 rounded-full px-6 py-2 text-sm font-medium transition-all ${
 										activeCategory === category
-											? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+											? "bg-gradient-to-r from-primary to-accent text-black dark:text-white shadow-lg border-2 border-primary/20"
 											: "border-2 border-neutral-300 bg-white text-neutral-900 hover:border-primary hover:text-primary dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
 									}`}
 								>
