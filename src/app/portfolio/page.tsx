@@ -131,7 +131,7 @@ export default function PortfolioPage() {
 								className={`rounded-full px-4 py-1.5 sm:px-6 sm:py-2 text-xs sm:text-sm font-medium transition-all ${
 									activeFilter === category
 										? "bg-gradient-to-r from-primary to-accent text-black dark:text-white shadow-lg"
-										: "border-2 border-gray-300 bg-white text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
+										: "border-2 border-gray-300 bg-white t text-gray-900 hover:border-primary hover:text-primary dark:border-gray-700 dark:bg-[#111] dark:text-gray-200"
 								}`}
 							>
 								{category}
