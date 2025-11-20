@@ -43,7 +43,7 @@ export function OurStory() {
             className="relative h-[500px] sm:h-[600px] md:h-[700px] rounded-3xl overflow-hidden shadow-2xl mb-8 sm:mb-12"
           >
             <ImageReveal
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80"
+              src="/future.jpeg"
               alt="Our team"
               fill
               sizes="100vw"

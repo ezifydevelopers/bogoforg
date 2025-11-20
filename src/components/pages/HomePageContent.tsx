@@ -19,7 +19,7 @@ export function HomePageContent() {
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const serviceImages = [
-		"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&auto=format&fit=crop&q=80", // Business Planning
+		"/business1.jpeg", // Business Planning
 		"https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&auto=format&fit=crop&q=80", // Product Development
 		"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&auto=format&fit=crop&q=80", // Web & Mobile
 		"https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&auto=format&fit=crop&q=80", // Marketing
@@ -48,21 +48,26 @@ export function HomePageContent() {
 			}
 
 			// Calculate progress: 0 when section enters viewport, 1 when it exits
+			// Adjust calculation to ensure we can reach the last card
+			const totalCards = services.length;
+			const effectiveHeight = sectionHeight + windowHeight;
 			const scrollProgress = Math.max(0, Math.min(1,
-				(windowHeight - sectionTop) / (sectionHeight + windowHeight)
+				(windowHeight - sectionTop) / effectiveHeight
 			));
 
 			// Map scroll progress to card index (0 to services.length - 1)
-			// Distribute progress evenly across all cards
+			// Distribute progress evenly across all cards, ensuring last card is reachable
+			// Use a slightly adjusted calculation to ensure we reach the last card
+			const adjustedProgress = Math.min(1, scrollProgress * (totalCards / (totalCards - 0.5)));
 			const cardIndex = Math.min(
-				Math.floor(scrollProgress * services.length),
-				services.length - 1
+				Math.floor(adjustedProgress * totalCards),
+				totalCards - 1
 			);
 
 			// Ensure we can reach the last card when scrolling near the end
 			// Use a threshold to activate the last card earlier
-			const threshold = 1 - (1 / services.length);
-			const finalIndex = scrollProgress >= threshold ? services.length - 1 : Math.max(0, cardIndex);
+			const threshold = 1 - (1 / totalCards);
+			const finalIndex = scrollProgress >= threshold ? totalCards - 1 : Math.max(0, cardIndex);
 
 			setActiveIndex(finalIndex);
 		};
@@ -142,7 +147,7 @@ export function HomePageContent() {
 			{/* 3. What We Do - Scroll Triggered Cards */}
 			<section
 				ref={sectionRef}
-				className="relative bg-gradient-to-b from-white via-gray-50/30 to-white dark:from-[#0B0C10] dark:via-[#0D0E12] dark:to-[#0B0C10] transition-colors duration-300 pt-40 sm:pt-48 md:pt-56"
+				className="relative bg-gradient-to-b from-white via-gray-50/30 to-white dark:from-[#0B0C10] dark:via-[#0D0E12] dark:to-[#0B0C10] transition-colors duration-300"
 				style={{ minHeight: `${services.length * 100}vh` }}
 			>
 				{/* Background decoration */}
@@ -174,64 +179,62 @@ export function HomePageContent() {
 					/>
 				</div>
 
-				<Container className="relative">
-					{/* Header - Sticky at top when scrolling */}
-					<div className="sticky top-0 z-[100] pt-8 pb-10 bg-gradient-to-b from-white via-white to-transparent dark:from-[#0B0C10] dark:via-[#0B0C10] dark:to-transparent">
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.6 }}
-							className="text-center"
-						>
-							<h2 className="mb-4 text-fluid-5xl font-extrabold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight">
-								What We Do
-							</h2>
-							<p className="mx-auto max-w-3xl text-fluid-xl text-gray-600 dark:text-gray-300 font-medium">
-								Comprehensive solutions from strategy to execution
-							</p>
-						</motion.div>
-					</div>
+				{/* Sticky wrapper that centers the entire section vertically */}
+				<div className="sticky top-0 h-screen flex items-center justify-center z-10">
+					<Container className="relative w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 3xl:px-24" fullWidth>
+						<div className="flex flex-col h-full justify-center">
+							{/* Header - Fixed at top of centered area */}
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.6 }}
+								className="text-center mb-12 sm:mb-16 md:mb-30 relative z-30"
+								style={{ flexShrink: 0 }}
+							>
+								<h2 className="mb-4 text-fluid-5xl font-extrabold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent leading-tight">
+									What We Do
+								</h2>
+								<p className="mx-auto max-w-3xl text-fluid-xl text-gray-600 dark:text-gray-300 font-medium">
+									Comprehensive solutions from strategy to execution
+								</p>
+							</motion.div>
 
-					{/* Scroll-triggered Cards - 40px gap from header */}
-					<div className="relative" style={{ marginTop: '40px' }}>
+							{/* Scroll-triggered Cards Container - Below header */}
+							<div className="relative w-full flex-1 flex items-start justify-center" style={{ minHeight: '500px', paddingTop: '0px' }}>
 						{services.map((service, index) => {
 							const Icon = service.icon;
 							const isActive = index === activeIndex;
 							const isPast = index < activeIndex;
 							const isFuture = index > activeIndex;
 
-							// Calculate offset: each past card moves up by 20px for each position
-							// When last card is active, all previous cards should stack above it
-							let stackOffset = 0;
-							if (isPast) {
-								// Past cards stack above the active card
-								stackOffset = -(activeIndex - index) * 20;
-							} else if (isActive) {
-								// Active card is at center
-								stackOffset = 0;
-							}
-							// Future cards remain at 0 offset until they become active
+							// All cards stay in the same centered position - no upward movement
+							// Base position is centered in the cards container
+							const basePosition = 200; // Center position in pixels from top of container
 
 							return (
 								<div
 									key={service.id}
-									className="sticky mb-[100vh]"
+									className="absolute inset-x-0"
 									style={{
-										zIndex: index + 1, // Higher z-index for later cards (they stack on top)
-										top: `calc(50% + ${stackOffset}px)`,
-										transform: `translateY(-50%)`,
+										zIndex: isActive ? services.length : index, // Active card on top
+										top: `${basePosition}px`,
+										transform: 'translateY(-50%)',
+										width: '100%',
 									}}
 								>
 									<motion.div
-										initial={{ opacity: 0, y: 100 }}
+										initial={{ opacity: 0, y: 50, scale: 0.9 }}
 										animate={{
-											opacity: isFuture ? 0 : 1, // Only future cards are hidden
-											y: isActive ? 0 : isPast ? 0 : 50,
-											scale: isActive ? 1 : isPast ? 0.98 : 0.95,
+											opacity: isActive ? 1 : 0, // Only active card is visible
+											y: isActive ? 0 : 50,
+											scale: isActive ? 1 : 0.9,
 										}}
 										transition={{ duration: 0.5, ease: "easeOut" }}
-										className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl"
+										className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] w-full max-w-[2000px] mx-auto rounded-3xl overflow-hidden shadow-2xl"
+										style={{
+											pointerEvents: isActive ? 'auto' : 'none',
+										}}
 									>
 										{/* Background Image */}
 										<ImageReveal
@@ -288,11 +291,16 @@ export function HomePageContent() {
 								</div>
 							);
 						})}
-					</div>
-				</Container>
+							</div>
+						</div>
+					</Container>
+				</div>
 			</section>
 
 			<Spacer size="md" />
+
+			{/* 3.5. What We Do - Business Planning & Strategy Detail Section */}
+
 
 			{/* 4. How We Work - Enhanced Process */}
 			<ProcessSection

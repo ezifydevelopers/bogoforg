@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { Mail, Phone, MapPin, Send, MessageCircle, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, Calendar, CheckCircle, AlertCircle } from "lucide-react";
 import { services } from "@/data/services";
 import { ImageReveal } from "@/components/ui/ImageReveal";
 import { ImageOverlay } from "@/components/ui/ImageOverlay";
@@ -9,6 +10,9 @@ import { Accordion } from "@/components/ui/Accordion";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { CTASection } from "@/components/sections/CTASection";
 import { Container } from "@/components/layout/Container";
+
+// Using Next.js API route as proxy for better reliability
+const CONTACT_API_URL = "/api/contact";
 
 const contactFAQ = [
 	{
@@ -26,6 +30,83 @@ const contactFAQ = [
 ];
 
 export default function ContactPage() {
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		phone: "",
+		company: "",
+		service: "",
+		message: "",
+	});
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+	const [errorMessage, setErrorMessage] = useState("");
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+		const { name, value } = e.target;
+		setFormData((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+		setSubmitStatus("idle");
+		setErrorMessage("");
+
+		try {
+			// Submit form data to our API route
+			const response = await fetch(CONTACT_API_URL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: formData.name,
+					email: formData.email,
+					phone: formData.phone || "",
+					company: formData.company || "",
+					service: formData.service || "",
+					message: formData.message,
+				}),
+			});
+
+			const result = await response.json();
+
+			if (!response.ok) {
+				throw new Error(result.message || result.error || "Failed to submit form");
+			}
+
+			// Show success message
+			setSubmitStatus("success");
+			setFormData({
+				name: "",
+				email: "",
+				phone: "",
+				company: "",
+				service: "",
+				message: "",
+			});
+
+			// Reset success message after 5 seconds
+			setTimeout(() => {
+				setSubmitStatus("idle");
+			}, 5000);
+		} catch (error) {
+			console.error("Error submitting form:", error);
+			setSubmitStatus("error");
+			setErrorMessage(
+				error instanceof Error 
+					? error.message 
+					: "Failed to send message. Please try again or contact us directly at genroar@gmail.com"
+			);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+
 	return (
 		<main>
 		{/* Hero */}
@@ -87,9 +168,9 @@ export default function ContactPage() {
 				<Container>
 					<div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
 						{[
-							{ icon: Phone, label: "Phone", value: "+1 (234) 567-890", href: "tel:+1234567890" },
-							{ icon: Mail, label: "Email", value: "hello@bogoforg.com", href: "mailto:hello@bogoforg.com" },
-							{ icon: MessageCircle, label: "WhatsApp", value: "+1 (234) 567-890", href: "https://wa.me/1234567890" },
+							{ icon: Phone, label: "Phone", value: "+92 (310) 7100-663", href: "tel:+923107100663" },
+							{ icon: Mail, label: "Email", value: "genroar@gmail.com", href: "mailto:genroar@gmail.com" },
+							{ icon: MessageCircle, label: "WhatsApp", value: "+92 (310) 7100-663 ", href: "https://wa.me/+923107100663" },
 						].map((contact, index) => {
 							const Icon = contact.icon;
 							return (
@@ -134,7 +215,7 @@ export default function ContactPage() {
 							<h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
 								Send Us a Message
 							</h2>
-							<form className="space-y-4">
+							<form onSubmit={handleSubmit} className="space-y-4">
 								<div>
 									<label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
 										Name *
@@ -143,6 +224,8 @@ export default function ContactPage() {
 										type="text"
 										id="name"
 										name="name"
+										value={formData.name}
+										onChange={handleChange}
 										required
 										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
 									/>
@@ -155,7 +238,23 @@ export default function ContactPage() {
 										type="email"
 										id="email"
 										name="email"
+										value={formData.email}
+										onChange={handleChange}
 										required
+										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
+									/>
+								</div>
+								<div>
+									<label htmlFor="phone" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-200">
+										Phone Number
+									</label>
+									<input
+										type="tel"
+										id="phone"
+										name="phone"
+										value={formData.phone}
+										onChange={handleChange}
+										placeholder="+1 (555) 123-4567"
 										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
 									/>
 								</div>
@@ -167,6 +266,8 @@ export default function ContactPage() {
 										type="text"
 										id="company"
 										name="company"
+										value={formData.company}
+										onChange={handleChange}
 										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
 									/>
 								</div>
@@ -177,6 +278,8 @@ export default function ContactPage() {
 									<select
 										id="service"
 										name="service"
+										value={formData.service}
+										onChange={handleChange}
 										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
 									>
 										<option value="">Select a service</option>
@@ -195,13 +298,55 @@ export default function ContactPage() {
 										id="message"
 										name="message"
 										rows={5}
+										value={formData.message}
+										onChange={handleChange}
 										required
 										className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-[#0B0C10] dark:text-white"
 									/>
 								</div>
-								<Button type="submit" variant="primary" size="lg" className="w-full">
-									<Send className="mr-2 h-5 w-5" />
-									Send Message
+								
+								{/* Success Message */}
+								{submitStatus === "success" && (
+									<motion.div
+										initial={{ opacity: 0, y: -10 }}
+										animate={{ opacity: 1, y: 0 }}
+										className="flex items-center gap-2 rounded-lg bg-green-50 border border-green-200 p-4 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200"
+									>
+										<CheckCircle className="h-5 w-5 shrink-0" />
+										<p className="text-sm font-medium">Message sent successfully! We'll get back to you soon.</p>
+									</motion.div>
+								)}
+
+								{/* Error Message */}
+								{submitStatus === "error" && (
+									<motion.div
+										initial={{ opacity: 0, y: -10 }}
+										animate={{ opacity: 1, y: 0 }}
+										className="flex items-center gap-2 rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200"
+									>
+										<AlertCircle className="h-5 w-5 shrink-0" />
+										<p className="text-sm font-medium">{errorMessage || "Failed to send message. Please try again."}</p>
+									</motion.div>
+								)}
+
+								<Button 
+									type="submit" 
+									variant="primary" 
+									size="lg" 
+									className="w-full"
+									disabled={isSubmitting}
+								>
+									{isSubmitting ? (
+										<>
+											<div className="mr-2 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+											Sending...
+										</>
+									) : (
+										<>
+											<Send className="mr-2 h-5 w-5" />
+											Send Message
+										</>
+									)}
 								</Button>
 							</form>
 						</motion.div>
@@ -225,8 +370,8 @@ export default function ContactPage() {
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Email</h3>
-											<a href="mailto:hello@bogoforg.com" className="text-gray-900 hover:text-primary dark:text-white">
-												genroarit@gmail.com
+											<a href="mailto:genroar@gmail.com" className="text-gray-900 hover:text-primary dark:text-white">
+												genroar@gmail.com
 											</a>
 										</div>
 									</div>

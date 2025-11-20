@@ -53,7 +53,7 @@ function Navbar() {
 			>
 				<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
 					<Link href="/" className="text-lg sm:text-xl font-bold tracking-tight z-50 relative">
-						<span className="gradient-text">bogoforg</span>
+						<span className="text-black">GENROAR</span>
 					</Link>
 
 					{/* Desktop Navigation - Only visible at 1280px+ */}

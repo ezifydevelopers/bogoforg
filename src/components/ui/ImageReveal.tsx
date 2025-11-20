@@ -15,6 +15,7 @@ interface ImageRevealProps {
   sizes?: string;
   overlay?: boolean;
   overlayVariant?: "default" | "dark" | "gradient" | "subtle" | "banner";
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
 export function ImageReveal({
@@ -27,7 +28,8 @@ export function ImageReveal({
   height,
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
   overlay = true,
-  overlayVariant = "gradient"
+  overlayVariant = "gradient",
+  objectFit = "cover"
 }: ImageRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
@@ -58,7 +60,13 @@ export function ImageReveal({
             alt={alt}
             fill
             sizes={sizes}
-            className="object-cover"
+            className={
+              objectFit === "contain" ? "object-contain" :
+              objectFit === "fill" ? "object-fill" :
+              objectFit === "none" ? "object-none" :
+              objectFit === "scale-down" ? "object-scale-down" :
+              "object-cover"
+            }
             priority={priority}
             onLoad={() => setIsLoaded(true)}
           />
@@ -85,7 +93,13 @@ export function ImageReveal({
           alt={alt}
           width={width}
           height={height}
-          className="object-cover"
+          className={
+            objectFit === "contain" ? "object-contain" :
+            objectFit === "fill" ? "object-fill" :
+            objectFit === "none" ? "object-none" :
+            objectFit === "scale-down" ? "object-scale-down" :
+            "object-cover"
+          }
           priority={priority}
           onLoad={() => setIsLoaded(true)}
         />

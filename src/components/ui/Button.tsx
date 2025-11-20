@@ -13,6 +13,7 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   showArrow?: boolean;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -24,8 +25,9 @@ export function Button({
   className = "",
   type = "button",
   showArrow = false,
+  disabled = false,
 }: ButtonProps) {
-  const baseClasses = "font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center cursor-pointer pointer-events-auto";
+  const baseClasses = `font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "cursor-pointer pointer-events-auto"}`;
 
   const variantClasses = {
     primary: "btn-gradient text-white shadow-lg relative overflow-hidden",
@@ -68,12 +70,13 @@ export function Button({
 
   return (
     <motion.button
-      whileHover={{ scale: variant === "glass" || variant === "primary" ? 1 : 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={disabled ? {} : { scale: variant === "glass" || variant === "primary" ? 1 : 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.95 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={classes}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {content}
     </motion.button>

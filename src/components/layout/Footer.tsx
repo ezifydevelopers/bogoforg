@@ -7,10 +7,10 @@ export default function Footer() {
 	const currentYear = new Date().getFullYear();
 
 	const socialLinks = [
-		{ icon: Twitter, href: "https://twitter.com/bogoforg", label: "Twitter" },
-		{ icon: Linkedin, href: "https://linkedin.com/company/bogoforg", label: "LinkedIn" },
-		{ icon: Github, href: "https://github.com/bogoforg", label: "GitHub" },
-		{ icon: Instagram, href: "https://instagram.com/bogoforg", label: "Instagram" },
+		{ icon: Twitter, href: "https://twitter.com/genroar", label: "Twitter" },
+		{ icon: Linkedin, href: "https://linkedin.com/company/genroar", label: "LinkedIn" },
+		{ icon: Github, href: "https://github.com/genroar", label: "GitHub" },
+		{ icon: Instagram, href: "https://instagram.com/genroar", label: "Instagram" },
 	];
 
 	return (
@@ -30,28 +30,11 @@ export default function Footer() {
 						transition={{ duration: 0.6 }}
 					>
 						<h3 className="mb-4 text-xl font-bold">
-							<span className="gradient-text">bogoforg</span>
+							<span className="text-black">GENROAR</span>
 						</h3>
 						<p className="mb-6 text-sm leading-relaxed text-neutral-900 dark:text-neutral-200">
 							Turning ideas into reality. We help entrepreneurs and businesses plan, build, and grow their products with cutting-edge technology and strategic expertise.
 						</p>
-						<div className="flex gap-3">
-							{socialLinks.map((social) => {
-								const Icon = social.icon;
-								return (
-									<a
-										key={social.label}
-										href={social.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										aria-label={social.label}
-										className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-300 bg-white text-neutral-900 transition-all hover:scale-110 hover:border-primary hover:bg-primary hover:text-white dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
-									>
-										<Icon className="h-5 w-5" />
-									</a>
-								);
-							})}
-						</div>
 					</motion.div>
 
 					{/* Services */}
@@ -170,14 +153,14 @@ export default function Footer() {
 						<ul className="space-y-3 text-sm">
 							<li className="flex items-start gap-2">
 								<Mail className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
-								<a href="mailto:hello@bogoforg.com" className="text-neutral-900 transition-colors hover:text-primary dark:text-white">
-									hello@bogoforg.com
+								<a href="mailto:genroar@gmail.com" className="text-neutral-900 transition-colors hover:text-primary dark:text-white">
+									genroar@gmail.com
 								</a>
 							</li>
 							<li className="flex items-start gap-2">
 								<Phone className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
-								<a href="tel:+1234567890" className="text-neutral-900 transition-colors hover:text-primary dark:text-white dark:hover:text-primary-400">
-									+1 (234) 567-890
+								<a href="tel:+923107100663" className="text-neutral-900 transition-colors hover:text-primary dark:text-white dark:hover:text-primary-400">
+									+92 (310) 7100-663
 								</a>
 							</li>
 							<li className="flex items-start gap-2">
@@ -189,7 +172,7 @@ export default function Footer() {
 				</div>
 
 				<div className="mt-10 flex flex-col items-center justify-between gap-4 border-t-2 border-neutral-200 pt-6 text-sm dark:border-neutral-800 sm:flex-row">
-					<p className="text-neutral-900 dark:text-neutral-200">© {currentYear} bogoforg. All rights reserved.</p>
+						<p className="text-neutral-900 dark:text-neutral-200">© {currentYear} Genroar. All rights reserved.</p>
 					<div className="flex gap-6">
 						<Link href="/terms" className="text-neutral-900 transition-colors hover:text-primary dark:text-neutral-200">
 							Terms

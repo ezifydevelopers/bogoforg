@@ -189,10 +189,10 @@ export default function ProcessPage() {
 					</motion.div>
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 						{[
-							{ title: "Weekly Updates", desc: "Status reports and sprint reviews keep you informed every step of the way.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80" },
-							{ title: "Clear Documentation", desc: "Technical docs and knowledge transfer ensure smooth handoffs.", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" },
-							{ title: "Real-time Collaboration", desc: "Access to project tools, code repositories, and design files.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80" },
-							{ title: "Transparent Pricing", desc: "Clear cost breakdowns and no hidden fees throughout the project.", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80" },
+							{ title: "Weekly Updates", desc: "Status reports and sprint reviews keep you informed every step of the way.", image: "/weekly.jpeg" },
+							{ title: "Clear Documentation", desc: "Technical docs and knowledge transfer ensure smooth handoffs.", image: "/documentation.jpeg" },
+							{ title: "Real-time Collaboration", desc: "Access to project tools, code repositories, and design files.", image: "/realtime.jpeg" },
+							{ title: "Transparent Pricing", desc: "Clear cost breakdowns and no hidden fees throughout the project.", image: "/pricing.jpeg" },
 						].map((item, index) => (
 							<motion.div
 								key={index}

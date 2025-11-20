@@ -11,47 +11,55 @@ import { CTASection } from "@/components/sections/CTASection";
 
 const allProjects = [
 	{
-		slug: "ai-surveillance-platform",
-		title: "AI-Powered Cloud Surveillance Platform",
-		result: "50% reduction in manual reviews, 3× improvement in threat detection accuracy.",
+		slug: "strap-up",
+		title: "Strap Up",
+		result: "A multi-vendor e-commerce platform for buying and selling luxury new and worn watches, built with modern web technologies.",
+		category: "Web",
+		tags: ["Web", "E-commerce", "Multi-vendor"],
+	},
+	{
+		slug: "nissan-uae",
+		title: "Nissan UAE",
+		result: "A modern, high-performance automotive website showcasing Nissan's latest models, promotions, and after-sales services in the UAE.",
 		category: "AI",
 		tags: ["AI", "Cloud", "Security"],
 	},
 	{
-		slug: "event-management-software",
-		title: "Scalable Event Management Software",
-		result: "50% less manual review time, 2× productivity boost, handles 10× more events.",
+		slug: "cray-cups",
+		title: "Crazy Cups",
+		result: "A vibrant and fun e-commerce website for premium beverage products with colorful visuals and smooth product filtering.",
 		category: "Web",
 		tags: ["Web", "SaaS"],
 	},
 	{
-		slug: "ecommerce-growth-engine",
-		title: "E-commerce Growth Engine",
-		result: "+120% organic traffic, +35% conversion rate improvement, improved Core Web Vitals.",
+		slug: "peugeot",
+		title: "Peugeot",
+		result: "A sleek corporate website presenting innovative vehicles, brand heritage, and customer services with elegant design.",
 		category: "Marketing",
 		tags: ["Marketing", "SEO", "E-commerce"],
 	},
 	{
-		slug: "fintech-dashboard",
-		title: "FinTech Analytics Dashboard",
-		result: "Real-time financial insights with 90% faster data processing and advanced visualizations.",
+		slug: "ctw-saudi",
+		title: "CTW Saudi",
+		result: "A regional CTW exhibition platform for Saudi Arabia highlighting event schedules, industry sectors, and exhibitor lists.",
 		category: "Web",
 		tags: ["Web", "FinTech", "Analytics"],
 	},
 	{
-		slug: "mobile-fitness-app",
-		title: "Mobile Fitness App",
-		result: "1M+ downloads, 4.8★ rating, with AI-powered workout recommendations.",
+		slug: "ctw-global",
+		title: "CTW Global",
+		result: "A dynamic B2B event platform representing China Trade Week international exhibitions with global event details and business matchmaking.",
 		category: "Mobile",
 		tags: ["Mobile", "AI", "Health"],
 	},
 	{
-		slug: "healthcare-ai",
-		title: "Healthcare AI Diagnostic Tool",
-		result: "95% diagnostic accuracy, reduced diagnosis time by 60%, FDA approved.",
+		slug: "mie-group",
+		title: "MIE Groups",
+		result: "The official website for MIE Groups, a multinational events organizer operating across Africa, Asia, and the Middle East.",
 		category: "AI",
 		tags: ["AI", "Healthcare"],
 	},
+
 ];
 
 const categories = ["All", "Web", "Mobile", "AI", "Marketing"];
@@ -156,12 +164,13 @@ export default function PortfolioPage() {
 							{filteredProjects.map((project, index) => {
 							// Unique images for each project type
 							const projectImages = {
-								"AI-Powered Cloud Surveillance Platform": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1000&auto=format&fit=crop&q=80",
-								"Scalable Event Management Software": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&auto=format&fit=crop&q=80",
-								"E-commerce Growth Engine": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&auto=format&fit=crop&q=80",
-								"FinTech Analytics Dashboard": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
-								"Mobile Fitness App": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&auto=format&fit=crop&q=80",
-								"Healthcare AI Diagnostic Tool": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1000&auto=format&fit=crop&q=80",
+								"Nissan UAE": "/nissan.png",
+								"Crazy Cups": "/crazycups.png",
+								"Peugeot": "/peugot.png",
+								"CTW Saudi": "/saudi.png",
+								"CTW Global": "/kenya.png",
+								"MIE Groups": "/mie.png",
+								"Strap Up": "/strapup.png",
 							};
 							return (
 								<TiltCard key={project.slug} intensity={8}>
@@ -169,11 +178,11 @@ export default function PortfolioPage() {
 										<div className="group h-full rounded-2xl border-2 border-gray-200 bg-white overflow-hidden shadow-md transition-all hover:border-primary hover:shadow-lg dark:border-gray-800 dark:bg-[#111]">
 											<div className="relative h-56 overflow-hidden">
 												<ImageReveal
-													src={projectImages[project.title as keyof typeof projectImages] || "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&auto=format&fit=crop&q=80"}
+													src={projectImages[project.title as keyof typeof projectImages] || "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&=format&fit=crop&q=80"}
 													alt={project.title}
 													fill
 													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-													className="object-cover transition-transform duration-700 group-hover:scale-110"
+													className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
 												/>
 												<div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
 												<div className="absolute top-4 right-4">

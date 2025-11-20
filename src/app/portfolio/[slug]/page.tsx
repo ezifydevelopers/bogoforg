@@ -10,71 +10,82 @@ import { Container } from "@/components/layout/Container";
 import { motion } from "framer-motion";
 
 const projects = {
-  "ai-surveillance-platform": {
-    title: "AI-Powered Cloud Surveillance Platform",
-    challenge: "Manual review processes were time-consuming and error-prone. The client needed a scalable solution to monitor multiple locations simultaneously while reducing false positives and improving response times.",
-    solution: "We built an intelligent surveillance system leveraging AI and machine learning for real-time threat detection. The platform includes automated alerting, intelligent filtering, and seamless cloud integration for remote monitoring across multiple sites.",
-    result: "50% reduction in manual reviews, 3× improvement in threat detection accuracy, and 40% faster response times to critical incidents.",
-    technologies: ["Next.js", "Python", "TensorFlow", "AWS", "React", "Node.js", "PostgreSQL"],
-    image: "/portfolio/ai-surveillance.jpg",
-    client: "Security Solutions Inc.",
+  "nissan-uae": {
+    title: "Nissan UAE",
+    challenge: "Nissan UAE needed a modern, high-performance automotive website to showcase their latest models, promotions, and after-sales services. The existing platform lacked the premium browsing experience and fast navigation required to engage customers effectively in the competitive UAE automotive market.",
+    solution: "We developed a modern, high-performance automotive website showcasing Nissan's latest models, promotions, and after-sales services in the UAE. The platform delivers a premium browsing experience with fast navigation, detailed vehicle pages, and an engaging user interface that reflects Nissan's brand excellence.",
+    result: "A modern, high-performance automotive website showcasing Nissan's latest models, promotions, and after-sales services in the UAE. The platform delivers a premium browsing experience with fast navigation, detailed vehicle pages, and an engaging user interface.",
+    technologies: ["Adobe Experience Manager (AEM)", "HTML", "CSS", "JavaScript", "Java", "Enterprise CMS"],
+    image: "/nissan.png",
+    client: "Nissan UAE",
     duration: "6 months",
-    category: "AI & Automation"
+    category: "AI"
   },
-  "event-management-software": {
-    title: "Scalable Event Management Software",
-    challenge: "Existing system couldn't handle growing event volume and complex workflows. Manual processes were creating bottlenecks and errors in event registration, scheduling, and coordination.",
-    solution: "Designed and developed a scalable event management platform with automated workflows, real-time synchronization, and intuitive interfaces for both organizers and attendees. The system handles registration, scheduling, payments, and communications all in one platform.",
-    result: "50% less manual review time, 2× productivity boost, handles 10× more events with the same infrastructure, and 95% user satisfaction rate.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Redis", "Docker", "AWS"],
-    image: "/portfolio/event-management.jpg",
-    client: "EventPro",
+  "cray-cups": {
+    title: "Crazy Cups",
+    challenge: "Crazy Cups required an e-commerce platform that would showcase their premium beverage products with vibrant visuals and smooth shopping experience. The existing site lacked the colorful, creative identity needed to stand out in the competitive beverage market.",
+    solution: "We created a vibrant and fun e-commerce website for premium beverage products. Designed with colorful visuals and smooth product filtering, the site enhances the shopping journey and highlights the brand's creative identity, making it easy for customers to discover and purchase their favorite products.",
+    result: "A vibrant and fun e-commerce website for premium beverage products. Designed with colorful visuals and smooth product filtering, the site enhances the shopping journey and highlights the brand's creative identity.",
+    technologies: ["Shopify", "Liquid", "HTML", "CSS", "JavaScript", "Shopify API", "Marketing Automation"],
+    image: "/crazycups.png",
+    client: "Crazy Cups",
     duration: "4 months",
-    category: "Product Development"
+    category: "Web"
   },
-  "ecommerce-growth-engine": {
-    title: "E-commerce Growth Engine",
-    challenge: "Low organic traffic and conversion rates were limiting business growth. The client needed a comprehensive solution to improve SEO, site performance, and conversion optimization.",
-    solution: "Complete SEO overhaul including technical optimization, content strategy, and performance improvements. Implemented conversion rate optimization with A/B testing, improved Core Web Vitals, and integrated advanced analytics.",
-    result: "+120% organic traffic, +35% conversion rate improvement, improved Core Web Vitals scores by 40%, and increased average order value by 22%.",
-    technologies: ["Next.js", "Shopify", "Analytics", "A/B Testing", "SEO Tools", "Google Analytics"],
-    image: "/portfolio/ecommerce-growth.jpg",
-    client: "Retail Growth Co.",
+  "peugeot": {
+    title: "Peugeot",
+    challenge: "Peugeot needed a sleek corporate website that would present their innovative vehicles, brand heritage, and customer services. The existing platform didn't reflect the elegance and performance that matches Peugeot's global automotive image.",
+    solution: "We designed and developed a sleek corporate website for Peugeot, presenting their innovative vehicles, brand heritage, and customer services. The design focuses on elegance, clarity, and performance to match Peugeot's global automotive image, creating an immersive brand experience for visitors.",
+    result: "A sleek corporate website for Peugeot, presenting their innovative vehicles, brand heritage, and customer services. The design focuses on elegance, clarity, and performance to match Peugeot's global automotive image.",
+    technologies: ["Adobe Experience Manager (AEM)", "HTML", "CSS", "JavaScript", "Java", "Enterprise CMS"],
+    image: "/peugot.png",
+    client: "Peugeot",
     duration: "5 months",
-    category: "Marketing & Growth"
+    category: "Marketing"
   },
-  "fintech-dashboard": {
-    title: "FinTech Analytics Dashboard",
-    challenge: "Financial institutions needed real-time insights into complex data streams but existing tools were slow, fragmented, and couldn't handle the volume of transactions and market data.",
-    solution: "Built a high-performance analytics dashboard with real-time data processing, advanced visualizations, and predictive analytics. The platform integrates multiple data sources and provides actionable insights for decision-making.",
-    result: "90% faster data processing, real-time financial insights with sub-second latency, and advanced visualizations that improved decision-making speed by 60%.",
-    technologies: ["React", "TypeScript", "D3.js", "Node.js", "PostgreSQL", "Redis", "WebSocket"],
-    image: "/portfolio/fintech-dashboard.jpg",
-    client: "Finance Analytics Corp.",
+  "ctw-saudi": {
+    title: "CTW Saudi",
+    challenge: "CTW needed a regional version of their exhibition platform specifically for Saudi Arabia. The platform had to highlight event schedules, industry sectors, exhibitor lists, and opportunities for Saudi-based businesses to engage with international suppliers effectively.",
+    solution: "We developed a regional version of the CTW exhibition platform specifically for Saudi Arabia. It highlights event schedules, industry sectors, exhibitor lists, and opportunities for Saudi-based businesses to engage with international suppliers, providing a comprehensive B2B networking platform.",
+    result: "A regional version of the CTW exhibition platform specifically for Saudi Arabia. It highlights event schedules, industry sectors, exhibitor lists, and opportunities for Saudi-based businesses to engage with international suppliers.",
+    technologies: ["WordPress", "HTML", "CSS", "JavaScript", "PHP", "Event Management System"],
+    image: "/saudi.png",
+    client: "CTW Saudi Arabia",
     duration: "7 months",
-    category: "Web Development"
+    category: "Web"
   },
-  "mobile-fitness-app": {
-    title: "Mobile Fitness App",
-    challenge: "Users needed personalized workout plans and tracking, but existing apps lacked AI-powered recommendations and engaging user experiences that kept people motivated.",
-    solution: "Developed a comprehensive mobile fitness app with AI-powered workout recommendations, progress tracking, social features, and seamless integration with wearables. The app provides personalized plans based on user goals and fitness levels.",
-    result: "1M+ downloads, 4.8★ rating, with AI-powered workout recommendations that increased user retention by 45% and average session time by 60%.",
-    technologies: ["React Native", "TypeScript", "Firebase", "TensorFlow Lite", "HealthKit", "Google Fit"],
-    image: "/portfolio/mobile-fitness.jpg",
-    client: "FitLife Mobile",
+  "ctw-global": {
+    title: "CTW Global",
+    challenge: "China Trade Week needed a dynamic B2B event platform to represent their international exhibitions globally. The platform had to provide comprehensive event details, exhibitor information, business matchmaking, and resources for companies aiming to connect across emerging markets.",
+    solution: "We built a dynamic B2B event platform representing China Trade Week international exhibitions. The website provides global event details, exhibitor information, business matchmaking, and resources for companies aiming to connect across emerging markets, facilitating international trade relationships.",
+    result: "A dynamic B2B event platform representing China Trade Week international exhibitions. The website provides global event details, exhibitor information, business matchmaking, and resources for companies aiming to connect across emerging markets.",
+    technologies: ["WordPress", "HTML", "CSS", "JavaScript", "PHP", "Event Management System", "Dynamic Content Modules"],
+    image: "/kenya.png",
+    client: "CTW Global",
     duration: "5 months",
-    category: "Mobile Development"
+    category: "Mobile"
   },
-  "healthcare-ai": {
-    title: "Healthcare AI Diagnostic Tool",
-    challenge: "Healthcare providers needed faster and more accurate diagnostic tools to reduce diagnosis time and improve patient outcomes, especially in resource-constrained environments.",
-    solution: "Created an AI-powered diagnostic tool that analyzes medical images and patient data to assist healthcare professionals. The system uses deep learning models trained on extensive medical datasets to provide accurate diagnostic suggestions.",
-    result: "95% diagnostic accuracy, reduced diagnosis time by 60%, FDA approved, and improved patient outcomes with faster treatment initiation.",
-    technologies: ["Python", "TensorFlow", "PyTorch", "DICOM", "FastAPI", "PostgreSQL", "Docker"],
-    image: "/portfolio/healthcare-ai.jpg",
-    client: "MedTech Solutions",
+  "mie-group": {
+    title: "MIE Groups",
+    challenge: "MIE Groups, a multinational events organizer, needed an official website to showcase their event portfolio, global presence, and expertise. The platform had to represent their operations across Africa, Asia, and the Middle East while highlighting their expertise in creating large-scale trade fairs and B2B platforms.",
+    solution: "We created the official website for MIE Groups, a multinational events organizer operating across Africa, Asia, and the Middle East. It showcases their event portfolio, global presence, and expertise in creating large-scale trade fairs and B2B platforms, establishing them as a leading international events company.",
+    result: "The official website for MIE Groups, a multinational events organizer operating across Africa, Asia, and the Middle East. It showcases their event portfolio, global presence, and expertise in creating large-scale trade fairs and B2B platforms.",
+    technologies: ["WordPress", "HTML", "CSS", "JavaScript", "PHP", "Multi-event Support", "Corporate CMS"],
+    image: "/mie.png",
+    client: "MIE Groups",
     duration: "10 months",
-    category: "AI & Automation"
+    category: "AI"
+  },
+  "strap-up": {
+    title: "Strap Up",
+    challenge: "The client needed a sophisticated multi-vendor e-commerce platform specifically designed for the luxury watch market. The platform had to support both new and pre-owned watches, enable multiple vendors to list products, and provide a seamless buying and selling experience for luxury timepieces.",
+    solution: "We developed a comprehensive multi-vendor e-commerce platform for buying and selling luxury new and worn watches. Built with React and Node.js, the platform features a robust MongoDB database, vendor management system, secure payment processing, authentication, and a user-friendly interface that showcases luxury watches with detailed product listings and high-quality imagery.",
+    result: "A multi-vendor e-commerce platform for buying and selling luxury new and worn watches, built with modern web technologies. The platform enables multiple vendors to list their watches while providing buyers with a premium shopping experience for luxury timepieces.",
+    technologies: ["React", "Node.js", "MongoDB", "Express.js", "Payment Integration", "Authentication", "Multi-vendor System"],
+    image: "/strapup.png",
+    client: "Strap Up",
+    duration: "8 months",
+    category: "Web"
   }
 };
 
@@ -169,21 +180,7 @@ export default function PortfolioDetailPage({ params }: { params: Promise<{ slug
         <div className="mx-auto max-w-7xl px-6">
           <div className="relative aspect-video overflow-hidden rounded-2xl border-2 border-neutral-200 shadow-xl dark:border-neutral-800">
             <ImageReveal
-              src={
-                slug === "ai-surveillance-platform"
-                  ? "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600"
-                  : slug === "event-management-software"
-                  ? "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600"
-                  : slug === "ecommerce-growth-engine"
-                  ? "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600"
-                  : slug === "fintech-dashboard"
-                  ? "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600"
-                  : slug === "mobile-fitness-app"
-                  ? "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600"
-                  : slug === "healthcare-ai"
-                  ? "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1600"
-                  : "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600"
-              }
+              src={project.image || "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600"}
               alt={project.title}
               fill
               sizes="100vw"

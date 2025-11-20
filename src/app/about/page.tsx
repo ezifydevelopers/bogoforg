@@ -13,25 +13,25 @@ const values = [
 		icon: Lightbulb,
 		title: "Innovation",
 		description: "We embrace cutting-edge technologies and creative solutions to solve complex problems.",
-		image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+		image: "/inovation.jpeg",
 	},
 	{
 		icon: Heart,
 		title: "Integrity",
 		description: "Honest communication, transparent processes, and ethical business practices in everything we do.",
-		image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
+		image: "/integrity.jpeg",
 	},
 	{
 		icon: Users,
 		title: "Collaboration",
 		description: "We work as partners with our clients, fostering strong relationships built on trust and respect.",
-		image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+		image: "/collaboration.jpeg",
 	},
 	{
 		icon: Award,
 		title: "Excellence",
 		description: "We strive for excellence in every project, delivering quality results that exceed expectations.",
-		image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80",
+		image: "/excellence.jpeg",
 	},
 ];
 
