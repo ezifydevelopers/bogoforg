@@ -18,7 +18,7 @@ const leaders = [
     name: "Muhammad Majid",
     role: "COO & CMO",
     bio: "Dual-role expert managing operations and marketing. 10+ years in scaling businesses and developing successful marketing campaigns that drive revenue growth and brand recognition.",
-    image: "/majid.png",
+    image: "/majid.jpeg",
     linkedin: "#",
     twitter: "#",
     email: "majid@company.com",
@@ -45,7 +45,7 @@ const leaders = [
     name: "Zahoor Ahmad",
     role: "IT Head & Director of Technology Solutions",
     bio: "IT infrastructure specialist with 14+ years experience. Manages enterprise systems, cybersecurity, and technology implementation across global operations.",
-    image: "/zahoor.jpg",
+    image: "/zahoor.jpeg",
     linkedin: "#",
     twitter: "#",
     email: "zahoor@company.com",
@@ -81,7 +81,7 @@ const leaders = [
     name: "Faraz",
     role: "Sales Executive",
     bio: "Top-performing sales professional with 5+ years in B2B tech sales. Specializes in enterprise client acquisition, relationship management, and exceeding revenue targets.",
-    image: "/faraz.jpg",
+    image: "/faraz.jpeg",
     linkedin: "#",
     twitter: "#",
     email: "faraz@company.com",
@@ -127,10 +127,10 @@ export function LeadershipTeam() {
                     alt={leader.name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover  transition-transform duration-700 group-hover:scale-110"
                     priority={index < 2}
                     style={{
-                      objectPosition: "center 30%",
+                      objectPosition: leader.name === "Zahoor Ahmad" || leader.name === "Muhammad Khan" ? "center top" : "center 30%",
                     }}
                   />
                   

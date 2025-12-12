@@ -16,6 +16,7 @@ interface ImageRevealProps {
   overlay?: boolean;
   overlayVariant?: "default" | "dark" | "gradient" | "subtle" | "banner";
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  style?: React.CSSProperties;
 }
 
 export function ImageReveal({
@@ -29,7 +30,8 @@ export function ImageReveal({
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
   overlay = true,
   overlayVariant = "gradient",
-  objectFit = "cover"
+  objectFit = "cover",
+  style
 }: ImageRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
@@ -69,6 +71,7 @@ export function ImageReveal({
             }
             priority={priority}
             onLoad={() => setIsLoaded(true)}
+            style={style}
           />
         </motion.div>
         {overlay && (
@@ -102,6 +105,7 @@ export function ImageReveal({
           }
           priority={priority}
           onLoad={() => setIsLoaded(true)}
+          style={style}
         />
         {overlay && (
           <ImageOverlay variant={overlayVariant}>
