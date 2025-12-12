@@ -1,10 +1,41 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram, Send } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useEffect, useState } from "react";
+import Container from "./Container";
 
 export default function Footer() {
 	const currentYear = new Date().getFullYear();
+	const { theme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+	const [isDark, setIsDark] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+		const checkTheme = () => {
+			if (typeof window !== "undefined") {
+				setIsDark(document.documentElement.classList.contains("dark"));
+			}
+		};
+		checkTheme();
+		
+		const handleThemeChange = () => checkTheme();
+		window.addEventListener("themechange", handleThemeChange);
+		
+		const observer = new MutationObserver(() => checkTheme());
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+		
+		return () => {
+			window.removeEventListener("themechange", handleThemeChange);
+			observer.disconnect();
+		};
+	}, []);
 
 	const socialLinks = [
 		{ icon: Twitter, href: "https://twitter.com/genroar", label: "Twitter" },
@@ -20,7 +51,8 @@ export default function Footer() {
 				<div className="h-full w-full bg-gradient-to-r from-primary via-accent to-primary" />
 			</div>
 
-			<div className="mx-auto max-w-7xl px-6">
+		<Container>
+		<div className="">
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
 					{/* Company */}
 					<motion.div
@@ -29,9 +61,34 @@ export default function Footer() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.6 }}
 					>
-						<h3 className="mb-4 text-xl font-bold">
-							<span className="text-black">GENROAR</span>
-						</h3>
+						{mounted ? (
+							<Link href="/" className="z-50 relative flex items-center ml-[-40px] h-4 sm:h-16">
+							{mounted ? (
+								<div className="relative" style={{ background: 'transparent' }}>
+									<Image
+										src={isDark ? "/whitel.png" : "/blackl.png"}
+										alt="GENROAR Logo"
+										width={240}
+										height={10}
+										className=" object-contain"
+										style={{ 
+											background: 'transparent',
+											backgroundColor: 'transparent',
+											mixBlendMode: 'normal'
+										}}
+										priority
+										unoptimized
+									/>
+								</div>
+							) : (
+								<span className="text-lg sm:text-xl font-bold tracking-tight text-black">GENROAR</span>
+							)}
+						</Link>
+						) : (
+							<h3 className="mb-4 text-xl font-bold">
+								<span className="text-black">GENROAR</span>
+							</h3>
+						)}
 						<p className="mb-6 text-sm leading-relaxed text-neutral-900 dark:text-neutral-200">
 							Turning ideas into reality. We help entrepreneurs and businesses plan, build, and grow their products with cutting-edge technology and strategic expertise.
 						</p>
@@ -153,8 +210,8 @@ export default function Footer() {
 						<ul className="space-y-3 text-sm">
 							<li className="flex items-start gap-2">
 								<Mail className="h-4 w-4 shrink-0 mt-0.5 text-neutral-800 dark:text-neutral-300" />
-								<a href="mailto:genroar@gmail.com" className="text-neutral-900 transition-colors hover:text-primary dark:text-white">
-									genroar@gmail.com
+								<a href="mailto:info.genroar7@gmail.com" className="text-neutral-900 transition-colors hover:text-primary dark:text-white">
+									info.genroar7@gmail.com
 								</a>
 							</li>
 							<li className="flex items-start gap-2">
@@ -183,6 +240,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
+		</Container>
 		</footer>
 	);
 }

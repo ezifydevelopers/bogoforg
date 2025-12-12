@@ -7,15 +7,15 @@ const sections = [
 	{
 		icon: FileText,
 		title: "1. Acceptance of Terms",
-		content: `By accessing and using bogoforg's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.`,
+		content: `By accessing and using genroar's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.`,
 	},
 	{
 		icon: Scale,
 		title: "2. Use License",
-		content: `Permission is granted to temporarily access the materials on bogoforg's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+		content: `Permission is granted to temporarily access the materials on genroar's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
 		• Modify or copy the materials
 		• Use the materials for any commercial purpose or for any public display
-		• Attempt to reverse engineer any software contained on bogoforg's website
+		• Attempt to reverse engineer any software contained on genroar's website
 		• Remove any copyright or other proprietary notations from the materials`,
 	},
 	{
@@ -26,7 +26,7 @@ const sections = [
 	{
 		icon: AlertCircle,
 		title: "4. Intellectual Property",
-		content: `All content, features, and functionality of our services, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, and software, are the exclusive property of bogoforg and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.`,
+		content: `All content, features, and functionality of our services, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, and software, are the exclusive property of genroar and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.`,
 	},
 	{
 		icon: CheckCircle,
@@ -36,17 +36,17 @@ const sections = [
 	{
 		icon: FileText,
 		title: "6. Limitation of Liability",
-		content: `In no event shall bogoforg or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on bogoforg's website, even if bogoforg or a bogoforg authorized representative has been notified orally or in writing of the possibility of such damage.`,
+		content: `In no event shall genroar or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on genroar's website, even if genroar or a genroar authorized representative has been notified orally or in writing of the possibility of such damage.`,
 	},
 	{
 		icon: Scale,
 		title: "7. Revisions and Errata",
-		content: `The materials appearing on bogoforg's website could include technical, typographical, or photographic errors. bogoforg does not warrant that any of the materials on its website are accurate, complete, or current. bogoforg may make changes to the materials contained on its website at any time without notice.`,
+		content: `The materials appearing on genroar's website could include technical, typographical, or photographic errors. genroar does not warrant that any of the materials on its website are accurate, complete, or current. genroar may make changes to the materials contained on its website at any time without notice.`,
 	},
 	{
 		icon: Shield,
 		title: "8. Governing Law",
-		content: `These terms and conditions are governed by and construed in accordance with applicable laws. Any disputes relating to these terms and conditions shall be subject to the exclusive jurisdiction of the courts in the jurisdiction where bogoforg operates.`,
+		content: `These terms and conditions are governed by and construed in accordance with applicable laws. Any disputes relating to these terms and conditions shall be subject to the exclusive jurisdiction of the courts in the jurisdiction where genroar operates.`,
 	},
 ];
 

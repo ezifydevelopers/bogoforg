@@ -100,7 +100,7 @@ export default function ContactPage() {
 			setErrorMessage(
 				error instanceof Error 
 					? error.message 
-					: "Failed to send message. Please try again or contact us directly at genroar@gmail.com"
+					: "Failed to send message. Please try again or contact us directly at info.genroar7@gmail.com"
 			);
 		} finally {
 			setIsSubmitting(false);
@@ -169,7 +169,7 @@ export default function ContactPage() {
 					<div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
 						{[
 							{ icon: Phone, label: "Phone", value: "+92 (310) 7100-663", href: "tel:+923107100663" },
-							{ icon: Mail, label: "Email", value: "genroar@gmail.com", href: "mailto:genroar@gmail.com" },
+							{ icon: Mail, label: "Email", value: "info.genroar7@gmail.com", href: "mailto:info.genroar7@gmail.com" },
 							{ icon: MessageCircle, label: "WhatsApp", value: "+92 (310) 7100-663 ", href: "https://wa.me/+923107100663" },
 						].map((contact, index) => {
 							const Icon = contact.icon;
@@ -370,8 +370,8 @@ export default function ContactPage() {
 										</div>
 										<div>
 											<h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Email</h3>
-											<a href="mailto:genroar@gmail.com" className="text-gray-900 hover:text-primary dark:text-white">
-												genroar@gmail.com
+											<a href="mailto:info.genroar7@gmail.com" className="text-gray-900 hover:text-primary dark:text-white">
+												info.genroar7@gmail.com
 											</a>
 										</div>
 									</div>

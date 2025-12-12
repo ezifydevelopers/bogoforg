@@ -71,7 +71,7 @@ const sections = [
 		icon: Mail,
 		title: "8. Contact Us",
 		content: `If you have any questions about this Privacy Policy, please contact us:
-		• Email: privacy@bogoforg.com
+		• Email: privacy@genroar.com
 		• Phone: +1 (234) 567-890
 		• Address: Remote Worldwide
 		
@@ -204,7 +204,7 @@ export default function PrivacyPage() {
 								Contact Us
 							</a>
 							<a
-								href="mailto:privacy@bogoforg.com"
+								href="mailto:privacy@genroar.com"
 								className="inline-block rounded-full border-2 border-primary px-8 py-3 text-primary font-semibold transition-all hover:bg-primary hover:text-white"
 							>
 								Email Privacy Team

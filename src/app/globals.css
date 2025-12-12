@@ -258,6 +258,14 @@ html:not(.dark) {
   transition-duration: 200ms;
 }
 
+/* Logo images - transparent background */
+img[alt="GENROAR Logo"],
+img[src*="whitel.png"],
+img[src*="blackl.png"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* Fluid Typography - Automatically adjusts based on screen size */
 .text-fluid-xs {
   font-size: clamp(0.75rem, 0.5vw + 0.7rem, 0.875rem);

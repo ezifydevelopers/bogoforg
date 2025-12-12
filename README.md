@@ -1,4 +1,4 @@
-# bogoforg
+# genroar
 
 A multi-page portfolio and services website for helping SMBs turn ideas into reality. Built with Next.js (App Router), TypeScript, and Tailwind CSS. Focused on reusable components and a clean, modern UI.
 

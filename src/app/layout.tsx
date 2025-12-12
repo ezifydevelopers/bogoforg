@@ -24,12 +24,12 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
 	title: {
-		default: "bogoforg — Idea to Reality for SMBs",
-		template: "%s | bogoforg",
+		default: "genroar — Idea to Reality for SMBs",
+		template: "%s | genroar",
 	},
 	description:
 		"We help small and medium businesses turn ideas into reality: product strategy, web/mobile/software development, SEO, marketing, and AI services.",
-	metadataBase: new URL("https://bogoforg.example.com"),
+	metadataBase: new URL("https://genroar.example.com"),
 };
 
 export default function RootLayout({

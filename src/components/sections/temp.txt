@@ -906,7 +906,7 @@ const leaders = [
     image: "👩‍💼",
     linkedin: "#",
     twitter: "#",
-    email: "sarah@bogoforg.com",
+    email: "sarah@genroar.com",
   },
   {
     name: "Mike Rodriguez",
@@ -915,7 +915,7 @@ const leaders = [
     image: "👨‍💻",
     linkedin: "#",
     twitter: "#",
-    email: "mike@bogoforg.com",
+    email: "mike@genroar.com",
   },
   {
     name: "Alex Johnson",
@@ -924,7 +924,7 @@ const leaders = [
     image: "👨‍🎨",
     linkedin: "#",
     twitter: "#",
-    email: "alex@bogoforg.com",
+    email: "alex@genroar.com",
   },
   {
     name: "Emily Davis",
@@ -933,7 +933,7 @@ const leaders = [
     image: "👩‍💼",
     linkedin: "#",
     twitter: "#",
-    email: "emily@bogoforg.com",
+    email: "emily@genroar.com",
   },
 ];
 
@@ -1060,7 +1060,7 @@ export function OurStory() {
             </h2>
             <div className="space-y-4 text-lg leading-relaxed text-gray-800 dark:text-gray-300">
               <p>
-                Founded in 2014, bogoforg began with a simple yet powerful mission: to help entrepreneurs and small businesses transform their boldest ideas into successful, scalable products. We saw too many great concepts fail not because they were bad ideas, but because they lacked the right expertise, strategy, or execution.
+                Founded in 2014, genroar began with a simple yet powerful mission: to help entrepreneurs and small businesses transform their boldest ideas into successful, scalable products. We saw too many great concepts fail not because they were bad ideas, but because they lacked the right expertise, strategy, or execution.
               </p>
               <p>
                 What started as a small team of passionate developers and strategists has grown into a full-service agency with expertise spanning business planning, product development, web and mobile applications, marketing, AI, and security. Over the years, we've helped 200+ clients across various industries launch products that have gone on to raise millions in funding and serve millions of users.

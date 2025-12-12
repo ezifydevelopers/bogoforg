@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://bogoforg.example.com/sitemap.xml',
+    sitemap: 'https://genroar.example.com/sitemap.xml',
   };
 }
 

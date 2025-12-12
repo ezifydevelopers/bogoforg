@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -8,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MegaMenu } from "@/components/ui/MegaMenu";
 import { DarkModeToggle } from "@/components/ui/DarkModeToggle";
 import { QuoteModal } from "@/components/ui/QuoteModal";
+import { useTheme } from "@/contexts/ThemeContext";
 import { services } from "@/data/services";
 
 const aboutLinks = [
@@ -28,11 +30,38 @@ const links: Array<{ href: string; label: string; hasDropdown?: boolean }> = [
 
 function Navbar() {
 	const pathname = usePathname();
+	const { theme } = useTheme();
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 	const [hoveredMenu, setHoveredMenu] = useState<"services" | "about" | null>(null);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState<{ [key: string]: boolean }>({});
 	const [quoteModalOpen, setQuoteModalOpen] = useState(false);
+	const [mounted, setMounted] = useState(false);
+	const [isDark, setIsDark] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+		const checkTheme = () => {
+			if (typeof window !== "undefined") {
+				setIsDark(document.documentElement.classList.contains("dark"));
+			}
+		};
+		checkTheme();
+		
+		const handleThemeChange = () => checkTheme();
+		window.addEventListener("themechange", handleThemeChange);
+		
+		const observer = new MutationObserver(() => checkTheme());
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+		
+		return () => {
+			window.removeEventListener("themechange", handleThemeChange);
+			observer.disconnect();
+		};
+	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -51,9 +80,28 @@ function Navbar() {
 						: "border-transparent bg-white/80 backdrop-blur-sm dark:bg-[#0B0C10]/80"
 				}`}
 			>
-				<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-					<Link href="/" className="text-lg sm:text-xl font-bold tracking-tight z-50 relative">
-						<span className="text-black">GENROAR</span>
+				<div className="mx-auto flex min-h-16 sm:min-h-20 max-w-7xl items-center justify-between px-4 sm:px-6 py-3">
+					<Link href="/" className="z-50 relative flex items-center h-14 sm:h-16">
+						{mounted ? (
+							<div className="relative" style={{ background: 'transparent' }}>
+								<Image
+									src={isDark ? "/whitel.png" : "/blackl.png"}
+									alt="GENROAR Logo"
+									width={240}
+									height={80}
+									className=" object-contain"
+									style={{ 
+										background: 'transparent',
+										backgroundColor: 'transparent',
+										mixBlendMode: 'normal'
+									}}
+									priority
+									unoptimized
+								/>
+							</div>
+						) : (
+							<span className="text-lg sm:text-xl font-bold tracking-tight text-black">GENROAR</span>
+						)}
 					</Link>
 
 					{/* Desktop Navigation - Only visible at 1280px+ */}

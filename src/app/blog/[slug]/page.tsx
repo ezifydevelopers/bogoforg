@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     return elements;
   };
 
-  const shareUrl = `https://bogoforg.example.com/blog/${post.slug}`;
+  const shareUrl = `https://genroar.example.com/blog/${post.slug}`;
   const shareText = encodeURIComponent(post.title);
 
   return (

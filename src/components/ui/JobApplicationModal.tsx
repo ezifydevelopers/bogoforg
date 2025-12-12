@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle, Upload, FileText } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+const JOB_APPLICATION_API_URL = "/api/contact";
 
 interface JobApplicationModalProps {
   isOpen: boolean;
@@ -21,27 +22,75 @@ export function JobApplicationModal({ isOpen, onClose, jobTitle }: JobApplicatio
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [resumeFileName, setResumeFileName] = useState("");
+  const [resumeAttachment, setResumeAttachment] = useState<{ filename: string; contentType: string; data: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      yearsOfExperience: "",
+      resume: null,
+      coverLetter: "",
+    });
+    setResumeFileName("");
+    setResumeAttachment(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Application submitted:", formData);
-    // You can add API call here
-    setIsSubmitted(true);
-    // Reset form after 3 seconds and close modal
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        yearsOfExperience: "",
-        resume: null,
-        coverLetter: "",
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      if (!resumeAttachment) {
+        throw new Error("Please upload your resume.");
+      }
+
+      const payload = {
+        type: "job_application",
+        jobTitle: jobTitle || "General Position",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        yearsOfExperience: formData.yearsOfExperience,
+        coverLetter: formData.coverLetter,
+        message: formData.coverLetter,
+        attachments: [
+          {
+            filename: resumeAttachment.filename,
+            contentType: resumeAttachment.contentType,
+            data: resumeAttachment.data,
+          },
+        ],
+      };
+
+      const response = await fetch(JOB_APPLICATION_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
-      setResumeFileName("");
-      onClose();
-    }, 3000);
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit application. Please try again.");
+      }
+
+      setIsSubmitted(true);
+      resetForm();
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+      }, 3000);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Failed to submit application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -54,11 +103,30 @@ export function JobApplicationModal({ isOpen, onClose, jobTitle }: JobApplicatio
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setErrorMessage("File size exceeds 5MB. Please upload a smaller file.");
+        return;
+      }
+
       setFormData({
         ...formData,
         resume: file,
       });
       setResumeFileName(file.name);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = (reader.result as string).split(",")[1];
+        setResumeAttachment({
+          filename: file.name,
+          contentType: file.type || "application/octet-stream",
+          data: base64String,
+        });
+      };
+      reader.onerror = () => {
+        setErrorMessage("Failed to read the file. Please try again.");
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -277,14 +345,30 @@ export function JobApplicationModal({ isOpen, onClose, jobTitle }: JobApplicatio
                           />
                         </div>
 
+                        {errorMessage && (
+                          <div className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-200">
+                            {errorMessage}
+                          </div>
+                        )}
+
                         <Button
                           type="submit"
                           variant="primary"
                           size="lg"
                           className="w-full"
+                          disabled={isSubmitting}
                         >
-                          <Send className="mr-2 h-5 w-5" />
-                          Submit Application
+                          {isSubmitting ? (
+                            <>
+                              <div className="mr-2 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="mr-2 h-5 w-5" />
+                              Submit Application
+                            </>
+                          )}
                         </Button>
                       </form>
                     </>

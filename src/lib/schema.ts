@@ -1,9 +1,9 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "bogoforg",
-  "url": "https://bogoforg.example.com",
-  "logo": "https://bogoforg.example.com/logo.png",
+  "name": "genroar",
+  "url": "https://genroar.example.com",
+  "logo": "https://genroar.example.com/logo.png",
   "description": "We help entrepreneurs and businesses turn ideas into reality through business planning, software development, and growth services.",
   "address": {
     "@type": "PostalAddress",
@@ -13,11 +13,11 @@ export const organizationSchema = {
     "@type": "ContactPoint",
     "telephone": "+1-234-567-890",
     "contactType": "customer service",
-    "email": "hello@bogoforg.com"
+    "email": "hello@genroar.com"
   },
   "sameAs": [
-    "https://twitter.com/bogoforg",
-    "https://linkedin.com/company/bogoforg"
+    "https://twitter.com/genroar",
+    "https://linkedin.com/company/genroar"
   ]
 };
 
@@ -56,15 +56,15 @@ export function generateArticleSchema(article: {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "bogoforg",
+      "name": "genroar",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://bogoforg.example.com/logo.png"
+        "url": "https://genroar.example.com/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://bogoforg.example.com/blog/${article.slug}`
+      "@id": `https://genroar.example.com/blog/${article.slug}`
     },
     ...(article.image && {
       "image": {
